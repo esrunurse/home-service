@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users, service, category CASCADE; 
+DROP TABLE IF EXISTS users, service, category, sub_service CASCADE; 
 
 create table users (
 user_id int primary key generated always as identity,
@@ -74,6 +74,8 @@ insert into service (user_id, category_id, sub_service_id, service_name, price_r
 insert into service (user_id, category_id, sub_service_id, service_name, price_range_estimate, service_photo, service_created_date, service_edited_date) values (3, 3, null, 'ติดตั้งเครื่องทำน้ำอุ่น', 5039.39, 'convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in', '2021-11-29T17:24:14Z', '2022-05-06T13:27:44Z');
 insert into service (user_id, category_id, sub_service_id, service_name, price_range_estimate, service_photo, service_created_date, service_edited_date) values (2, 3, 3, 'ติดตั้งชักโครก', 999.59, 'lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi', '2021-12-15T08:16:47Z', '2021-07-18T04:15:58Z');
 insert into service (user_id, category_id, sub_service_id, service_name, price_range_estimate, service_photo, service_created_date, service_edited_date) values (1, 1, 4, 'ติดตั้งเตาแก๊ส', 3620.08, 'interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu', '2022-03-16T23:24:20Z', '2021-12-10T07:02:21Z');
+
+
 
 -- select *
 -- from service

@@ -11,8 +11,8 @@ function ServicePage() {
     <div className="service-page">
       <Nav />
       <ServicePageHeader />
-    <ServicesList />
-    <ServicePageJobNotice /> 
+      <ServicesList />
+      <ServicePageJobNotice /> 
       <Footer />
     </div>
   );

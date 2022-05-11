@@ -1,2 +1,0 @@
-1.  change postgresql password every time when using postgresql in server/utils/db.js
-2.  Always generate SECFRET_KEY in .env
