@@ -3,9 +3,11 @@ import { css } from "@emotion/react";
 import icons from "../../AdminPhoto/imageIndex.js";
 import "../../App.css";
 import Moment from "react-moment";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AdminCategories(props) {
   const { category } = props;
+  const navigate = useNavigate();
   return (
     <div
       className="categories-data w-screen h-screen"
@@ -90,7 +92,7 @@ export default function AdminCategories(props) {
           {category.map((data, index) => {
             return (
               <div
-                key={data.id}
+                key={data.category_id}
                 className="data-category-box"
                 css={css`
                   height: 88px;
@@ -177,6 +179,8 @@ export default function AdminCategories(props) {
                       width: 24px;
                       height: 24px;
                     `}
+                    className="cursor-pointer"
+                    onClick={() => navigate(`/category/edit/${data.category_id}`)}
                   />
                 </div>
               </div>

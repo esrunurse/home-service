@@ -1,13 +1,10 @@
-/** @jsxImportSource @emotion/react */
-// import { css } from "@emotion/react";
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import SideBar from '../components/AdminCategoryPage/SideBar'
 import axios from 'axios'
+import { useState } from "react";
 
-function CreateCategory(props) {
-  const { id, setId } = props;
+function CreateCategory() {
   const navigate = useNavigate();
   const [category_name, setCategory_name] = useState("");
   const createCategory = async () => {

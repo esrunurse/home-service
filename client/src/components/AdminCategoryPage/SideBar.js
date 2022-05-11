@@ -5,7 +5,6 @@ import image from "../../HomePagePhoto/imageIndex";
 import icon from "../../AdminPhoto/imageIndex";
 import { useNavigate } from "react-router-dom";
 
-
 function SideBar() {
   const navigate = useNavigate();
   return (
@@ -18,8 +17,8 @@ function SideBar() {
         </div>
       </div>
       <div>
-        <div className="hover:bg-blue900 h-12 my-1 cursor-pointer pt-3">
-          <img className="inline-block w-5 mr-2 ml-7" src={icon.category} alt="หมวดหมู่"/>
+        <div className="hover:bg-blue900 h-12 my-1 cursor-pointer pt-3" onClick={() => navigate("/category-dashboard")}>
+          <img className="inline-block w-5 mr-2 ml-7" src={icon.category} alt="หมวดหมู่" />
           <a className="h-14 text-grey100 font-medium text-base no-underline hover:text-white">
             หมวดหมู่
           </a>

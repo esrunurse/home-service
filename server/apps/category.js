@@ -28,7 +28,7 @@ categoryRouter.get("/", async (req, res) => {
 categoryRouter.get("/:id", async (req, res) => {
   const categoryId = req.params.id;
 
-  const result = await pool.query(`select * from where category_id=$1`, [
+  const result = await pool.query(`select * from category where category_id=$1`, [
     categoryId,
   ]);
   return res.json({

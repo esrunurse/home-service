@@ -18,7 +18,7 @@ function AuthenticatedApp() {
           <Route path="/service" element={<ServicePage />} />
           <Route path="/category-dashboard" element={<AdminCategoryPage />} />
           <Route path="/create-category" element={<CreateCategory />} />
-          <Route path="/admin-edit-category" element={<AdminEditCategory />} />
+          <Route path="/category/edit/:categoryId" element={<AdminEditCategory />} />
         </Routes>
       ) : (
         <Routes>
