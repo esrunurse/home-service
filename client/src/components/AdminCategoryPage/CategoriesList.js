@@ -87,7 +87,7 @@ export default function AdminCategories(props) {
           </h5>
         </div>
         <div className="bg-white rounded-b-lg">
-          {category.map((data) => {
+          {category.map((data, index) => {
             return (
               <div
                 key={data.id}
@@ -117,7 +117,7 @@ export default function AdminCategories(props) {
                       font-weight: 300;
                     `}
                   >
-                    {data.category_id}
+                    {index+1}
                   </div>
                   <div
                     className="category-name"
@@ -136,7 +136,7 @@ export default function AdminCategories(props) {
                       font-weight: 300;
                     `}
                   >
-                    <Moment format="DD/MM/YYYY HH:MM">
+                    <Moment format="DD/MM/YYYY hh:mm A">
                       {data.category_created_date}
                     </Moment>
                   </div>
@@ -146,7 +146,7 @@ export default function AdminCategories(props) {
                       padding: 24px;
                     `}
                   >
-                    <Moment format="DD/MM/YYYY HH:MM">
+                    <Moment format="DD/MM/YYYY hh:mm A">
                       {data.category_edited_date}
                     </Moment>
                   </div>
