@@ -1,2 +1,0 @@
-Troubleshoot 4/5/22
-1. Can't style checkbox and textbox input (unfinished)

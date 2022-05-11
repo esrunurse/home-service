@@ -3,7 +3,8 @@ import { css } from "@emotion/react";
 import image from "../../HomePagePhoto/imageIndex";
 
 function ServicesList(props) {
-  const { searchService, setSearchService, service } = props;
+  const { service } = props;
+
   return (
     <div
       className="our-services"
@@ -14,7 +15,8 @@ function ServicesList(props) {
         justify-content: center;
         align-items: center;
       `}
-    ><div
+    >
+      {/* <div
         className="service-box"
         css={css`
           width: 1121px;
@@ -23,20 +25,22 @@ function ServicesList(props) {
           grid-template-columns: 2fr 2fr 1fr;
           grid-template-rows: 2fr 2fr 1fr;
         `}
-      >{
-        service.map((data, index) => {
-          return (<div
-          className="service-card"
-          css={css`
-            width: 349px;
-            height: 369px;
-            background-color: #ffff;
-            border: 1px solid #ccd0d7;
-            border-radius: 8px;
-          `}
-        >content jaa</div>)
-        })
-    }</div>
+      >
+        {service.map((data, index) => {
+          return (
+            <div
+              className="service-card"
+              css={css`
+                width: 349px;
+                height: 369px;
+                background-color: #ffff;
+                border: 1px solid #ccd0d7;
+                border-radius: 8px;
+              `}
+            >content jaa</div>
+          );
+        })}
+      </div> */}
     </div>
   );
 }

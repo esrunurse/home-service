@@ -8,20 +8,21 @@ import { useEffect } from "react";
 function ServiceHeader(props) {
   const { searchService, setSearchService, setService } = props;
 
-  // const searchServiceData = async () => {
-  //   const results = await axios.get(
-  //     `http://localhost:4000/service?keywords=${searchService}`
-  //   );
-  //   setService(results.data.data);
-  // };
+  const searchServiceData = async () => {
+    const results = await axios.get(
+      `http://localhost:4000/service?keywords=${searchService}`
+    );
+    setService(results.data.data);
+    console.log(results)
+  };
 
-  // useEffect(() => {
-  //   let timerId;
-  //   timerId = setTimeout(searchServiceData, 1000);
-  //   return () => {
-  //     clearTimeout(timerId);
-  //   };
-  // }, [searchService]);
+  useEffect(() => {
+    let timerId;
+    timerId = setTimeout(searchServiceData, 1000);
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchService]);
 
   return (
     <header className="service-header">
