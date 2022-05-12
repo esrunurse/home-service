@@ -4,9 +4,12 @@ import "../../App.css";
 import image from "../../HomePagePhoto/imageIndex";
 import icon from "../../AdminPhoto/imageIndex";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authentication.js";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function SideBar() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   return (
     <div className="left-nav w-60 h-screen bg-blue950 top-0 z-10 fixed pb-20" css={css`box-shadow: inset -1px 0px 0px #3E3E3E;`}>
       <div>
@@ -23,7 +26,7 @@ function SideBar() {
             หมวดหมู่
           </a>
         </div>
-        <div className="hover:bg-blue900 h-12 my-1 cursor-pointer pt-3">
+        <div className="hover:bg-blue900 h-12 my-1 cursor-pointer pt-3" onClick={() => navigate("/service-dashboard")} >
           <img className="inline-block w-5 mr-2 ml-7" src={icon.service} alt="บริการ"/>
           <a className="h-14 text-grey100 font-medium text-base no-underline hover:text-white">
             บริการ
@@ -38,9 +41,11 @@ function SideBar() {
         <div>
         <div className="hover:bg-blue900 h-12 my-1 cursor-pointer pt-3 absolute bottom-5 w-60">
           <img className="inline-block mr-2 ml-7" src={icon.logout} alt="Logout"/>
-            <a onClick={() => navigate("/logout")} className="h-14 text-grey100 font-medium text-base no-underline hover:text-white">
+            <Link to="/" onClick={() => {
+                    logout();
+                  }} className="h-14 text-grey100 font-medium text-base no-underline hover:text-white">
             ออกจากระบบ
-          </a>
+          </Link>
           </div>
         </div>
       </div>

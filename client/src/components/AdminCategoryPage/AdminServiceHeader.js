@@ -1,43 +1,43 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import "../../App.css";
-import axios from "axios";
 import { useEffect } from "react";
 import image from "../../AdminPhoto/imageIndex";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 
-function AdminCategoryHeader(props) {
-  const navigate = useNavigate();
-  const { searchCategory, setSearchCategory, setCategory } = props;
-  const searchCategoryData = async () => {
+function AdminServiceHeader(props) {
+  // const navigate = useNavigate();
+  const { searchService, setSearchService, setService } = props;
+  const searchServiceData = async () => {
     const results = await axios.get(
-      `http://localhost:4000/category?keywords=${searchCategory}`
+      `http://localhost:4000/search?keywords=${searchService}`
     );
-    setCategory(results.data.data);
+    setService(results.data.data);
   };
   
   useEffect(() => {
     let timerId;
-    timerId = setTimeout(searchCategoryData, 1000);
+    timerId = setTimeout(searchServiceData, 1000);
     return () => {
       clearTimeout(timerId);
     };
-  }, [searchCategory]);
+  }, [searchService]);
 
   return (
     <header className="admin-header ">
       <div className="header-name pl-60 w-screen flex items-center h-20 pr-10 justify-between border-b border-grey300 ">
-        <h1 className="text-xl font-medium pl-10">หมวดหมู่</h1>
+        <h1 className="text-xl font-medium pl-10">บริการ</h1>
         <div className="flex">
           <input
             id="search-text"
             name="search-text"
             type="text"
-            placeholder="ค้นหาหมวดหมู่..."
+            placeholder="ค้นหาบริการ..."
             onChange={(event) => {
-              setSearchCategory(event.target.value);
+              setSearchService(event.target.value);
             }}
-            value={searchCategory}
+            value={searchService}
             className="border rounded-lg border-grey300"
             css={css`
               padding: 10px 0px 10px 16px;
@@ -45,9 +45,8 @@ function AdminCategoryHeader(props) {
           />
           <button
             className="btn-primary flex items-center ml-6"
-            onClick={() => navigate("/create-category")}
           >
-            <div className="text-base font-medium mr-3">เพิ่มหมวดหมู่</div>
+            <div className="text-base font-medium mr-3">เพิ่มบริการ</div>
             <img src={image.plusSign} />
           </button>
         </div>
@@ -56,4 +55,4 @@ function AdminCategoryHeader(props) {
   );
 }
 
-export default AdminCategoryHeader;
+export default AdminServiceHeader;

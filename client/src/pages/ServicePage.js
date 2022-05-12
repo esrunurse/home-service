@@ -4,10 +4,10 @@ import ServicePageHeader from "../components/ServicePage/ServicePageHeader";
 import ServicesList from "../components/ServicePage/ServicePageServicesList";
 import ServicePageJobNotice from "../components/ServicePage/ServicesPageJobNotice";
 import Footer from "../components/HomePage/Footer";
-import useSearchBox from "../hooks/util"
+import useService from "../hooks/service";
 
 function ServicePage() {
-  const { searchService, setSearchService, setService } = useSearchBox();
+  const { searchService, setSearchService, service, setService } = useService();
   return (
     <div className="service-page">
       <Nav />
@@ -16,7 +16,7 @@ function ServicePage() {
         setSearchService={setSearchService}
         setService={setService}
       />
-      <ServicesList />
+      <ServicesList service={service}/>
       <ServicePageJobNotice />
       <Footer />
     </div>
