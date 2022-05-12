@@ -10,7 +10,7 @@ function AdminService(props) {
 //   const navigate = useNavigate();
   return (
     <div
-      className="service-data w-screen h-screen"
+      className="w-screen "
       css={css`
         background: #e5e5e5;
         padding: 41px;
@@ -20,7 +20,6 @@ function AdminService(props) {
       <div
         className="pl-60"
         css={css`
-          height: 305px;
           border-radius: 5px;
         `}
       >

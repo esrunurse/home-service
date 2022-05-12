@@ -8,14 +8,15 @@ import axios from "axios";
 
 function AdminServiceHeader(props) {
   // const navigate = useNavigate();
-  const { searchService, setSearchService, setService } = props;
+    const { searchService, setSearchService, setService } = props;
+
   const searchServiceData = async () => {
     const results = await axios.get(
-      `http://localhost:4000/search?keywords=${searchService}`
+      `http://localhost:4000/service?keywords=${searchService}`
     );
     setService(results.data.data);
   };
-  
+
   useEffect(() => {
     let timerId;
     timerId = setTimeout(searchServiceData, 1000);
@@ -23,6 +24,7 @@ function AdminServiceHeader(props) {
       clearTimeout(timerId);
     };
   }, [searchService]);
+
 
   return (
     <header className="admin-header ">
