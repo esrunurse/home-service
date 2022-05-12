@@ -4,24 +4,11 @@ import icons from "../../AdminPhoto/imageIndex.js";
 import "../../App.css";
 import Moment from "react-moment";
 import { useNavigate } from "react-router-dom";
-import axios  from "axios";
 import { useEffect } from "react";
 
 function AdminCategories(props) {
-  const { category, setCategory } = props;
+  const { category, getCategory, deleteCategoryId } = props;
   const navigate = useNavigate();
-
-  const getCategory = async () => {
-    const result = await axios("http://localhost:4000/category");
-    setCategory(result.data.data);
-  };
-
-  const deleteCategoryId = async (categoryId) => {
-    const result = await axios.delete(`http://localhost:4000/category/${categoryId}`);
-    getCategory();
-    navigate("/category-dashboard");
-    console.log(result);
-  };
 
   useEffect(() => {
     getCategory();

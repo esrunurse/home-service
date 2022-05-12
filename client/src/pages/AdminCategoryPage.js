@@ -2,11 +2,11 @@ import "../App.css";
 import AdminCategories from "../components/AdminCategoryPage/CategoriesList";
 import AdminCategoryHeader from "../components/AdminCategoryPage/AdminCategoryHeader";
 import SideBar from "../components/AdminCategoryPage/SideBar";
-import useCategory from "../hooks/category";
+import useHook from "../hooks/util";
 
 function AdminCategoryPage() {
-  const { searchCategory, setSearchCategory, category, setCategory } =
-    useCategory();
+  const { searchCategory, setSearchCategory, category, setCategory, getCategory, deleteCategoryId } =
+    useHook();
   return (
     <div className="admin-category-page">
       <SideBar />
@@ -17,9 +17,8 @@ function AdminCategoryPage() {
       />
       <AdminCategories
         category={category}
-        searchCategory={searchCategory}
-        setSearchCategory={setSearchCategory}
-        setCategory={setCategory}
+        getCategory={getCategory}
+        deleteCategoryId={deleteCategoryId}
       />
     </div>
   );

@@ -10,37 +10,40 @@ import Moment from "react-moment";
 function EditedCategoryForm(props) {
   const {
     category,
-    setCategory,
     category_name,
     setCategory_name,
     category_edited_date,
     setCategory_edited_date,
+    getCategory,
+    deleteCategoryId,
+    getCategoryById,
   } = props;
+
   const params = useParams();
   const navigate = useNavigate();
-  const getCategoryById = async (categoryId) => {
-    const result = await axios.get(
-      `http://localhost:4000/category/${categoryId}`
-    );
-    setCategory(result.data.data);
-  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
 
   useEffect(() => {
     getCategoryById(params.categoryId);
   }, []);
 
+  const updateCategoryById = async (categoryId) => {
+    await axios.put(`http://localhost:4000/category/${categoryId}`, {
+      category_name,
+      category_edited_date,
+    });
+    navigate("/category-dashboard");
+  };
+
   useEffect(() => {
     if (category) {
-        setCategory_name(category.category_name);
+      setCategory_name(category.category_name);
       setCategory_edited_date(category.category_edited_date);
     }
   }, [category]);
-
-  const updateCategoryById = async (categoryId) => {
-    await axios.put(`http://localhost:4000/category/${categoryId}`, {category_name,
-      category_edited_date});
-    navigate("/category-dashboard");
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,8 +51,8 @@ function EditedCategoryForm(props) {
       category_name,
       category_edited_date,
     });
-    };
-    
+  };
+
   return (
     <div
       className="edit-container h-screen"
@@ -112,29 +115,35 @@ function EditedCategoryForm(props) {
             <hr className="border text-grey300 my-10 "></hr>
             <div
               className="time-line-category
-             h-24 flex flex-col justify-between"
+             h-24 flex"
             >
-              <div className="h-11 w-96 flex items-center justify-between">
-                <div className="text-base text-grey700 font-medium">
+              <div className="h-11 flex-col">
+                <div className="text-base text-grey700 font-medium my-2">
                   สร้างเมื่อ
                 </div>
-                <div><Moment format="DD/MM/YYYY hh:mm A">
-                      {category.category_created_date}
-                    </Moment></div>
-              </div>
-              <div className="h-11 w-96 flex items-center justify-between">
-                <div className="text-base text-grey700 font-medium">
+                <div className="text-base text-grey700 font-medium my-2">
                   แก้ไขล่าสุด
                 </div>
-                <div><Moment format="DD/MM/YYYY hh:mm A">
-                      {category.category_edited_date}
-                    </Moment></div>
+              </div>
+              <div className="ml-12 flex-col">
+                <div className="my-2">
+                  <Moment format="DD/MM/YYYY hh:mm A">
+                    {category.category_created_date}
+                  </Moment>
+                </div>
+                <div className="my-2">
+                  <Moment format="DD/MM/YYYY hh:mm A">
+                    {category.category_edited_date}
+                  </Moment>
+                </div>
               </div>
             </div>
           </div>
-          <div className="delete-button w-28 h-6 flex justify-between self-end mt-6 text-grey600 underline ">
-            <img alt="Trash" className="w-6 h-6" src={image.trashIcon} />
-            <button>ลบหมวดหมู่</button>
+        <div className="w-28 h-6 flex justify-between self-end mt-6 text-grey600 underline" onClick={() => deleteCategoryId(category.category_id)}>
+          <img alt="Trash" className="w-6 h-6 cursor-pointer" src={image.trashIcon} />
+          <button>
+            ลบหมวดหมู่
+          </button>
           </div>
         </div>
       </form>

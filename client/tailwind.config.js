@@ -20,7 +20,7 @@ module.exports = {
       grey400: '#B3B8C4',
       grey500: '#9AA1B0',
       grey600: '#80899C',
-      grey700: '#636678',
+      grey700: '#646C80',
       grey800: '#4B5160',
       grey900: '#323640',
       grey950: '#232630',
@@ -37,7 +37,11 @@ module.exports = {
       black: '#000000',
       white: '#FFFFFF',
       red: '#C82438',
-      bg: '#F3F4F7'
+      bg: '#F3F4F7',
+      pink: 'rgb(252 231 243)',
+      lime: 'rgb(236 252 203)',
+      amber: 'rgb(254 243 199)',
+      brown: 'rgb(154 52 18)',
     },
     extend: {}
   },

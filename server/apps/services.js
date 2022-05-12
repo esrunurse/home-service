@@ -28,8 +28,8 @@ serviceRouter.get("/", async (req, res) => {
     on service.service_id = sub_service.service_id  
     inner join category
     on category.category_id = service.category_id
-    group by service.service_id, category.category_name
     where service_name ilike '%'||$1||'%' 
+    group by service.service_id, category.category_name
     order by service.service_id asc`; // '%' || tag_name || '%' can search anything in keywords
     values = [keywords];
   } else {

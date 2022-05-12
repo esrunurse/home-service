@@ -1,6 +1,6 @@
 import "../App.css";
 import SideBar from "../components/AdminCategoryPage/SideBar";
-import useCategory from "../hooks/category";
+import useHook from "../hooks/util";
 import EditedCategoryForm from "../components/AdminCategoryPage/AdminEditedCategoryForm";
 
 function AdminEditCategory() {
@@ -12,8 +12,10 @@ function AdminEditCategory() {
     setCategory_created_date,
     category_edited_date,
     setCategory_edited_date,
-    deleteCategoryId
-  } = useCategory();
+    deleteCategoryId,
+    getCategory,
+    getCategoryById
+  } = useHook();
   return (
     <div>
       <SideBar />
@@ -26,6 +28,8 @@ function AdminEditCategory() {
         category_edited_date={category_edited_date}
         setCategory_edited_date={setCategory_edited_date}
         deleteCategoryId={deleteCategoryId}
+        getCategory={getCategory}
+        getCategoryById={getCategoryById}
       />
     </div>
   );
