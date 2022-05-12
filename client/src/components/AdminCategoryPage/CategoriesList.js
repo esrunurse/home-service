@@ -3,11 +3,31 @@ import { css } from "@emotion/react";
 import icons from "../../AdminPhoto/imageIndex.js";
 import "../../App.css";
 import Moment from "react-moment";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios  from "axios";
+import { useEffect } from "react";
 
 function AdminCategories(props) {
-  const { category } = props;
+  const { category, setCategory } = props;
   const navigate = useNavigate();
+
+  const getCategory = async () => {
+    const result = await axios("http://localhost:4000/category");
+    setCategory(result.data.data);
+  };
+
+  const deleteCategoryId = async (categoryId) => {
+    const result = await axios.delete(`http://localhost:4000/category/${categoryId}`);
+    getCategory();
+    navigate("/category-dashboard");
+    console.log(result);
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+
   return (
     <div
       className="categories-data w-screen min-h-screen"
@@ -172,6 +192,8 @@ function AdminCategories(props) {
                       width: 24px;
                       height: 24px;
                     `}
+                    className="cursor-pointer"
+                    onClick={() => deleteCategoryId(data.category_id)}
                   />
                   <img
                     alt="Edit"

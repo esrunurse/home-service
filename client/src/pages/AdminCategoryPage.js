@@ -5,7 +5,7 @@ import SideBar from "../components/AdminCategoryPage/SideBar";
 import useCategory from "../hooks/category";
 
 function AdminCategoryPage() {
-  const { searchCategory, setSearchCategory, category, setCategory} =
+  const { searchCategory, setSearchCategory, category, setCategory } =
     useCategory();
   return (
     <div className="admin-category-page">
@@ -19,6 +19,7 @@ function AdminCategoryPage() {
         category={category}
         searchCategory={searchCategory}
         setSearchCategory={setSearchCategory}
+        setCategory={setCategory}
       />
     </div>
   );

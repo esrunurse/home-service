@@ -1,7 +1,8 @@
 import '../App.css'
 import image from '../AdminPhoto/imageIndex'
 
-function AlertBoxDelete() {
+function AlertBoxDelete(props) {
+  const { deleteCategoryId, categoryId, category_name } = props;
   return (
     <div className="h-screen w-screen relative flex items-center justify-center">
       <div className="after-clicked-trash z-20 absolute h-screen w-screen bg-black opacity-40"></div>
@@ -18,14 +19,17 @@ function AlertBoxDelete() {
             <div className="font-medium text-xl">ยืนยันการลบรายการ?</div>
             <div className="h-12 w-72 text-grey700 font-light text-base">
               <div className="w-72 leading-6 text-center">
-                คุณต้องการลบรายการ ‘บริการห้องครัว’
+                คุณต้องการลบรายการ {category_name}
                 <br />
                 ใช่หรือไม่
               </div>
             </div>
           </div>
           <div className="buttons flex w-60 self-center justify-between">
-            <button className="bg-blue600 text-white w-28 h-11 rounded-lg">
+            <button className="bg-blue600 text-white w-28 h-11 rounded-lg"
+            onClick={() => {
+                deleteCategoryId(categoryId);
+              }}>
               ลบรายการ
             </button>
             <button className="bg-white w-28 h-11 rounded-lg border border-blue600 ">
@@ -38,4 +42,4 @@ function AlertBoxDelete() {
   )
 }
 
-export default AlertBoxDelete
+export default AlertBoxDelete;

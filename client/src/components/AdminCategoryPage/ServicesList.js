@@ -132,9 +132,9 @@ function AdminService(props) {
                     {index + 1}
                   </div>
                   <div
-                    className="service-name"
+                    className="service-name py-6"
                     css={css`
-                      width: 262px;
+                      width: 250px;
                       padding: 24px;
                       font-weight: 300;
                     `}
@@ -142,14 +142,12 @@ function AdminService(props) {
                     {data.service_name}
                   </div>
                   <div
-                    className="service-name"
+                    className="service-name py-6"
                     css={css`
-                      width: 262px;
-                      padding: 24px;
+                    width: 150px;
                       font-weight: 300;
                     `}
-                  >
-                    {data.category_name}
+                  > {data.category_id %2 ===0 ? (<div className="bg-blue300 px-2.5 py-1 w-fit rounded-lg text-xs">{data.category_name}</div>) : (<div className="bg-blue100 text-blue800 px-2.5 py-1 w-fit rounded-lg text-xs">{data.category_name}</div>)}
                   </div>
                   <div
                     css={css`

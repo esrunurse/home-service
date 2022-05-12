@@ -23,7 +23,7 @@ function useCategory() {
     category_created_date,
     setCategory_created_date,
     category_edited_date,
-    setCategory_edited_date
+    setCategory_edited_date,
   };
 }
 
