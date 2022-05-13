@@ -2,9 +2,10 @@
 import '../../App.css'
 import { css } from '@emotion/react'
 import image from '../../HomePagePhoto/imageIndex.js'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 
 function Footer() {
+  const navigate = useNavigate();
   return (
     <footer
       className="home-page-footer"
@@ -25,11 +26,11 @@ function Footer() {
       >
         <div
           className="cursor-pointer"
+          onClick={() => navigate("/")}
           css={css`
             display: flex;
           `}
         >
-          <Link to="/">
             <img
               alt="homeservices"
               src={image.logoHomeService}
@@ -38,10 +39,7 @@ function Footer() {
                 height: 39.11px;
               `}
             />
-          </Link>
-
-          <Link
-            to="/"
+          <h1
             className="text-blue600 no-underline"
             css={css`
               font-size: 29.33px;
@@ -49,7 +47,7 @@ function Footer() {
             `}
           >
             HomeServices
-          </Link>
+          </h1>
         </div>
         <div className="footer-contact1">
           <div className="mb-2">บริษัท โฮมเซอร์วิสเซส จำกัด</div>

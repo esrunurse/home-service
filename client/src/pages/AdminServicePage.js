@@ -15,6 +15,8 @@ function AdminServicePage() {
     serviceDeleteAlert,
     deleteService,
     service_Id,
+    setDeleteService,
+    setService_Id
   } = useHook();
   return (
     <div className="admin-service-page">
@@ -30,7 +32,9 @@ function AdminServicePage() {
         deleteServiceId={deleteServiceId}
         serviceDeleteAlert={serviceDeleteAlert}
         deleteService={deleteService}
+        setDeleteService={setDeleteService}
         service_Id={service_Id}
+        setService_Id={setService_Id}
       />
     </div>
   );

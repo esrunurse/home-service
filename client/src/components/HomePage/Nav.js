@@ -36,6 +36,7 @@ function Nav() {
       >
         <div
           className="cursor-pointer"
+          onClick={() => navigate("/")}
           css={css`
             display: flex;
             width: 207px;
@@ -45,19 +46,15 @@ function Nav() {
             margin-right: 70px;
           `}
         >
-          <Link to="/">
-            <img
-              alt="Home Services Logo"
-              src={image.logoHomeService}
-              css={css`
-                width: 32px;
-                height: 32px;
-              `}
-            />
-          </Link>
-          <Link to="/" className="text-blue600 text-2xl no-underline">
-            HomeServices
-          </Link>
+          <img
+            alt="Home Services Logo"
+            src={image.logoHomeService}
+            css={css`
+              width: 32px;
+              height: 32px;
+            `}
+          />
+          <h1 className="text-blue600 text-2xl no-underline">HomeServices</h1>
         </div>
         <h5 className="cursor-pointer" onClick={() => navigate("/service")}>
           บริการของเรา
@@ -77,59 +74,72 @@ function Nav() {
             <div className="dropdown-content cursor-pointer">
               {loginRole == "admin" ? (
                 <div>
-                  <div className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950">
+                  <div
+                    onClick={() => navigate("/category-dashboard")}
+                    className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
+                  >
                     <img
                       src={image.profileIcon}
                       className="ml-4 mr-2 my-2 "
                       alt="admin"
                     />
-                    <Link to="/category-dashboard">Admin</Link>
+                    <a>Admin</a>
                   </div>
                 </div>
               ) : (
                 <div>
-                  <div className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950">
+                  <div
+                    onClick={() => navigate("/profile")}
+                    className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
+                  >
                     <img
                       src={image.profileIcon}
                       className="ml-4 mr-2 my-2 "
                       alt="ข้อมูลผู้ใช้งาน"
                     />
-                    <Link to="/profile">ข้อมูลผู้ใช้งาน</Link>
+                    <a>ข้อมูลผู้ใช้งาน</a>
                   </div>
-                  <div className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950">
+                  <div
+                    onClick={() => navigate("/")}
+                    className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
+                  >
                     <img
                       src={image.orderIcon}
                       className="ml-4 mr-2 my-2 "
                       alt="รายการคำสั่งซ่อม"
                     />
-                    <Link to="/">รายการคำสั่งซ่อม</Link>
+                    <a>รายการคำสั่งซ่อม</a>
                   </div>
-                  <div className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950">
+                  <div
+                    onClick={() => navigate("/")}
+                    className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
+                  >
                     <img
                       src={image.historyIcon}
                       className="ml-4 mr-2 my-2 "
                       alt="ประวัติการซ่อม"
                     />
-                    <Link to="/">ประวัติการซ่อม</Link>
+                    <a>ประวัติการซ่อม</a>
                   </div>
                 </div>
               )}
 
               <hr className="text-grey300 my-1" />
-              <div className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950">
-                <img
-                  src={image.logoutIcon}
-                  className="ml-4 mr-2 my-2 "
-                  alt="ออกจากระบบ"
+              <div
+                onClick={() => {
+                  logout();
+                }}
+                className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
+              >
+                
+                  <img
+                    src={image.logoutIcon}
+                    className="ml-4 mr-2 my-2 "
+                    alt="ออกจากระบบ"
                 />
-                <Link
-                  to="/"
-                  onClick={() => {
-                    logout();
-                  }}
-                >
+                <a>
                   ออกจากระบบ
-                </Link>
+                </a>
               </div>
             </div>
           </div>

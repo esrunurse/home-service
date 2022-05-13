@@ -7,7 +7,7 @@ import Footer from "../components/HomePage/Footer";
 import useHook from "../hooks/util";
 
 function ServicePage() {
-  const { searchService, setSearchService, service, setService } = useHook();
+  const { searchService, setSearchService, service, setService, getService } = useHook();
   return (
     <div className="service-page">
       <Nav />

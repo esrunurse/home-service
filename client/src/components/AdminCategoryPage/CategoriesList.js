@@ -5,15 +5,31 @@ import "../../App.css";
 import Moment from "react-moment";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AlertBoxDelete from "../AlertBoxDelete.js";
 
 function AdminCategories(props) {
-  const { category, getCategory, deleteCategoryId } = props;
+  const {
+    category,
+    getCategory,
+    deleteCategoryId,
+    categoryDeleteAlert,
+    deleteCategory,
+    category_Id,
+  } = props;
+
   const navigate = useNavigate();
 
   useEffect(() => {
     getCategory();
   }, []);
 
+  const handleDelete = () => {
+    deleteCategoryId(category_Id);
+  };
+
+  const hide = () => {
+    document.getElementById("popUp").style.display = "none";
+  };
 
   return (
     <div
@@ -180,7 +196,9 @@ function AdminCategories(props) {
                       height: 24px;
                     `}
                     className="cursor-pointer"
-                    onClick={() => deleteCategoryId(data.category_id)}
+                    onClick={() => {
+                      categoryDeleteAlert(data.category_id);
+                    }}
                   />
                   <img
                     alt="Edit"
@@ -198,6 +216,9 @@ function AdminCategories(props) {
               </div>
             );
           })}
+          {deleteCategory ? (
+            <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide} />
+          ) : null}
         </div>
       </div>
     </div>

@@ -14,7 +14,10 @@ function AdminEditCategory() {
     setCategory_edited_date,
     deleteCategoryId,
     getCategory,
-    getCategoryById
+    getCategoryById,
+    categoryDeleteAlert,
+    deleteCategory,
+    category_Id,
   } = useHook();
   return (
     <div>
@@ -30,6 +33,9 @@ function AdminEditCategory() {
         deleteCategoryId={deleteCategoryId}
         getCategory={getCategory}
         getCategoryById={getCategoryById}
+        categoryDeleteAlert={categoryDeleteAlert}
+        deleteCategory={deleteCategory}
+        category_Id={category_Id}
       />
     </div>
   );

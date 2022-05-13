@@ -29,7 +29,7 @@ function AlertBoxDelete(props) {
                       </div>
                       <div className="h-12 w-72 text-grey700 font-light text-base">
                         <div className="w-72 leading-6 text-center">
-                          คุณต้องการลบรายการ {props.name}
+                          คุณต้องการลบรายการ
                           <br />
                           ใช่หรือไม่
                         </div>

@@ -5,8 +5,17 @@ import SideBar from "../components/AdminCategoryPage/SideBar";
 import useHook from "../hooks/util";
 
 function AdminCategoryPage() {
-  const { searchCategory, setSearchCategory, category, setCategory, getCategory, deleteCategoryId } =
-    useHook();
+  const {
+    searchCategory,
+    setSearchCategory,
+    category,
+    setCategory,
+    getCategory,
+    deleteCategoryId,
+    deleteCategory,
+    categoryDeleteAlert,
+    category_Id,
+  } = useHook();
   return (
     <div className="admin-category-page">
       <SideBar />
@@ -19,6 +28,9 @@ function AdminCategoryPage() {
         category={category}
         getCategory={getCategory}
         deleteCategoryId={deleteCategoryId}
+        categoryDeleteAlert={categoryDeleteAlert}
+        deleteCategory={deleteCategory}
+        category_Id={category_Id}
       />
     </div>
   );

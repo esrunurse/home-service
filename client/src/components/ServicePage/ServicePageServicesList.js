@@ -5,7 +5,6 @@ import React from "react";
 
 function ServicesList(props) {
   const { service } = props;
-  console.log(service);
 
   return (
     <div className="our-services w-screen flex justify-center items-center">

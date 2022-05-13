@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import Moment from "react-moment";
+import AlertBoxDelete from "../AlertBoxDelete.js";
 
 function EditedCategoryForm(props) {
   const {
@@ -17,6 +18,9 @@ function EditedCategoryForm(props) {
     getCategory,
     deleteCategoryId,
     getCategoryById,
+    categoryDeleteAlert,
+    deleteCategory,
+    category_Id,
   } = props;
 
   const params = useParams();
@@ -30,12 +34,20 @@ function EditedCategoryForm(props) {
     getCategoryById(params.categoryId);
   }, []);
 
+  const handleDelete = () => {
+    deleteCategoryId(category_Id);
+  };
+
   const updateCategoryById = async (categoryId) => {
     await axios.put(`http://localhost:4000/category/${categoryId}`, {
       category_name,
       category_edited_date,
     });
     navigate("/category-dashboard");
+  };
+
+  const hide = () => {
+    document.getElementById("popUp").style.display = "none";
   };
 
   useEffect(() => {
@@ -139,11 +151,28 @@ function EditedCategoryForm(props) {
               </div>
             </div>
           </div>
-        <div className="w-28 h-6 flex justify-between self-end mt-6 text-grey600 underline" onClick={() => deleteCategoryId(category.category_id)}>
-          <img alt="Trash" className="w-6 h-6 cursor-pointer" src={image.trashIcon} />
-          <button>
-            ลบหมวดหมู่
-          </button>
+          <div
+            className="w-28 h-6 flex justify-between self-end mt-6 text-grey600 underline"
+            onClick={() => deleteCategoryId(category.category_id)}
+          >
+            <img
+              alt="Trash"
+              className="w-6 h-6 cursor-pointer"
+              src={image.trashIcon}
+            />
+            <button
+              onClick={() => {
+                categoryDeleteAlert(category.category_id);
+              }}
+            >
+              ลบหมวดหมู่
+            </button>
+            {deleteCategory ? (
+              <AlertBoxDelete
+                deleteFunction={handleDelete}
+                hideFunction={hide}
+              />
+            ) : null}
           </div>
         </div>
       </form>
