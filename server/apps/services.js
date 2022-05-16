@@ -124,7 +124,6 @@ serviceRouter.post("/", async (req, res) => {
 serviceRouter.put("/:id", async (req, res) => {
   const updateServiceItem = {
     ...req.body,
-    service_edited_date: new Date(),
   };
 
   const serviceId = req.params.id;
@@ -143,8 +142,9 @@ serviceRouter.put("/:id", async (req, res) => {
         updateServiceItem.data[updateServiceItem.data.length - 1].service_name,
         updateServiceItem.data[updateServiceItem.data.length - 1].category_name,
         updateServiceItem.data[updateServiceItem.data.length - 1].service_photo,
-        updateServiceItem.data[updateServiceItem.data.length - 1]
-          .service_edited_date,
+        (updateServiceItem.data[
+          updateServiceItem.data.length - 1
+        ].service_edited_date = new Date()),
         serviceId,
       ]
     );
