@@ -1,15 +1,18 @@
 import image from '../AdminPhoto/imageIndex'
-import Sidebar from './AdminCategoryPage/SideBar'
+import '../App.css'
 
 function EditForm() {
   return (
-    <div className="flex">
-      <Sidebar />
+    <div className="flex flex-col ml-60 ">
+      <header className="w-[1200px] h-[80px] px-10 bg-white flex items-center border-b border-grey300">
+        <div className="w-[248px] h-11 flex justify-between">
+          <button className="btn-secondary w-28 h-11">ยกเลิก</button>
+          <button className="btn-primary w-28 h-11">ยืนยัน</button>
+        </div>
+      </header>
       <div className="bg-bg w-[1200px] min-h-screen flex justify-center">
-        <div className="edit-box w-[1120px] min-h-screen bg-purple100 mb-[72px] flex flex-col items-center">
-          {/*mt-10 mr-[] ml-[280px]*/}
-          {/* <div className="bg-green900 w-[1200px] h-20"></div> */}
-          <form className="edit-form w-[1120px] min-h-screen bg-white py-10 px-6 grid gap-y-10 mt-10">
+        <div className="edit-box w-[1120px] min-h-screen mb-[72px] flex flex-col items-center">
+          <form className="edit-form w-[1120px] min-h-screen bg-white py-10 px-6 grid gap-y-10 mt-10 rounded-lg border border-grey200">
             <div className="service-name w-[662px] h-11 flex items-center justify-between">
               <label
                 className="title-service-name text-base text-grey700 font-medium"

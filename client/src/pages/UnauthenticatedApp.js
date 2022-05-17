@@ -3,7 +3,6 @@ import HomePage from './HomePage'
 import LoginPage from './LoginPage'
 import RegisterPage from './RegisterPage'
 import ServicePage from './ServicePage'
-import EditForm from '../components/EditForm'
 import '../App.css'
 
 function UnauthenticatedApp() {
@@ -14,7 +13,6 @@ function UnauthenticatedApp() {
         <Route path="/service" element={<ServicePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/edit-form" element={<EditForm />} />
       </Routes>
     </div>
   )

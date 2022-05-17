@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import "../../App.css";
-import image from "../../AdminPhoto/imageIndex";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
-import Moment from "react-moment";
-import AlertBoxDelete from "../AlertBoxDelete.js";
+import { css } from '@emotion/react'
+import '../../App.css'
+import image from '../../AdminPhoto/imageIndex'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
+import Moment from 'react-moment'
+import AlertBoxDelete from '../AlertBoxDelete.js'
 
 function EditedCategoryForm(props) {
   const {
@@ -15,38 +15,38 @@ function EditedCategoryForm(props) {
     setCategory_name,
     category_edited_date,
     setCategory_edited_date,
-    getCategoryById,
-  } = props;
+    getCategoryById
+  } = props
 
-  const params = useParams();
-  const navigate = useNavigate();
+  const params = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    getCategoryById(params.categoryId);
-  }, []);
+    getCategoryById(params.categoryId)
+  }, [])
 
   const updateCategoryById = async (categoryId) => {
     await axios.put(`http://localhost:4000/category/${categoryId}`, {
       category_name,
-      category_edited_date,
-    });
-    navigate("/category-dashboard");
-  };
+      category_edited_date
+    })
+    navigate('/category-dashboard')
+  }
 
   useEffect(() => {
     if (category) {
-      setCategory_name(category.category_name);
-      setCategory_edited_date(category.category_edited_date);
+      setCategory_name(category.category_name)
+      setCategory_edited_date(category.category_edited_date)
     }
-  }, [category]);
+  }, [category])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     updateCategoryById(params.categoryId, {
       category_name,
-      category_edited_date,
-    });
-  };
+      category_edited_date
+    })
+  }
 
   return (
     <div
@@ -64,7 +64,7 @@ function EditedCategoryForm(props) {
         border-b border-grey300 px-10 py-10 bg-white"
         >
           <div className="flex justify-between h-12 w-44">
-            <button onClick={() => navigate("/category-dashboard")}>
+            <button onClick={() => navigate('/category-dashboard')}>
               <img alt="Arrow Icon" src={image.arrow} className="w-10 h10" />
             </button>
 
@@ -77,7 +77,7 @@ function EditedCategoryForm(props) {
             <button
               className="cancel-button 
             w-28 h-11 bg-white rounded-lg border border-blue600 text-blue600"
-              onClick={() => navigate("/category-dashboard")}
+              onClick={() => navigate('/category-dashboard')}
             >
               ยกเลิก
             </button>
@@ -103,7 +103,7 @@ function EditedCategoryForm(props) {
                 name="edited_category"
                 value={category_name}
                 onChange={(e) => {
-                  setCategory_name(e.target.value);
+                  setCategory_name(e.target.value)
                 }}
               />
             </div>
@@ -137,7 +137,7 @@ function EditedCategoryForm(props) {
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default EditedCategoryForm;
+export default EditedCategoryForm

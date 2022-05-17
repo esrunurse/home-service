@@ -12,13 +12,13 @@ function SideBar() {
   const { logout } = useAuth()
   return (
     <div
-      className="left-nav w-60 h-screen bg-blue950 top-0 z-10  pb-20 pt-8"
+      className="left-nav w-60 h-screen bg-blue950 top-0 z-10 fixed pb-20"
       css={css`
         box-shadow: inset -1px 0px 0px #3e3e3e;
       `}
     >
       <div>
-        <div className="flex justify-center ">
+        <div className="flex justify-center my-8">
           <div
             className="py-2 px-2.5 bg-blue100 rounded-xl w-48 h-12 flex items-center cursor-pointer"
             onClick={() => navigate('/')}
