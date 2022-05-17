@@ -4,11 +4,11 @@ import "../../App.css";
 import { useEffect } from "react";
 import image from "../../AdminPhoto/imageIndex";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AdminServiceHeader(props) {
-  // const navigate = useNavigate();
-    const { searchService, setSearchService, setService } = props;
+  const navigate = useNavigate();
+  const { searchService, setSearchService, setService } = props;
 
   const searchServiceData = async () => {
     const results = await axios.get(
@@ -24,7 +24,6 @@ function AdminServiceHeader(props) {
       clearTimeout(timerId);
     };
   }, [searchService]);
-
 
   return (
     <header className="admin-header ">
@@ -45,10 +44,12 @@ function AdminServiceHeader(props) {
               padding: 10px 0px 10px 16px;
             `}
           />
-          <button
-            className="btn-primary flex items-center ml-6"
-          >
-            <div className="text-base font-medium mr-3">เพิ่มบริการ</div>
+          <button className="btn-primary flex items-center ml-6" onClick={() => navigate("/create-service")}>
+            <div
+              className="text-base font-medium mr-3"
+            >
+              เพิ่มบริการ
+            </div>
             <img src={image.plusSign} />
           </button>
         </div>

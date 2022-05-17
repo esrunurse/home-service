@@ -25,6 +25,7 @@ function AdminService(props) {
 
   const hide = () => {
     document.getElementById("popUp").style.display = "none";
+    navigate("/service-dashboard");
   };
 
   const handleDelete = () => {
@@ -136,7 +137,7 @@ function AdminService(props) {
             );
           })}
           {deleteService ? (
-            <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide} />
+            <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide}/>
           ) : null}
         </div>
       </div>

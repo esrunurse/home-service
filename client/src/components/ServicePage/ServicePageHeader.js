@@ -63,7 +63,7 @@ function ServiceHeader(props) {
                 className="dropdown-content cursor-pointer "
               >
                 {category.map((data) => {
-                  return (<div className="ml-4 key={data.category_id}">
+                  return (<div className="ml-4" key={data.category_id}>
                   <p>{data.category_name}</p>
                 </div>)
                 })}

@@ -20,6 +20,7 @@ function useHook() {
     await axios.delete(`http://localhost:4000/category/${categoryId}`);
     getCategory();
     document.getElementById("popUp").style.display = "none";
+    navigate("/category-dashboard");
   };
 
   const getCategoryById = async (categoryId) => {
@@ -29,9 +30,15 @@ function useHook() {
     setCategory(result.data.data);
   };
 
-  //service
   const [searchService, setSearchService] = useState("");
   const [service, setService] = useState([]);
+  const [service_name, setService_name] = useState("");
+  const [sub_service_name, setSub_service_name] = useState("");
+  // const [sub_service_list, setSub_service_list] = useState({});
+  const [unit, setUnit] = useState("");
+  const [price_per_unit, setPrice_per_unit] = useState("");
+  const [servicePhotos, setServicePhotos] = useState({});
+  const [sub_service, setSub_service] = useState([]);
 
   const getService = async () => {
     const result = await axios("http://localhost:4000/service");
@@ -42,6 +49,7 @@ function useHook() {
     await axios.delete(`http://localhost:4000/service/${serviceId}`);
     getService();
     document.getElementById("popUp").style.display = "none";
+    navigate("/service-dashboard");
   };
 
   const getServiceById = async (serviceId) => {
@@ -50,6 +58,52 @@ function useHook() {
     );
     setService(result.data.data);
   };
+
+  const createService = async (data) => {
+    await axios.post("http://localhost:4000/service", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    navigate("/service-dashboard");
+  };
+
+  const handleFileChange = (event) => {
+    const uniqueId = Date.now();
+    setServicePhotos({
+      ...servicePhotos,
+      [uniqueId]: event.target.files[0],
+    });
+  };
+
+  // const subServiceChange = (event) => {
+  //   setSub_service(...sub_service,{
+  //     sub_service_name: event.target.value,
+  //     unit: event.target.value,
+  //     price_per_unit: event.target.value,
+  //   });
+  // };
+
+  const handleSubmitService = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("service_name", service_name);
+    formData.append("category_name", category_name);
+
+    for (let servicePhotosKey in servicePhotos) {
+      formData.append("servicePhoto", servicePhotos[servicePhotosKey]);
+    }
+    // for (let sub_serviceKey in sub_service) {
+    //   formData.append("sub_service", sub_service[sub_serviceKey]);
+    // }
+    createService(formData);
+  };
+
+  // const handleRemoveImageService = (event, service_photoKey) => {
+  //   event.preventDefault();
+  //   delete service_photo[service_photoKey];
+  //   setService_photo({ ...service_photo });
+  // };
 
   //alert box
   const [deleteService, setDeleteService] = useState(false);
@@ -65,10 +119,6 @@ function useHook() {
   const categoryDeleteAlert = async (categoryId) => {
     setCategory_Id(categoryId);
     setDeleteCategory(true);
-  };
-
-  const hide = () => {
-    document.getElementById("popUp").style.visibility = "hidden";
   };
 
   return {
@@ -102,7 +152,24 @@ function useHook() {
     category_Id,
     setCategory_Id,
     categoryDeleteAlert,
-    hide,
+    service_name,
+    setService_name,
+    sub_service,
+    setSub_service,
+    sub_service_name,
+    setSub_service_name,
+    price_per_unit,
+    setPrice_per_unit,
+    unit,
+    setUnit,
+    servicePhotos,
+    setServicePhotos,
+    createService,
+    handleFileChange,
+    handleSubmitService,
+    // sub_service_list,
+    // setSub_service_list,
+    // handleRemoveImageService,
   };
 }
 

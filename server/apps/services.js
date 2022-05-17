@@ -1,16 +1,16 @@
 import { Router } from "express";
 import { pool } from "../utils/db.js";
 import { protect } from "../middlewares/protects.js";
-// import multer from "multer";
-//import { cloudinaryUpload } from "../utils/uploads.js";
+import multer from "multer";
+import { cloudinaryUpload } from "../utils/uploads.js";
 
 const serviceRouter = Router();
 //serviceRouter.use(protect);
 
-//const multerUpload = multer({ dest: "uploads/" });
-//const servicePhotoUpload = multerUpload.fields([
-//  { name: "servicePhoto", maxCount: 1 },
-//]);
+const multerUpload = multer({ dest: "uploads/" });
+const servicePhotoUpload = multerUpload.fields([
+ { name: "servicePhoto", maxCount: 1 },
+]);
 
 // API route to service listing page
 serviceRouter.get("/", async (req, res) => {
@@ -113,8 +113,8 @@ serviceRouter.get("/:id", async (req, res) => {
   });
 });
 
-
-serviceRouter.post("/", async (req, res) => {
+//API route to create service item page
+serviceRouter.post("/", servicePhotoUpload, async (req, res) => {
   //add parameter servicePhoto
   //console.log(req.files.servicePhoto);
   const newServiceItem = {
@@ -152,6 +152,21 @@ serviceRouter.post("/", async (req, res) => {
       );
     }
   }
+
+const servicePhotoUrl = await cloudinaryUpload(req.files);
+  newServiceItem["servicePhotos"] = servicePhotoUrl;
+
+  await pool.query(
+    `insert into service (service_name, category_id, service_photo, service_created_date, service_edited_date)
+    values ($1, (select category_id from category where category_name = $2), $3, $4, $5)`,
+    [
+      newServiceItem.service_name,
+      newServiceItem.category_name,
+      newServiceItem.servicePhotos[0],
+      newServiceItem.service_created_date,
+      newServiceItem.service_edited_date,
+    ]
+  );
 
   return res.json({
     message: "New service item has been created successfully.",
