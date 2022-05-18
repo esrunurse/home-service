@@ -29,6 +29,10 @@ function ServicesList(props) {
                 className="rounded-t-lg object-cover"
                 src={data.service_photo.url}
                 alt={data.service_name}
+                 css={css`
+                  width: 349px;
+                  height: 200px;
+                `}
               />
               <div className="p-6">
                 <div className="category-name font-normal mb-2">

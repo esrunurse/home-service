@@ -3,7 +3,10 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import "./MultiRangeSlider.css";
 
-const MultiRangeSlider = ({ min, max, onChange }) => {
+const MultiRangeSlider = ({ min, max, onChange ,minFilter,
+    setMinFilter,
+    maxFilter,
+    setMaxFilter}) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(null);
@@ -63,6 +66,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           const value = Math.min(+event.target.value, maxVal - 1);
           setMinVal(value);
           event.target.value = value.toString();
+          setMinFilter(Number(event.target.value));
         }}
         className={classnames("thumb thumb--zindex-3", {
           "thumb--zindex-5": minVal > max - 100
@@ -78,6 +82,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           const value = Math.max(+event.target.value, minVal + 1);
           setMaxVal(value);
           event.target.value = value.toString();
+          setMaxFilter(Number(event.target.value))
         }}
         className="thumb thumb--zindex-4"
       />

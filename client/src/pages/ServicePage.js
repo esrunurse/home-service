@@ -7,7 +7,7 @@ import Footer from "../components/HomePage/Footer";
 import useHook from "../hooks/util";
 
 function ServicePage() {
-  const { searchService, setSearchService, service, setService, getCategory, category, setCategory } = useHook();
+  const { searchService, setSearchService, service, setService, getCategory, category, setCategory, orderFilter, setOrderFilter, categoryFilter, setCategoryFilter } = useHook();
   return (
     <div className="service-page">
       <Nav />
@@ -19,6 +19,10 @@ function ServicePage() {
         getCategory={getCategory}
         category={category}
         setCategory={setCategory}
+        orderFilter={orderFilter}
+        setOrderFilter={setOrderFilter}
+        categoryFilter={categoryFilter}
+        setCategoryFilter={setCategoryFilter}
       />
       <ServicesList service={service}/>
       <ServicePageJobNotice />

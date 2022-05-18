@@ -172,7 +172,7 @@ function AddService(props) {
                   return (
                     <div key={servicePhotosKey} className="z-50 absolute inset-0 ">
                       <img
-                        className="object-cover h-36 w-full rounded-md"
+                        className="object-cover h-36 w-full rounded-md "
                         src={URL.createObjectURL(file)}
                         alt={file.name}
                       />

@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function useHook() {
   const navigate = useNavigate();
+
   //category
-  const [searchCategory, setSearchCategory] = useState("");
   const [category, setCategory] = useState([]);
   const [category_name, setCategory_name] = useState("");
   const [category_created_date, setCategory_created_date] = useState("");
@@ -30,14 +30,22 @@ function useHook() {
     setCategory(result.data.data);
   };
 
-  //service
+  //Filter
   const [searchService, setSearchService] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [minFilter, setMinFilter] = useState(0);
+  const [maxFilter, setMaxFilter] = useState(3000);
+  const [orderFilter, setOrderFilter] = useState();
+
+  //service
   const [service, setService] = useState([]);
   const [service_name, setService_name] = useState("");
   const [servicePhotos, setServicePhotos] = useState({});
-  const [subServiceList, setSubServiceList] = useState([ 
-    { sub_service_name: "", unit: "", price_per_unit: 0}
-  , { sub_service_name: "", unit: "", price_per_unit: 0}]);
+  const [subServiceList, setSubServiceList] = useState([
+    { sub_service_name: "", unit: "", price_per_unit: 0 },
+    { sub_service_name: "", unit: "", price_per_unit: 0 },
+  ]);
 
   const getService = async () => {
     const result = await axios("http://localhost:4000/service");
@@ -58,19 +66,27 @@ function useHook() {
     setService(result.data.data);
   };
 
-  const createService = async (data) => {
-    await axios.post("http://localhost:4000/service", data, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    navigate("/service-dashboard");
-  };
-
+  //Service Image
   const handleFileChange = (event) => {
     const uniqueId = Date.now();
     setServicePhotos({
       ...servicePhotos,
       [uniqueId]: event.target.files[0],
     });
+  };
+
+  const handleRemoveImageService = (event, servicePhotosKey) => {
+    event.preventDefault();
+    delete servicePhotos[servicePhotosKey];
+    setServicePhotos({ ...servicePhotos });
+  };
+
+  //Create Service
+  const createService = async (data) => {
+    await axios.post("http://localhost:4000/service", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    navigate("/service-dashboard");
   };
 
   const handleSubmitService = (event) => {
@@ -87,12 +103,6 @@ function useHook() {
     }
 
     createService(formData);
-  };
-
-  const handleRemoveImageService = (event, servicePhotosKey) => {
-    event.preventDefault();
-    delete servicePhotos[servicePhotosKey];
-    setServicePhotos({ ...servicePhotos });
   };
 
   //alert box
@@ -152,6 +162,14 @@ function useHook() {
     subServiceList,
     setSubServiceList,
     handleRemoveImageService,
+    minFilter,
+    setMinFilter,
+    maxFilter,
+    setMaxFilter,
+    orderFilter,
+    setOrderFilter,
+    categoryFilter,
+    setCategoryFilter,
   };
 }
 

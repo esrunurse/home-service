@@ -89,7 +89,7 @@ serviceRouter.get("/", async (req, res) => {
     on category.category_id = service.category_id
 	  where service.service_name ilike '%'||$1||'%'
     group by service.service_id, category.category_name
-    order by service.service_name = asc`;
+    order by service.service_id asc`;
     values = [keywords]; 
   } 
   
@@ -104,13 +104,13 @@ serviceRouter.get("/", async (req, res) => {
       on category.category_id = service.category_id
       group by service.service_id, category.category_name
       order by service.service_id asc`;
-
+  }
     const results = await pool.query(query, values);
 
     return res.status(200).json({
       data: results.rows,
     });
-  }
+  
 });
 
 //API route to one service item page
@@ -130,7 +130,7 @@ serviceRouter.get("/:id", async (req, res) => {
     on service.service_id = sub_service.service_id  
     where service.service_id = $1
     group by service.service_id, category.category_name, sub_service.sub_service_id`,
-    [serviceId]
+    values = [serviceId]
   );
   //console.log(result.rows);
   return res.json({
