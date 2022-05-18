@@ -19,12 +19,27 @@ function AddService(props) {
     setSub_service,
   } = props;
 
-  const [subServiceList, setSubServiceList] = useState([{}]);
+  const [subServiceList, setSubServiceList] = useState([]);
 
-  const addList = (event) => {
-    setSubServiceList(subServiceList.concat(<div></div>));
-    console.log(subServiceList);
+  const addList = () => {
+    //setSubServiceList([...subServiceList, sub_service]);
+     const newObj = [...subServiceList, sub_service];
+     if (sub_service !== {}) {
+       setSubServiceList(newObj);
+     }
+    //console.log(subServiceList);
   };
+
+  //   const addList = (event) => {
+  //   setSubServiceList(subServiceList.concat(<div></div>));
+  //   console.log(subServiceList);
+  // };
+
+  const handleChange = (e) => {
+    setSub_service({
+      sub_service_name: e.target.value
+    })
+  }
 
   const deleteList = (index) => {
     let deleteSubService = [...subServiceList];
@@ -183,10 +198,13 @@ function AddService(props) {
                         className="orderName rounded-lg h-11 border border-grey300 mr-4"
                         type="text"
                         name="orderName"
-                        // value={subService.sub_service_name}
-                        // onChange={(event) => {
-                        //   setSub_service(event.target.value);
-                        //   console.log(subService.sub_service_name)}}
+                        value={subService.sub_service_name}
+                        onChange={handleChange}
+                        //   setSub_service({
+                        //     sub_service_name: event.target.value
+                        //   })
+                        //   console.log(sub_service);
+                        // }}
                       />
                     </div>
                     <div className="flex flex-col w-60">

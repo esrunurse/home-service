@@ -38,7 +38,7 @@ function useHook() {
   const [unit, setUnit] = useState("");
   const [price_per_unit, setPrice_per_unit] = useState("");
   const [servicePhotos, setServicePhotos] = useState({});
-  const [sub_service, setSub_service] = useState([]);
+  const [sub_service, setSub_service] = useState({});
 
   const getService = async () => {
     const result = await axios("http://localhost:4000/service");
