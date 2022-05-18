@@ -79,7 +79,7 @@ function AdminService(props) {
                   </div>
                   <div className="service-name py-6 font-light w-36">
                     {" "}
-                    {data.category_id % 2 === 0 ? (
+                    {data.category_id % 4 === 0 ? (
                       <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                         {data.category_name}
                       </div>
@@ -87,7 +87,7 @@ function AdminService(props) {
                       <div className="bg-amber px-2.5 py-1 w-fit rounded-lg text-xs text-brown">
                         {data.category_name}
                       </div>
-                    ) : data.category_id % 4 === 0 ? (
+                    ) : data.category_id % 2 === 0 ? (
                       <div className="bg-lime px-2.5 py-1 w-fit rounded-lg text-xs text-green900">
                         {data.category_name}
                       </div>

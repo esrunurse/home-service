@@ -26,18 +26,14 @@ function ServicesList(props) {
               key={data.service_id}
             >
               <img
-                className="rounded-t-lg"
+                className="rounded-t-lg object-cover"
                 src={data.service_photo.url}
                 alt={data.service_name}
-                css={css`
-                  width: 349px;
-                  height: 200px;
-                `}
               />
               <div className="p-6">
                 <div className="category-name font-normal mb-2">
                   {" "}
-                  {data.category_id % 2 === 0 ? (
+                  {data.category_id % 4 === 0 ? (
                     <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                       {data.category_name}
                     </div>
@@ -45,7 +41,7 @@ function ServicesList(props) {
                     <div className="bg-amber px-2.5 py-1 w-fit rounded-lg text-xs text-brown">
                       {data.category_name}
                     </div>
-                  ) : data.category_id % 4 === 0 ? (
+                  ) : data.category_id % 2 === 0 ? (
                     <div className="bg-lime px-2.5 py-1 w-fit rounded-lg text-xs text-green900">
                       {data.category_name}
                     </div>

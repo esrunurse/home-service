@@ -3,16 +3,18 @@ import { css } from "@emotion/react";
 import "../../App.css";
 import MultiRangeSlider from "./MultiRangeSlider";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ServiceHeader(props) {
-  const { category, searchService, setSearchService, setService, getCategory } = props;
+  const { category, searchService, setSearchService, setService, getCategory, service } = props;
 
+  const [filterCategory, setFilterCategory] = useState("");
   const searchServiceData = async () => {
     const results = await axios.get(
-      `http://localhost:4000/service?keywords=${searchService}`
+      `http://localhost:4000/service?keywords=${searchService}&categoryFilter=${filterCategory}`
     );
     setService(results.data.data);
+    console.log(service)
   };
 
   useEffect(() => {
@@ -57,18 +59,28 @@ function ServiceHeader(props) {
         <div className="flex">
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">หมวดหมู่บริการ</p>
-            <div className="dropdown cursor-pointer">
-              <p className="cursor-pointer">บริการทั้งหมด ▾ </p>
-              <div
-                className="dropdown-content cursor-pointer "
-              >
+            <select
+              className="cursor-pointer"
+              name="filter-category"
+              type="text"
+              value={filterCategory}
+              onChange={(e) => { setFilterCategory(e.target.value) }}
+            >
+              <option value="" className=" cursor-pointer">
+                บริการทั้งหมด {""}
+              </option>
                 {category.map((data) => {
-                  return (<div className="ml-4" key={data.category_id}>
-                  <p>{data.category_name}</p>
-                </div>)
+                  return (
+                    <option
+                      className=" cursor-pointer ml-4 "
+                      key={data.category_id}
+                      value={data.category_name}
+                    >
+                      {data.category_name}
+                    </option>
+                  );
                 })}
-              </div>
-            </div>
+            </select>
           </div>
           <div className="vl"></div>
           <div className="flex-col">
@@ -119,7 +131,7 @@ function ServiceHeader(props) {
             </div>
           </div>
         </div>
-        <button className="btn-primary">ค้นหา</button>
+        <button className="btn-primary" >ค้นหา</button>
       </div>
     </header>
   );

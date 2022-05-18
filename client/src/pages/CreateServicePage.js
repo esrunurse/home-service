@@ -1,11 +1,9 @@
 import "../App.css";
-import { useNavigate } from "react-router-dom";
 import SideBar from "../components/AdminCategoryPage/SideBar";
 import AddService from "../components/AdminServicePage/AdminAddService";
 import useHook from "../hooks/util";
 
 function CreateService() {
-  const navigate = useNavigate();
   const {
     service_name,
     setService_name,
@@ -17,7 +15,10 @@ function CreateService() {
     handleFileChange,
     servicePhotos,
     sub_service,
-    setSub_service
+    setSub_service,
+    subServiceList,
+    setSubServiceList,
+    handleRemoveImageService
   } = useHook();
   return (
     <div className="create-service-container h-screen bg-bg">
@@ -34,6 +35,9 @@ function CreateService() {
         servicePhotos={servicePhotos}
         sub_service={sub_service}
         setSub_service={setSub_service}
+        subServiceList={subServiceList}
+        setSubServiceList={setSubServiceList}
+        handleRemoveImageService={handleRemoveImageService}
       />
     </div>
   );

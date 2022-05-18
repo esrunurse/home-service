@@ -30,15 +30,14 @@ function useHook() {
     setCategory(result.data.data);
   };
 
+  //service
   const [searchService, setSearchService] = useState("");
   const [service, setService] = useState([]);
   const [service_name, setService_name] = useState("");
-  const [sub_service_name, setSub_service_name] = useState("");
-  // const [sub_service_list, setSub_service_list] = useState({});
-  const [unit, setUnit] = useState("");
-  const [price_per_unit, setPrice_per_unit] = useState("");
   const [servicePhotos, setServicePhotos] = useState({});
-  const [sub_service, setSub_service] = useState({});
+  const [subServiceList, setSubServiceList] = useState([ 
+    { sub_service_name: "", unit: "", price_per_unit: 0}
+  , { sub_service_name: "", unit: "", price_per_unit: 0}]);
 
   const getService = async () => {
     const result = await axios("http://localhost:4000/service");
@@ -74,14 +73,6 @@ function useHook() {
     });
   };
 
-  // const subServiceChange = (event) => {
-  //   setSub_service(...sub_service,{
-  //     sub_service_name: event.target.value,
-  //     unit: event.target.value,
-  //     price_per_unit: event.target.value,
-  //   });
-  // };
-
   const handleSubmitService = (event) => {
     event.preventDefault();
 
@@ -89,21 +80,20 @@ function useHook() {
 
     formData.append("service_name", service_name);
     formData.append("category_name", category_name);
+    formData.append("sub_service", JSON.stringify(subServiceList));
 
     for (let servicePhotosKey in servicePhotos) {
       formData.append("servicePhoto", servicePhotos[servicePhotosKey]);
     }
-    // for (let sub_serviceKey in sub_service) {
-    //   formData.append("sub_service", sub_service[sub_serviceKey]);
-    // }
+
     createService(formData);
   };
 
-  // const handleRemoveImageService = (event, service_photoKey) => {
-  //   event.preventDefault();
-  //   delete service_photo[service_photoKey];
-  //   setService_photo({ ...service_photo });
-  // };
+  const handleRemoveImageService = (event, servicePhotosKey) => {
+    event.preventDefault();
+    delete servicePhotos[servicePhotosKey];
+    setServicePhotos({ ...servicePhotos });
+  };
 
   //alert box
   const [deleteService, setDeleteService] = useState(false);
@@ -154,22 +144,14 @@ function useHook() {
     categoryDeleteAlert,
     service_name,
     setService_name,
-    sub_service,
-    setSub_service,
-    sub_service_name,
-    setSub_service_name,
-    price_per_unit,
-    setPrice_per_unit,
-    unit,
-    setUnit,
     servicePhotos,
     setServicePhotos,
     createService,
     handleFileChange,
     handleSubmitService,
-    // sub_service_list,
-    // setSub_service_list,
-    // handleRemoveImageService,
+    subServiceList,
+    setSubServiceList,
+    handleRemoveImageService,
   };
 }
 

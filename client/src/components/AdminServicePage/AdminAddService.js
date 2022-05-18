@@ -1,8 +1,12 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import "../../App.css";
 import image from "../../AdminPhoto/imageIndex";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import SubService_list from "./SubServiceList";
+
+
 
 function AddService(props) {
   const {
@@ -15,30 +19,31 @@ function AddService(props) {
     getCategory,
     handleSubmitService,
     handleFileChange,
-    sub_service,
-    setSub_service,
+    subServiceList, setSubServiceList,
+    handleRemoveImageService
   } = props;
 
-  const [subServiceList, setSubServiceList] = useState([]);
-
   const addList = () => {
-    //setSubServiceList([...subServiceList, sub_service]);
-     const newObj = [...subServiceList, sub_service];
-     if (sub_service !== {}) {
+    const newObj = [...subServiceList, { sub_service_name: "", unit: "", price_per_unit: 0 }];
        setSubServiceList(newObj);
-     }
-    //console.log(subServiceList);
   };
 
-  //   const addList = (event) => {
-  //   setSubServiceList(subServiceList.concat(<div></div>));
-  //   console.log(subServiceList);
-  // };
+  const handleChangeName = (e, index) => {
+    const tempList = [...subServiceList]
+    tempList[index].sub_service_name = e.target.value;
+    setSubServiceList(tempList);
+  }
 
-  const handleChange = (e) => {
-    setSub_service({
-      sub_service_name: e.target.value
-    })
+    const handleChangeUnit = (e, index) => {
+    const tempList = [...subServiceList]
+    tempList[index].unit = e.target.value;
+    setSubServiceList(tempList);
+  }
+
+  const handleChangePricePerUnit = (e, index) => {
+    const tempList = [...subServiceList]
+    tempList[index].price_per_unit = e.target.value;
+    setSubServiceList(tempList);
   }
 
   const deleteList = (index) => {
@@ -91,7 +96,7 @@ function AddService(props) {
                 ชื่อบริการ
               </label>
               <input
-                className="serviceName rounded-lg h-11 w-3/4 border border-grey300"
+                className="h-11 w-3/4 py-2.5 pl-4 border rounded-lg border-grey300 focus:border-blue600 focus:outline-none"
                 type="text"
                 name="serviceName"
                 value={service_name}
@@ -108,7 +113,7 @@ function AddService(props) {
                 หมวดหมู่
               </label>
               <select
-                className="input-chooseCategory rounded-lg h-11 w-3/4 border border-grey300"
+                className="input-chooseCategory rounded-lg h-11 w-3/4 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
                 type="text"
                 name="chooseCategory"
                 value={category_name}
@@ -129,19 +134,19 @@ function AddService(props) {
                 })}
               </select>
             </div>
-            <div className="choose-image h-40 w-8/12 pr-16 mb-10 flex justify-between">
-              <div className="text-grey700 w-52 text-base font-medium">
+            <div className="choose-image h-40 w-8/12 pr-16 mb-10 flex justify-between ">
+              <div className="text-grey700 w-52 text-base font-medium ">
                 รูปภาพ
               </div>
 
-              <div className="add-image w-3/4 h-40">
-                <div className="h-36 border border-dashed border-grey300 rounded-md py-6 flex flex-col items-center justify-between text-grey700 relative">
+              <div className="add-image w-3/4 h-40 relative">
+                <div className="z-0 h-36 border border-dashed border-grey300 rounded-md py-6 flex flex-col items-center justify-between text-grey700 ">
                   <img
                     className="w-9 h-9"
                     alt="addimage"
                     src={image.addPhoto}
                   />
-                  <div className=" text-sm">
+                  <div className=" text-sm ">
                     <label
                       htmlFor="upload"
                       className="text-blue600 font-normal mr-2 cursor-pointer"
@@ -159,19 +164,21 @@ function AddService(props) {
                   </div>
                   <div className="text-xs">PNG, JPG ขนาดไม่เกิน 5MB</div>
                 </div>
-                <div className="text-grey700 text-xs">
+                <div className="text-grey700 text-xs z-0 mt-1">
                   ขนาดภาพที่แนะนำ: 1440 x 225 PX
                 </div>
                 {Object.keys(servicePhotos).map((servicePhotosKey) => {
                   const file = servicePhotos[servicePhotosKey];
                   return (
-                    <div key={servicePhotosKey} className="absolute">
+                    <div key={servicePhotosKey} className="z-50 absolute inset-0 ">
                       <img
-                        className="h-36 z-50"
+                        className="object-cover h-36 w-full rounded-md"
                         src={URL.createObjectURL(file)}
                         alt={file.name}
                       />
+                      <a className="absolute right-5 cursor-pointer text-base" onClick={(e)=>handleRemoveImageService(e,servicePhotosKey)}>ลบรูปภาพ</a>
                     </div>
+                    
                   );
                 })}
               </div>
@@ -195,50 +202,57 @@ function AddService(props) {
                         ชื่อรายการ
                       </label>
                       <input
-                        className="orderName rounded-lg h-11 border border-grey300 mr-4"
+                        required
+                        className="orderName rounded-lg h-11 border border-grey300 mr-4 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
                         type="text"
                         name="orderName"
                         value={subService.sub_service_name}
-                        onChange={handleChange}
-                        //   setSub_service({
-                        //     sub_service_name: event.target.value
-                        //   })
-                        //   console.log(sub_service);
-                        // }}
+                        onChange={(e) => {handleChangeName(e,index)}}
                       />
                     </div>
-                    <div className="flex flex-col w-60">
+                    <div className="flex flex-col w-56">
                       <label className="serviceCharge text-sm text-grey700">
                         ค่าบริการ / 1 หน่วย
                       </label>
                       <input
-                        className="serviceCharge rounded-lg h-11 border border-grey300 mr-4"
-                        type="text"
+                        required
+                        className="serviceCharge rounded-lg h-11 border border-grey300 mr-4 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                        type="number"
+                        step="any"
                         name="serviceCharge"
+                        value={subService.price_per_unit}
+                        onChange={(e) => {handleChangePricePerUnit(e,index)}}
                       />
                     </div>
-                    <div className="flex flex-col w-60">
+                    <div className="flex flex-col w-56">
                       <label
                         className="unitService text-sm text-grey700 "
                         htmlFor="unitService"
                       >
                         หน่วยการบริการ
                       </label>
-                      <input className="unitService rounded-lg h-11 border border-grey300 mr-4" />
+                      <input className="unitService rounded-lg h-11 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none mr-4" 
+                      required
+                        type="text"
+                      name="serviceUnit"
+                      value={subService.unit}
+                      onChange={(e) => {handleChangeUnit(e,index)}}
+                      />
                     </div>
-                  </div>
-                  <button
+                    <button
                     className="text-grey600 underline"
                     onClick={() => deleteList(index)}
                     type="button"
                   >
                     ลบรายการ
                   </button>
+                  </div>
+                  
                 </div>
               );
             })}
             <button
-              className="add-new-order h-11 w-48 bg-white text-blue600 rounded-lg border"
+              className="btn-secondary h-11 w-48"
               onClick={addList}
               type="button"
             >
