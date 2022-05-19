@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import "../../App.css";
 import MultiRangeSlider from "./MultiRangeSlider";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useHook from "../../hooks/util";
 
 function ServiceHeader(props) {
@@ -90,7 +90,7 @@ function ServiceHeader(props) {
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">ราคา</p>
             <div className="dropdown cursor-pointer">
-              <p className="cursor-pointer"> {minFilter} - {maxFilter} ฿ ▾ </p>
+              <p className="cursor-pointer w-36"> {minFilter} - {maxFilter} ฿ ▾ </p>
               <div
                 className="dropdown-content"
                 css={css`
@@ -101,7 +101,7 @@ function ServiceHeader(props) {
                 <div>
                   <MultiRangeSlider
                     min={0}
-                    max={3000}
+                    max={20000}
                     minFilter={minFilter}
     setMinFilter={setMinFilter}
     maxFilter={maxFilter}
@@ -128,7 +128,7 @@ function ServiceHeader(props) {
               <option value="asc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
                 ตามตัวอักษร (Ascending) {""}
               </option>
-              <option value="dsc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
+              <option value="desc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
                 ตามตัวอักษร (Descending) {""}
               </option>
             </select>

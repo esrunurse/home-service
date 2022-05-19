@@ -15,86 +15,142 @@ const servicePhotoUpload = multerUpload.fields([
 // API route to service listing page
 serviceRouter.get("/", async (req, res) => {
   const keywords = req.query.keywords || "";
-  // const categoryFilter = req.query.categoryFilter || "";
-  // const maxPriceFilter = req.query.maxPriceFilter || Number.MAX_SAFE_INTEGER; 
-  // const minPriceFilter = req.query.minPriceFilter || 0;
-  // const orderFilter = req.query.orderFilter || "";
+  const categoryFilter = req.query.categoryFilter || "";
+  const maxPriceFilter = req.query.maxPriceFilter || Number.MAX_SAFE_INTEGER; 
+  const minPriceFilter = req.query.minPriceFilter || 0;
+  const orderFilter = req.query.orderFilter || "";
 
   let query = "";
   let values = [];
 
-//  if (keywords && categoryFilter && maxPriceFilter && minPriceFilter && orderFilter) {
-//   (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
-//   service.service_photo, min(sub_service.price_per_unit) as min_price, 
-//   max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
-//   from service
-//   inner join sub_service
-//   on service.service_id = sub_service.service_id  
-//   inner join category
-//   on category.category_id = service.category_id
-//   where service.service_name ilike '%'||$1||'%' and category.category_name = $2 and
-//   (sub_service.price_per_unit <= $3) and (sub_service.price_per_unit >= $4)
-//   group by service.service_id, category.category_name, sub_service.price_per_unit
-//   if $5 = 'asc'
-//   then order by service.service_name = asc
-//   if $5 = 'dsc'
-//   then order by service.service_name = dsc`); // '%' || tag_name || '%' can search anything in keywords
-//   values = [keywords, categoryFilter, maxPriceFilter, minPriceFilter, orderFilter];
-
-//   } else if (keywords && maxPriceFilter && minPriceFilter && orderFilter) {
-//     (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
-//     service.service_photo, min(sub_service.price_per_unit) as min_price, 
-//     max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
-//     from service
-//     inner join sub_service
-//     on service.service_id = sub_service.service_id  
-//     inner join category
-//     on category.category_id = service.category_id
-// 	  where service.service_name ilike '%'||$1||'%' and (sub_service.price_per_unit <= $2) 
-//     and (sub_service.price_per_unit >= $3)
-//     group by service.service_id, category.category_name
-//     if $4 = 'asc'
-//     then order by service.service_name = asc
-//     if $4 = 'dsc'
-//     then order by service.service_name = dsc`);
-//     values = [keywords, maxPriceFilter, minPriceFilter, orderFilter];
-
-//   } else if (categoryFilter && maxPriceFilter && minPriceFilter && orderFilter) {
-//     (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
-//     service.service_photo, min(sub_service.price_per_unit) as min_price, 
-//     max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
-//     from service
-//     inner join sub_service
-//     on service.service_id = sub_service.service_id  
-//     inner join category
-//     on category.category_id = service.category_id
-// 	  where category.category_name = $1 and (sub_service.price_per_unit <= $2) 
-//     and (sub_service.price_per_unit >= $3)
-//     group by service.service_id, category.category_name
-//     if $4 = 'asc'
-//     then order by service.service_name = asc
-//     if $4 = 'dsc'
-//     then order by service.service_name = dsc`);
-//     values = [categoryFilter, maxPriceFilter, minPriceFilter, orderFilter]; 
-      
-//   } else 
-    if (keywords) {
-    query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
-    service.service_photo, min(sub_service.price_per_unit) as min_price, 
-    max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
-    from service
-    inner join sub_service
-    on service.service_id = sub_service.service_id  
-    inner join category
-    on category.category_id = service.category_id
-	  where service.service_name ilike '%'||$1||'%'
-    group by service.service_id, category.category_name
-    order by service.service_id asc`;
-    values = [keywords]; 
-  } 
+ if (keywords && categoryFilter && maxPriceFilter && minPriceFilter && (orderFilter === 'asc')) {
   
-  else {
-    query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+      where service.service_name ilike '%'||$1||'%' and category.category_name = $2 and
+      (sub_service.price_per_unit <= $3) and (sub_service.price_per_unit >= $4)
+      group by service.service_id, category.category_name
+      order by service.service_name asc`); // '%' || tag_name || '%' can search anything in keywords
+      values = [keywords, categoryFilter, maxPriceFilter, minPriceFilter];
+    
+    } else if (keywords && categoryFilter && maxPriceFilter && minPriceFilter && (orderFilter === 'desc')) {
+  
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+      where service.service_name ilike '%'||$1||'%' and category.category_name = $2 and
+      (sub_service.price_per_unit <= $3) and (sub_service.price_per_unit >= $4)
+      group by service.service_id, category.category_name
+      order by service.service_name desc`); // '%' || tag_name || '%' can search anything in keywords
+      values = [keywords, categoryFilter, maxPriceFilter, minPriceFilter];
+
+    } else if (keywords && maxPriceFilter && minPriceFilter && (orderFilter === 'asc')) {
+      
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+	    where service.service_name ilike '%'||$1||'%' and (sub_service.price_per_unit <= $2) 
+      and (sub_service.price_per_unit >= $3)
+      group by service.service_id, category.category_name
+      order by service.service_name asc`);
+      values = [keywords, maxPriceFilter, minPriceFilter];
+  
+    } else if (keywords && maxPriceFilter && minPriceFilter && (orderFilter === 'desc')) {
+      
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+	    where service.service_name ilike '%'||$1||'%' and (sub_service.price_per_unit <= $2) 
+      and (sub_service.price_per_unit >= $3)
+      group by service.service_id, category.category_name
+      order by service.service_name desc`);
+      values = [keywords, maxPriceFilter, minPriceFilter];
+
+    } else if (categoryFilter && maxPriceFilter && minPriceFilter && (orderFilter === 'asc')) {
+  
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+	    where category.category_name = $1 and (sub_service.price_per_unit <= $2) 
+      and (sub_service.price_per_unit >= $3)
+      group by service.service_id, category.category_name
+      order by service.service_name asc`);
+      values = [categoryFilter, maxPriceFilter, minPriceFilter];
+    
+    } else if (categoryFilter && maxPriceFilter && minPriceFilter && (orderFilter === 'desc')) {
+      
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+	    where category.category_name = $1 and (sub_service.price_per_unit <= $2) 
+      and (sub_service.price_per_unit >= $3)
+      group by service.service_id, category.category_name
+      order by service.service_name desc`);
+      values = [categoryFilter, maxPriceFilter, minPriceFilter];
+    
+    } else if (maxPriceFilter && minPriceFilter && (orderFilter === 'asc')) {
+    
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+      where (sub_service.price_per_unit <= $1) and (sub_service.price_per_unit >= $2)
+      group by service.service_id, category.category_name
+      order by service.service_name asc`);
+      values = [maxPriceFilter, minPriceFilter];
+   
+    } else if (maxPriceFilter && minPriceFilter && (orderFilter === 'desc')) {
+    
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+      where (sub_service.price_per_unit <= $1) and (sub_service.price_per_unit >= $2)
+      group by service.service_id, category.category_name
+      order by service.service_name desc`);
+      values = [maxPriceFilter, minPriceFilter]; 
+   
+    } else {
+      query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
       service.service_photo, min(sub_service.price_per_unit) as min_price, 
       max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
       from service
@@ -129,7 +185,8 @@ serviceRouter.get("/:id", async (req, res) => {
     inner join sub_service
     on service.service_id = sub_service.service_id  
     where service.service_id = $1
-    group by service.service_id, category.category_name, sub_service.sub_service_id`,
+    group by service.service_id, category.category_name, sub_service.sub_service_id
+    order by service_service_id asc`,
     values = [serviceId]
   );
   //console.log(result.rows);

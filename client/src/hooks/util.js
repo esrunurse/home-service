@@ -35,8 +35,8 @@ function useHook() {
   const [searchCategory, setSearchCategory] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [minFilter, setMinFilter] = useState(0);
-  const [maxFilter, setMaxFilter] = useState(3000);
-  const [orderFilter, setOrderFilter] = useState();
+  const [maxFilter, setMaxFilter] = useState(20000);
+  const [orderFilter, setOrderFilter] = useState("asc");
 
   //service
   const [service, setService] = useState([]);
