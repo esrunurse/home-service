@@ -4,13 +4,13 @@ import "../../App.css";
 import MultiRangeSlider from "./MultiRangeSlider";
 import axios from "axios";
 import { useEffect } from "react";
+import useHook from "../../hooks/util";
 
 function ServiceHeader(props) {
-  const { category, searchService, setSearchService, setService, getCategory } = props;
-
+  const { category, searchService, setSearchService, setService, getCategory, orderFilter, setOrderFilter, categoryFilter, setCategoryFilter } = props;
   const searchServiceData = async () => {
     const results = await axios.get(
-      `http://localhost:4000/service?keywords=${searchService}`
+      `http://localhost:4000/service?keywords=${searchService}&categoryFilter=${categoryFilter}&maxPriceFilter=${maxFilter}&minPriceFilter=${minFilter}&orderFilter=${orderFilter}`
     );
     setService(results.data.data);
   };
@@ -21,12 +21,16 @@ function ServiceHeader(props) {
     return () => {
       clearTimeout(timerId);
     };
-  }, [searchService]);
+  }, []);
 
   useEffect(() => {
     getCategory();
   }, []);
 
+  const { minFilter,
+    setMinFilter,
+    maxFilter,
+    setMaxFilter, } = useHook();
   return (
     <header className="service-header">
       <div className="banner">
@@ -57,24 +61,36 @@ function ServiceHeader(props) {
         <div className="flex">
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">หมวดหมู่บริการ</p>
-            <div className="dropdown cursor-pointer">
-              <p className="cursor-pointer">บริการทั้งหมด ▾ </p>
-              <div
-                className="dropdown-content cursor-pointer "
-              >
+            <select
+              className="cursor-pointer"
+              name="filter-category"
+              type="text"
+              value={categoryFilter}
+              onChange={(e) => {
+                setCategoryFilter(String(e.target.value))
+              }}
+            >
+              <option value="" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
+                บริการทั้งหมด {""}
+              </option>
                 {category.map((data) => {
-                  return (<div className="ml-4 key={data.category_id}">
-                  <p>{data.category_name}</p>
-                </div>)
+                  return (
+                    <option
+                      className="cursor-pointer text-grey700 text-sm font-normal focus:text-blue700 "
+                      key={data.category_id}
+                      value={data.category_name}
+                    >
+                      {data.category_name}
+                    </option>
+                  );
                 })}
-              </div>
-            </div>
+            </select>
           </div>
           <div className="vl"></div>
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">ราคา</p>
             <div className="dropdown cursor-pointer">
-              <p className="cursor-pointer"> 0-3000฿ ▾ </p>
+              <p className="cursor-pointer w-36"> {minFilter} - {maxFilter} ฿ ▾ </p>
               <div
                 className="dropdown-content"
                 css={css`
@@ -85,7 +101,11 @@ function ServiceHeader(props) {
                 <div>
                   <MultiRangeSlider
                     min={0}
-                    max={3000}
+                    max={20000}
+                    minFilter={minFilter}
+    setMinFilter={setMinFilter}
+    maxFilter={maxFilter}
+    setMaxFilter={setMaxFilter}
                     onChange={({ min, max }) =>
                       console.log(`min = ${min}, max = ${max}`)
                     }
@@ -98,28 +118,24 @@ function ServiceHeader(props) {
           <div className="vl"></div>
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">เรียงตาม</p>
-            <div className="dropdown cursor-pointer">
-              <p className="cursor-pointer">บริการแนะนำ ▾ </p>
-              <div
-                className="dropdown-content cursor-pointer"
-                css={css`
-                  height: 123px;
-                `}
-              >
-                <div className="ml-4 ">
-                  <p>บริการแนะนำ</p>
-                </div>
-                <div className="ml-4 ">
-                  <p>บริการยอดนิยม</p>
-                </div>
-                <div className=" ml-4 ">
-                  <p>ตามตัวอักษร</p>
-                </div>
-              </div>
-            </div>
+              <select
+              className="cursor-pointer"
+              name="filter-category"
+              type="text"
+              value={orderFilter}
+              onChange={(e) => { setOrderFilter(e.target.value) }}
+            >
+              <option value="asc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
+                ตามตัวอักษร (Ascending) {""}
+              </option>
+              <option value="desc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
+                ตามตัวอักษร (Descending) {""}
+              </option>
+            </select>
+            
           </div>
         </div>
-        <button className="btn-primary">ค้นหา</button>
+        <button className="btn-primary" onClick={searchServiceData}>ค้นหา</button>
       </div>
     </header>
   );

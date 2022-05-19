@@ -1,6 +1,6 @@
 import "../App.css";
-import AdminService from "../components/AdminCategoryPage/ServicesList";
-import AdminServiceHeader from "../components/AdminCategoryPage/AdminServiceHeader";
+import AdminService from "../components/AdminServicePage/ServicesList";
+import AdminServiceHeader from "../components/AdminServicePage/AdminServiceHeader";
 import SideBar from "../components/AdminCategoryPage/SideBar";
 import useHook from "../hooks/util";
 
