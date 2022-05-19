@@ -149,6 +149,21 @@ serviceRouter.get("/", async (req, res) => {
       order by service.service_name desc`);
       values = [maxPriceFilter, minPriceFilter]; 
    
+    } else if (keywords) {
+
+      (query = `select service.service_id, category.category_name, service.category_id, service.service_name,
+      service.service_photo, min(sub_service.price_per_unit) as min_price, 
+      max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date
+      from service
+      inner join sub_service
+      on service.service_id = sub_service.service_id  
+      inner join category
+      on category.category_id = service.category_id
+      where service.service_name ilike '%'||$1||'%'
+      group by service.service_id, category.category_name
+      order by service.service_id asc`);
+      values = [keywords];
+    
     } else {
       query = `select service.service_id, category.category_name, service.category_id, service.service_name, 
       service.service_photo, min(sub_service.price_per_unit) as min_price, 
@@ -186,7 +201,7 @@ serviceRouter.get("/:id", async (req, res) => {
     on service.service_id = sub_service.service_id  
     where service.service_id = $1
     group by service.service_id, category.category_name, sub_service.sub_service_id
-    order by service_service_id asc`,
+    order by sub_service.sub_service_id asc`,
     values = [serviceId]
   );
   //console.log(result.rows);

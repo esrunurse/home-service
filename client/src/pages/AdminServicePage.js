@@ -28,7 +28,7 @@ function AdminServicePage() {
       />
       <AdminService
         service={service}
-        getService={getService}
+        // getService={getService}
         deleteServiceId={deleteServiceId}
         serviceDeleteAlert={serviceDeleteAlert}
         deleteService={deleteService}

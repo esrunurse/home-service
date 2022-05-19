@@ -10,7 +10,7 @@ import AlertBoxDelete from "../AlertBoxDelete.js";
 function AdminService(props) {
   const {
     service,
-    getService,
+    // getService,
     serviceDeleteAlert,
     deleteService,
     deleteServiceId,
@@ -19,9 +19,9 @@ function AdminService(props) {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getService();
-  }, []);
+  // useEffect(() => {
+  //   getService();
+  // }, []);
 
   const hide = () => {
     document.getElementById("popUp").style.display = "none";
