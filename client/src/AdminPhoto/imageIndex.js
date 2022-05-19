@@ -8,11 +8,13 @@ import logout from './logoutIcon.svg'
 import exclamation from './icons/exclamation.png'
 import arrow from './arrow.png'
 import addPhoto from './icons/add-photo.png'
+import bluePlusSymbol from './icons/blue-plus-symbol.png'
 
 const image = {
   editIcon,
   trashIcon,
   plusSign,
+  bluePlusSymbol,
   coupon,
   service,
   category,

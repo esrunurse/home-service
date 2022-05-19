@@ -5,7 +5,6 @@ import MultiRangeSlider from "./MultiRangeSlider";
 import axios from "axios";
 import { useEffect } from "react";
 import useHook from "../../hooks/util";
-import image from "../../HomePagePhoto/imageIndex"
 
 function ServiceHeader(props) {
   const { category, searchService, setSearchService, setService, getCategory, orderFilter, setOrderFilter, categoryFilter, setCategoryFilter } = props;
@@ -71,8 +70,8 @@ function ServiceHeader(props) {
                 setCategoryFilter(String(e.target.value))
               }}
             >
-              <option value="" className="cursor-pointer  text-grey700 text-sm font-normal">
-                บริการทั้งหมด 
+              <option value="" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
+                บริการทั้งหมด {""}
               </option>
                 {category.map((data) => {
                   return (

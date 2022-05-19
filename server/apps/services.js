@@ -202,7 +202,7 @@ serviceRouter.get("/:id", async (req, res) => {
     where service.service_id = $1
     group by service.service_id, category.category_name, sub_service.sub_service_id
     order by sub_service.sub_service_id asc`,
-    values = [serviceId]
+    [serviceId]
   );
   //console.log(result.rows);
   return res.json({
@@ -325,3 +325,4 @@ serviceRouter.delete("/:id", async (req, res) => {
 });
 
 export default serviceRouter;
+
