@@ -91,8 +91,13 @@ function EditForm() {
                 ลบรายการ
               </button>
             </div>
-            <button className="h-11 w-[185px] border border-blue600 rounded-lg font-medium text-base text-blue600">
-              เพิ่มรายการ
+            <button className="btn-secondary h-11 w-[185px] flex items-center">
+              <div className="ml-[15px] mr-[13px]">เพิ่มรายการ</div>
+              <img
+                className="h-2.5 w-2.5"
+                alt="Blue Plus Symbol"
+                src={image.bluePlusSymbol}
+              />
             </button>
             <hr className="break-line text-grey300" />
             <div className="time-line h-[100px] w-[387px] flex flex-col justify-between">
