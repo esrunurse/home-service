@@ -264,37 +264,42 @@ serviceRouter.post("/", servicePhotoUpload, async (req, res) => {
 serviceRouter.put("/:id", async (req, res) => {
   const updateServiceItem = {
     ...req.body,
-    service_edited_date: new Date(),
   };
-
+  let zero = '0';
   const serviceId = req.params.id;
+  // const servicePhotoUrl = await cloudinaryUpload(req.files);
+  // updateServiceItem["servicePhotos"] = servicePhotoUrl;
+  console.log(updateServiceItem)
+  const subServiceId = [];
+
+  for (let r = 0; r <= updateServiceItem.data.length - 1; r++) {
+    subServiceId.push(updateServiceItem.data[r].sub_service_id);
+  }
 
   // ใช้ได้แล้ว
-  for (let r = 0; r <= updateServiceItem.data.length - 1; r++) {
+  for (let r = 0; r <= updateServiceItem.data - 1; r++) {
     await pool.query(
       `update service
     set service_name=$1,  
-    category_id=(select category_id from category where category_name=$2),
-    service_photo=$3, 
-    service_edited_date=$4 
-    where service_id=$5
+    category_id=(select category_id from category where category_name=$2) 
+    service_edited_date=$3 
+    where service_id=$4
     `,
       [
         updateServiceItem.data[updateServiceItem.data.length - 1].service_name,
         updateServiceItem.data[updateServiceItem.data.length - 1].category_name,
-        updateServiceItem.data[updateServiceItem.data.length - 1].service_photo,
-        updateServiceItem.data[updateServiceItem.data.length - 1]
-          .service_edited_date,
+        // updateServiceItem.data[updateServiceItem.data.length - 1].servicePhotos[0],
+        (updateServiceItem.data[updateServiceItem.data.length - 1]
+          .service_edited_date = new Date()),
         serviceId,
       ]
     );
 
-    // เช็คว่ามีชื่อ sub-service ไหม ถ้าไม่มีให้ลบ sub-service ที่ไม่มีชื่อ
-    if (!updateServiceItem.data[r].sub_service_name) {
-      await pool.query(`delete from sub_service where sub_service_id = $1`, [
-        updateServiceItem.data[r].sub_service_id,
-      ]);
-    }
+    // ให้ลบ sub_service_id ทั้งหมดที่ไม่อยู่ใน array subServiceId
+    await pool.query(
+      `delete from sub_service where sub_service_id != all($1) and service_id =$2`,
+      [subServiceId, serviceId]
+    );
 
     await pool.query(
       `update sub_service set sub_service_name=$1, unit=$2, price_per_unit=$3, sub_service_quantity=0, total_price=0

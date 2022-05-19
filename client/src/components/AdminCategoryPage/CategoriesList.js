@@ -22,10 +22,10 @@ function AdminCategories(props) {
   useEffect(() => {
     getCategory();
   }, []);
-
-    const hide = () => {
+  
+  const hide = () => {
     document.getElementById("popUp").style.display = "none";
-    navigate("/category-dashboard");
+    window.location.reload();
   };
 
   const handleDelete = () => {

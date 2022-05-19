@@ -25,7 +25,7 @@ function AdminService(props) {
 
   const hide = () => {
     document.getElementById("popUp").style.display = "none";
-    navigate("/service-dashboard");
+    window.location.reload();
   };
 
   const handleDelete = () => {
@@ -131,6 +131,9 @@ function AdminService(props) {
                     className="w-6 h-6 cursor-pointer"
                     alt="Edit"
                     src={icons.editIcon}
+                    onClick={() =>
+                      navigate(`/service/edit/${data.service_id}`)
+                    }
                   />
                 </div>
               </div>

@@ -6,8 +6,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 
-
-
 function AddService(props) {
   const {
     servicePhotos,
@@ -19,32 +17,36 @@ function AddService(props) {
     getCategory,
     handleSubmitService,
     handleFileChange,
-    subServiceList, setSubServiceList,
-    handleRemoveImageService
+    subServiceList,
+    setSubServiceList,
+    handleRemoveImageService,
   } = props;
 
   const addList = () => {
-    const newObj = [...subServiceList, { sub_service_name: "", unit: "", price_per_unit: 0 }];
-       setSubServiceList(newObj);
+    const newObj = [
+      ...subServiceList,
+      { sub_service_name: "", unit: "", price_per_unit: 0 },
+    ];
+    setSubServiceList(newObj);
   };
 
   const handleChangeName = (e, index) => {
-    const tempList = [...subServiceList]
+    const tempList = [...subServiceList];
     tempList[index].sub_service_name = e.target.value;
     setSubServiceList(tempList);
-  }
+  };
 
-    const handleChangeUnit = (e, index) => {
-    const tempList = [...subServiceList]
+  const handleChangeUnit = (e, index) => {
+    const tempList = [...subServiceList];
     tempList[index].unit = e.target.value;
     setSubServiceList(tempList);
-  }
+  };
 
   const handleChangePricePerUnit = (e, index) => {
-    const tempList = [...subServiceList]
+    const tempList = [...subServiceList];
     tempList[index].price_per_unit = e.target.value;
     setSubServiceList(tempList);
-  }
+  };
 
   const deleteList = (index) => {
     let deleteSubService = [...subServiceList];
@@ -170,15 +172,24 @@ function AddService(props) {
                 {Object.keys(servicePhotos).map((servicePhotosKey) => {
                   const file = servicePhotos[servicePhotosKey];
                   return (
-                    <div key={servicePhotosKey} className="z-50 absolute inset-0 ">
+                    <div
+                      key={servicePhotosKey}
+                      className="z-50 absolute inset-0 "
+                    >
                       <img
                         className="object-cover h-36 w-full rounded-md "
                         src={URL.createObjectURL(file)}
                         alt={file.name}
                       />
-                      <a className="absolute right-5 cursor-pointer text-base" onClick={(e)=>handleRemoveImageService(e,servicePhotosKey)}>ลบรูปภาพ</a>
+                      <a
+                        className="absolute right-5 cursor-pointer text-base"
+                        onClick={(e) =>
+                          handleRemoveImageService(e, servicePhotosKey)
+                        }
+                      >
+                        ลบรูปภาพ
+                      </a>
                     </div>
-                    
                   );
                 })}
               </div>
@@ -207,7 +218,9 @@ function AddService(props) {
                         type="text"
                         name="orderName"
                         value={subService.sub_service_name}
-                        onChange={(e) => {handleChangeName(e,index)}}
+                        onChange={(e) => {
+                          handleChangeName(e, index);
+                        }}
                       />
                     </div>
                     <div className="flex flex-col w-56">
@@ -221,7 +234,9 @@ function AddService(props) {
                         step="any"
                         name="serviceCharge"
                         value={subService.price_per_unit}
-                        onChange={(e) => {handleChangePricePerUnit(e,index)}}
+                        onChange={(e) => {
+                          handleChangePricePerUnit(e, index);
+                        }}
                       />
                     </div>
                     <div className="flex flex-col w-56">
@@ -231,23 +246,25 @@ function AddService(props) {
                       >
                         หน่วยการบริการ
                       </label>
-                      <input className="unitService rounded-lg h-11 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none mr-4" 
-                      required
+                      <input
+                        className="unitService rounded-lg h-11 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none mr-4"
+                        required
                         type="text"
-                      name="serviceUnit"
-                      value={subService.unit}
-                      onChange={(e) => {handleChangeUnit(e,index)}}
+                        name="serviceUnit"
+                        value={subService.unit}
+                        onChange={(e) => {
+                          handleChangeUnit(e, index);
+                        }}
                       />
                     </div>
                     <button
-                    className="text-grey600 underline"
-                    onClick={() => deleteList(index)}
-                    type="button"
-                  >
-                    ลบรายการ
-                  </button>
+                      className="text-grey600 underline"
+                      onClick={() => deleteList(index)}
+                      type="button"
+                    >
+                      ลบรายการ
+                    </button>
                   </div>
-                  
                 </div>
               );
             })}

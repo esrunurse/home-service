@@ -61,30 +61,27 @@ function ServiceHeader(props) {
         <div className="flex">
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">หมวดหมู่บริการ</p>
-            <select
-              className="select"
-              name="filter-category"
-              type="text"
-              value={categoryFilter}
-              onChange={(e) => {
-                setCategoryFilter(String(e.target.value))
-              }}
-            >
-              <option value="" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
-                บริการทั้งหมด {""}
-              </option>
+            <div className="dropdown cursor-pointer">{categoryFilter===""? (
+              <p className="cursor-pointer">บริการทั้งหมด ▾</p>) : (<p className="cursor-pointer">{categoryFilter} ▾</p>) }
+              <div
+                className="dropdown-content cursor-pointer"
+              >
+                <div className="ml-4" onClick={() => {
+                setCategoryFilter("")
+              }}>
+                  <p>บริการทั้งหมด</p>
+                </div>
                 {category.map((data) => {
-                  return (
-                    <option
-                      className="cursor-pointer text-grey700 text-sm font-normal"
-                      key={data.category_id}
-                      value={data.category_name}
-                    >
-                      {data.category_name}
-                    </option>
+                  return (<div className="ml-4" onClick={() => {
+                    const value = data.category_name
+                setCategoryFilter(String(value))
+              }}>
+                  <p>{data.category_name}</p>
+                </div>
                   );
                 })}
-            </select>
+              </div>
+            </div>
           </div>
           <div className="vl"></div>
           <div className="flex-col">
@@ -118,20 +115,26 @@ function ServiceHeader(props) {
           <div className="vl"></div>
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">เรียงตาม</p>
-              <select
-              className="cursor-pointer"
-              name="filter-category"
-              type="text"
-              value={orderFilter}
-              onChange={(e) => { setOrderFilter(e.target.value) }}
-            >
-              <option value="asc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
-                ตามตัวอักษร (Ascending) {""}
-              </option>
-              <option value="desc" className="cursor-pointer  text-grey700 text-sm font-normal focus:text-blue700 ">
-                ตามตัวอักษร (Descending) {""}
-              </option>
-            </select>
+            <div className="dropdown cursor-pointer ">{orderFilter==="asc"? (
+              <p className="cursor-pointer w-52">ตามตัวอักษร (Ascending) ▾</p>) : (<p className="cursor-pointer w-52">ตามตัวอักษร (Descending) ▾</p>) }
+              <div
+                className="dropdown-content cursor-pointer"
+                                css={css`
+                  width: 240px;
+                `}
+              >
+                <div className="ml-4" onClick={() => {
+                setOrderFilter("asc")
+              }}>
+                  <p>ตามตัวอักษร (Ascending)</p>
+                </div>
+                <div className="ml-4" onClick={() => {
+                setOrderFilter("desc")
+              }}>
+                  <p>ตามตัวอักษร (Descending)</p>
+                </div>
+              </div>
+            </div>
             
           </div>
         </div>
