@@ -22,7 +22,7 @@ function HomePageJobNotice() {
             ติดต่อมาที่อีเมล: job@homeservices.co
           </h2>
         </div>
-        <div className="absolute bottom-0 -right-2 mix-blend-screen">
+        <div className="absolute bottom-0 right-2 mix-blend-screen">
           <img src={image.jobNoticeHouseLogo} alt="job-notice-house" />
         </div>
       </div>

@@ -25,7 +25,7 @@ function PopularService() {
 
   return (
     <div
-      className="popular-service"
+      className="popular-service w-screen"
       css={css`
         background-color: rgba(229, 229, 229, 0.2);
       `}

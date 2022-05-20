@@ -39,8 +39,8 @@ function useHook() {
   const [orderFilter, setOrderFilter] = useState("asc");
 
   //service
-  const [service, setService] = useState([
-    {
+  const [service, setService] = useState([{
+   
       service_name: "",
       category_name: "",
       service_photo: { url: "", publicId: "" },
@@ -50,7 +50,7 @@ function useHook() {
       service_created_date: "",
       service_edited_date: "",
     },
-  ]);
+]);
   const [service_name, setService_name] = useState("");
   const [sub_service_name, setSub_service_name] = useState("");
   const [price_per_unit, setPrice_per_unit] = useState(0);

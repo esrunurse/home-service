@@ -24,18 +24,20 @@ function ServiceEditForm(props) {
   useEffect(() => {
     getServiceById(params.serviceId);
   }, []);
-
+  
   useEffect(() => {
     getCategory();
   }, []);
 
   const updateServiceById = async (serviceId, data) => {
-    await axios.put(`http://localhost:4000/service/${serviceId}`, data)
+    await axios.put(`http://localhost:4000/service/${serviceId}`, [data])
     navigate('/service-dashboard')
+    //console.log(data)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    //console.log(service)
     updateServiceById(params.serviceId, service)
   }
 
@@ -56,6 +58,20 @@ function ServiceEditForm(props) {
       setService(newDeleteSubService);
   };
 
+  const handleChangeServiceName = (e, index) => {
+    setService_name(e.target.value)
+    const tempList = [...service];
+    tempList[index].service_name = service_name;
+    setService(tempList);
+  };
+
+    const handleChangeCategory = (e, index) => {
+    setCategory_name(e.target.value)
+    const tempList = [...service];
+    tempList[index].category_name = category_name;
+    setService(tempList);
+  };
+  
   const handleChangeName = (e, index) => {
     const tempList = [...service];
     tempList[index].sub_service_name = e.target.value;
@@ -129,31 +145,49 @@ function ServiceEditForm(props) {
           </button>
         </div>
       </header>
-      <div className="bg-bg w-[1200px] min-h-screen flex justify-center">
-        <div className="edit-box w-[1120px] min-h-screen mb-[72px] flex flex-col items-center">
+        <div className="bg-bg w-[1200px] min-h-screen flex justify-center">
+          <div className="edit-box w-[1120px] min-h-screen mb-[72px] flex flex-col items-center">
           <form className="edit-form w-[1120px] min-h-screen bg-white py-10 px-6 grid gap-y-10 mt-10 rounded-lg border border-grey200">
             <div className="service-name w-[662px] h-11 flex items-center justify-between">
-              <label
-                className="title-service-name text-base text-grey700 font-medium"
-                for="titleService"
-              >
-                ชื่อบริการ<span className="text-red">*</span>
-              </label>
-              <input
-                className="input-service-name w-[433px] h-11 rounded-lg border border-grey300 px-4 py-3"
-                type="text"
-                id="titleService"
-                name="titleService"
-                value={
-                  service_name === ""
-                    ? service[service.length - 1].service_name
-                    : service_name
-                }
-                onChange={(event) => {
-                  setService_name(event.target.value);
-                }}
-              />
-            </div>
+                {/* {service.map((lastService, index) => {
+
+                  return (<div key={index}> { index == lastService.length - 1 ? (<div><label
+                    className="title-service-name text-base text-grey700 font-medium"
+                    for="titleService"
+                  >
+                    ชื่อบริการ<span className="text-red">*</span>
+                  </label>
+                    <input
+                      className="input-service-name w-[433px] h-11 rounded-lg border border-grey300 px-4 py-3"
+                      type="text"
+                      id="titleService"
+                      name="titleService"
+                      value={lastService.service_name}
+                      onChange={(e) => {
+                        handleChangeServiceName(e, index);
+                      }}
+                    /></div>) : (null)}
+                  </div>)
+                })} */}
+                <label
+                    className="title-service-name text-base text-grey700 font-medium"
+                    for="titleService"
+                  >
+                    ชื่อบริการ<span className="text-red">*</span>
+                  </label>
+                    <input
+                      className="input-service-name w-[433px] h-11 rounded-lg border border-grey300 px-4 py-3"
+                      type="text"
+                      id="titleService"
+                      name="titleService"
+                      value={service_name === ""
+                      ? service[service.length - 1].service_name
+                      : service_name}
+                      onChange={(e) => {
+                        handleChangeServiceName(e, service.length-1);
+                      }}
+                    />
+                </div>
             <div className="choose-category w-[662px] h-11 flex items-center justify-between">
               <label className="title-service-name text-base text-grey700 font-medium">
                 หมวดหมู่<span className="text-red">*</span>
@@ -165,8 +199,8 @@ function ServiceEditForm(props) {
                     ? service[service.length - 1].category_name
                     : category_name
                 }
-                onChange={(event) => {
-                  setCategory_name(event.target.value);
+                onChange={(e) => {
+                  handleChangeCategory(e, service.length - 1);
                 }}
               >
                 {category.map((dt) => {
@@ -236,6 +270,7 @@ function ServiceEditForm(props) {
                       value={subService.sub_service_name}
                       onChange={(e) => {
                         handleChangeName(e, index);
+                        console.log(service)
                       }}
                     />
                   </div>
@@ -315,10 +350,10 @@ function ServiceEditForm(props) {
               </div>
             </div>
           </form>
-          {/* <button className="w-[97px] h-6 flex justify-between text-grey600 text-base font-semibold underline self-end mt-5">
+          <button className="w-[97px] h-6 flex justify-between text-grey600 text-base font-semibold underline self-end mt-5">
             <img className="w-6 h-6" alt="Trash" src={image.trashIcon} />
             ลบบริการ
-          </button> */}
+          </button>
         </div>
         </div>
       </form>
