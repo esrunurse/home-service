@@ -66,7 +66,7 @@ function EditedCategoryForm(props) {
             <button onClick={() => navigate('/category-dashboard')}>
               <img alt="Arrow Icon" src={image.arrow} className="w-10 h10" />
             </button>
-            <div className="w-32 h-12">
+            <div className="w-52 h-12">
               <div className="font-normal text-grey700 text-xs">หมวดหมู่</div>
               <div className="font-medium text-xl">{category.category_name}</div>
             </div>

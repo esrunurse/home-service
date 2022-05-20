@@ -333,14 +333,6 @@ serviceRouter.put("/:id", async (req, res) => {
         updateServiceItem.data[r].sub_service_id,
       ]
     );
-    // for (let i = 0; i < subServiceId.length-1; i++){
-    //   if (updateServiceItem.data[r].sub_service_id !== subServiceId[i]) {
-    //     await pool.query(
-    //       `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit, sub_service_quantity, total_price)
-    //       values ((select service_id from service where service_name = $1 ), $2, $3, $4, 0, 0);`
-    //     )
-    //   }
-    // }
   }
 
   return res.json({

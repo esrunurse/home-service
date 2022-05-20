@@ -10,11 +10,12 @@ import AlertBoxDelete from "../AlertBoxDelete.js";
 function AdminService(props) {
   const {
     service,
-    // getService,
+    getService,
     serviceDeleteAlert,
     deleteService,
     deleteServiceId,
     service_Id,
+    setDeleteService,
   } = props;
 
   const navigate = useNavigate();
@@ -25,12 +26,16 @@ function AdminService(props) {
 
   const hide = () => {
     document.getElementById("popUp").style.display = "none";
-    window.location.reload();
+    // window.location.reload();
+    setDeleteService(false);
   };
 
   const handleDelete = () => {
     deleteServiceId(service_Id);
+    setDeleteService(false);
   };
+
+  console.log(service)
 
   return (
     <div
@@ -56,10 +61,10 @@ function AdminService(props) {
           <h5 className="w-32 py-2 pr-8 pl-6 font-normal">Action</h5>
         </div>
         <div className="bg-white rounded-b-lg">
-          {service.map((data, index) => {
+          {service.length !== 0 && service[0].service_name !== ""  ?  (<div>{service.map((data, index) => {
             return (
               <div
-                key={data.service_id}
+                key={index}
                 className="flex justify-between "
                 css={css`
                   height: 88px;
@@ -141,7 +146,7 @@ function AdminService(props) {
           })}
           {deleteService ? (
             <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide}/>
-          ) : null}
+          ) : null}</div>) : (null) }
         </div>
       </div>
     </div>

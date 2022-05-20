@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import "../../App.css";
 import MultiRangeSlider from "./MultiRangeSlider";
 import axios from "axios";
@@ -52,12 +50,8 @@ function ServiceHeader(props) {
             setSearchService(event.target.value);
           }}
           value={searchService}
-          className="border rounded-lg border-grey300"
-          css={css`
-            padding: 10px 0px 10px 16px;
-          `}
+          className="border rounded-lg border-grey300 px-2.5 pl-4"
         />
-
         <div className="flex">
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">หมวดหมู่บริการ</p>
@@ -89,20 +83,16 @@ function ServiceHeader(props) {
             <div className="dropdown cursor-pointer">
               <p className="cursor-pointer w-36"> {minFilter} - {maxFilter} ฿ ▾ </p>
               <div
-                className="dropdown-content"
-                css={css`
-                  width: 253px;
-                  height: 112px;
-                `}
+                className="dropdown-content w-[253px] h-[112px]"
               >
                 <div>
                   <MultiRangeSlider
                     min={0}
                     max={20000}
                     minFilter={minFilter}
-    setMinFilter={setMinFilter}
-    maxFilter={maxFilter}
-    setMaxFilter={setMaxFilter}
+                    setMinFilter={setMinFilter}
+                    maxFilter={maxFilter}
+                    setMaxFilter={setMaxFilter}
                     onChange={({ min, max }) =>
                       console.log(`min = ${min}, max = ${max}`)
                     }
@@ -116,12 +106,9 @@ function ServiceHeader(props) {
           <div className="flex-col">
             <p className="text-xs text-grey700 font-normal">เรียงตาม</p>
             <div className="dropdown cursor-pointer ">{orderFilter==="asc"? (
-              <p className="cursor-pointer w-52">ตามตัวอักษร (Ascending) ▾</p>) : (<p className="cursor-pointer w-52">ตามตัวอักษร (Descending) ▾</p>) }
+              <p className="cursor-pointer w-56">ตามตัวอักษร (Ascending) ▾</p>) : (<p className="cursor-pointer w-56">ตามตัวอักษร (Descending) ▾</p>) }
               <div
-                className="dropdown-content cursor-pointer"
-                                css={css`
-                  width: 240px;
-                `}
+                className="dropdown-content cursor-pointer w-[240px]"
               >
                 <div className="ml-4" onClick={() => {
                 setOrderFilter("asc")

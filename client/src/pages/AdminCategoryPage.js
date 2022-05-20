@@ -16,6 +16,7 @@ function AdminCategoryPage() {
     categoryDeleteAlert,
     category_Id,
     hide,
+    setDeleteCategory
   } = useHook();
   return (
     <div className="admin-category-page">
@@ -33,6 +34,7 @@ function AdminCategoryPage() {
         deleteCategory={deleteCategory}
         category_Id={category_Id}
         hide={hide}
+        setDeleteCategory={setDeleteCategory}
       />
     </div>
   );

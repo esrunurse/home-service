@@ -17,7 +17,9 @@ function AdminEditService() {
     category_name,
     service_name,
     setService_name,
-    handleFileChange
+    // handleFileChange,
+    editHeader,
+    setEditHeader,
   } = useHook();
   return (
     <div>
@@ -32,7 +34,9 @@ function AdminEditService() {
         category_name={category_name}
         service_name={service_name}
         setService_name={setService_name}
-        handleFileChange={handleFileChange}
+        // handleFileChange={handleFileChange}
+        editHeader={editHeader}
+        setEditHeader={setEditHeader}
       />
     </div>
   );
