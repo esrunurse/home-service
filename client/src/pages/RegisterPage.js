@@ -1,49 +1,34 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import "../App.css";
-import { useState } from "react";
-import Nav from "../components/HomePage/Nav.js";
-import { useAuth } from "../contexts/authentication.js";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import '../App.css'
+import { useState } from 'react'
+import Nav from '../components/HomePage/Nav.js'
+import { useAuth } from '../contexts/authentication.js'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function RegisterPage() {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const { register } = useAuth();
+  const { register } = useAuth()
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     const data = {
       name,
       phoneNumber,
       email,
       password,
-      role: "customer",
-    };
-    register(data);
-  };
+      role: 'customer'
+    }
+    register(data)
+  }
 
   return (
     <div className="register-form-container" onSubmit={handleSubmit}>
       <Nav />
-      <div
-        className="w-screen flex justify-center"
-        css={css`
-          background-color: #f3f4f6;
-        `}
-      >
-        <form
-          className="bg-white border border-grey300 rounded-lg"
-          css={css`
-            width: 614px;
-            padding: 32px 87px 55px 87px;
-            margin-top: 52px;
-            margin-bottom: 87px;
-          `}
-        >
+      <div className="w-screen flex justify-center bg-bg">
+        <form className="bg-white border border-grey300 rounded-lg w-[614px] px-[87px] pt-8 pb-[45px] mt-[52px] mb-[87px]">
           <h1 className="text-blue950 text-center">ลงทะเบียน </h1>
           <div className="mt-5">
             <label>
@@ -57,15 +42,10 @@ function RegisterPage() {
                 type="text"
                 placeholder="กรุณากรอกชื่อ-นามสกุล"
                 onChange={(event) => {
-                  setName(event.target.value);
+                  setName(event.target.value)
                 }}
                 value={name}
-                css={css`
-                  padding: 10px 0px 10px 16px;
-                  width: 100%;
-                  height: 44px;
-                `}
-                className="border rounded-lg border-grey300"
+                className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5"
               />
             </label>
           </div>
@@ -82,15 +62,10 @@ function RegisterPage() {
                 pattern="[0-9]{10}"
                 placeholder="กรุณากรอกเบอร์โทรศัพท์"
                 onChange={(event) => {
-                  setPhoneNumber(event.target.value);
+                  setPhoneNumber(event.target.value)
                 }}
                 value={phoneNumber}
-                css={css`
-                  padding: 10px 0px 10px 16px;
-                  width: 100%;
-                  height: 44px;
-                `}
-                className="border rounded-lg border-grey300"
+                className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5"
               />
             </label>
           </div>
@@ -106,15 +81,10 @@ function RegisterPage() {
                 type="email"
                 placeholder="กรุณากรอกอีเมล"
                 onChange={(event) => {
-                  setEmail(event.target.value);
+                  setEmail(event.target.value)
                 }}
                 value={email}
-                css={css`
-                  padding: 10px 0px 10px 16px;
-                  width: 100%;
-                  height: 44px;
-                `}
-                className="border rounded-lg border-grey300"
+                className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5"
               />
             </label>
           </div>
@@ -130,23 +100,14 @@ function RegisterPage() {
                 type="password"
                 placeholder="กรุณากรอกรหัสผ่าน"
                 onChange={(event) => {
-                  setPassword(event.target.value);
+                  setPassword(event.target.value)
                 }}
                 value={password}
-                css={css`
-                  padding: 10px 0px 10px 16px;
-                  width: 100%;
-                  height: 44px;
-                `}
-                className="border rounded-lg border-grey300"
+                className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5"
               />
             </label>
             <br />
-            <div
-              css={css`
-                margin-top: 45px;
-              `}
-            >
+            <div className="mt-[45px]">
               <label>
                 <input
                   required
@@ -155,22 +116,14 @@ function RegisterPage() {
                   type="checkbox"
                 />
                 <span className="absolute">
-                  ยอมรับ <a href="/">ข้อตกลงและเงื่อนไข</a> และ{" "}
+                  ยอมรับ <a href="/">ข้อตกลงและเงื่อนไข</a> และ{' '}
                   <a href="">นโยบายความเป็นส่วนตัว</a>
                 </span>
               </label>
             </div>
           </div>
           <div className="form-actions">
-            <button
-              className="btn-primary"
-              css={css`
-                width: 100%;
-                margin-top: 42px;
-                margin-bottom: 42px;
-              `}
-              type="submit"
-            >
+            <button className="btn-primary w-full my-[42px]" type="submit">
               ลงทะเบียน
             </button>
             <div className="text-center">
@@ -180,7 +133,7 @@ function RegisterPage() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default RegisterPage;
+export default RegisterPage

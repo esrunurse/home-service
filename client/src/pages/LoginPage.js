@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import '../App.css'
 import { useState } from 'react'
 import Nav from '../components/HomePage/Nav.js'
@@ -22,21 +20,8 @@ function LoginPage() {
   return (
     <div className="login-form-container" onSubmit={handleSubmit}>
       <Nav />
-      <div
-        className="w-screen flex justify-center"
-        css={css`
-          background-color: #f3f4f6;
-        `}
-      >
-        <form
-          className="bg-white border border-grey300 rounded-lg"
-          css={css`
-            width: 614px;
-            padding: 32px 87px 55px 87px;
-            margin-top: 52px;
-            margin-bottom: 87px;
-          `}
-        >
+      <div className="w-screen flex justify-center bg-bg">
+        <form className="bg-white border border-grey300 rounded-lg w-[614px] mt-[52px] mb-[87px] px-[87px] pt-[32px] pb-[53px]">
           <h1 className="text-blue950 text-center">เข้าสู่ระบบ </h1>
           <div className="mt-5">
             <label>
@@ -53,12 +38,7 @@ function LoginPage() {
                   setEmail(event.target.value)
                 }}
                 value={email}
-                css={css`
-                  padding: 10px 0px 10px 16px;
-                  width: 100%;
-                  height: 44px;
-                `}
-                className="border rounded-lg border-grey300"
+                className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5"
               />
             </label>
           </div>
@@ -77,26 +57,13 @@ function LoginPage() {
                   setPassword(event.target.value)
                 }}
                 value={password}
-                css={css`
-                  padding: 10px 0px 10px 16px;
-                  width: 100%;
-                  height: 44px;
-                `}
-                className="border rounded-lg border-grey300"
+                className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5"
               />
             </label>
           </div>
           <br />
           <div className="form-actions">
-            <button
-              className="btn-primary"
-              css={css`
-                width: 100%;
-                margin-top: 20px;
-                margin-bottom: 42px;
-              `}
-              type="submit"
-            >
+            <button className="btn-primary w-full mt-5 mb-[42px]" type="submit">
               เข้าสู่ระบบ
             </button>
             <div className="text-center">

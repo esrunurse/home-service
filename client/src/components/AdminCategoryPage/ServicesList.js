@@ -1,11 +1,9 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import icons from "../../AdminPhoto/imageIndex.js";
-import "../../App.css";
-import Moment from "react-moment";
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import AlertBoxDelete from "../AlertBoxDelete.js";
+import icons from '../../AdminPhoto/imageIndex.js'
+import '../../App.css'
+import Moment from 'react-moment'
+import { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import AlertBoxDelete from '../AlertBoxDelete.js'
 
 function AdminService(props) {
   const {
@@ -14,38 +12,26 @@ function AdminService(props) {
     serviceDeleteAlert,
     deleteService,
     deleteServiceId,
-    service_Id,
-  } = props;
+    service_Id
+  } = props
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    getService();
-  }, []);
+    getService()
+  }, [])
 
   const hide = () => {
-    document.getElementById("popUp").style.display = "none";
-  };
+    document.getElementById('popUp').style.display = 'none'
+  }
 
   const handleDelete = () => {
-    deleteServiceId(service_Id);
-  };
+    deleteServiceId(service_Id)
+  }
 
   return (
-    <div
-      className="w-screen min-h-screen"
-      css={css`
-        background: #e5e5e5;
-        padding: 41px;
-        border: 0.5px solid #e6e7eb;
-      `}
-    >
-      <div
-        className="pl-60"
-        css={css`
-          border-radius: 5px;
-        `}
-      >
+    <div className="w-screen min-h-screen bg-[#E5E5E5] p-[41px] border-[0.5px] border-grey200">
+      <div className="pl-60 rounded-[5px]">
         <div className="bg-grey100 text-grey700 text-sm flex h-10 items-center pl-14 rounded-t-md">
           <h5 className="w-24 py-6 font-normal">ลำดับ</h5>
           <h5 className="font-normal py-2 w-60">ชื่อบริการ</h5>
@@ -59,25 +45,15 @@ function AdminService(props) {
             return (
               <div
                 key={data.service_id}
-                className="flex justify-between "
-                css={css`
-                  height: 88px;
-                  border: 0.5px solid #e6e7eb;
-                `}
+                className="flex justify-between h-[88px] border-[0.5px] border-grey200"
               >
-                <div
-                  className="pl-10 flex items-center"
-                  css={css`
-                    width: 888px;
-                    height: 88px;
-                  `}
-                >
+                <div className="pl-10 flex items-center w-[888px] h-[88px]">
                   <div className="font-light text-center w-20">{index + 1}</div>
                   <div className="service-name p-6 font-light w-60">
                     {data.service_name}
                   </div>
                   <div className="service-name py-6 font-light w-36">
-                    {" "}
+                    {' '}
                     {data.category_id % 2 === 0 ? (
                       <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                         {data.category_name}
@@ -111,19 +87,13 @@ function AdminService(props) {
                     </Moment>
                   </div>
                 </div>
-                <div
-                  className="flex items-center justify-around pr-6"
-                  css={css`
-                    width: 120px;
-                    height: 88px;
-                  `}
-                >
+                <div className="flex items-center justify-around pr-6 w-[120px] h-[88px]">
                   <img
                     className="w-6 h-6 cursor-pointer"
                     alt="Delete"
                     src={icons.trashIcon}
                     onClick={() => {
-                      serviceDeleteAlert(data.service_id);
+                      serviceDeleteAlert(data.service_id)
                     }}
                   />
                   <img
@@ -133,7 +103,7 @@ function AdminService(props) {
                   />
                 </div>
               </div>
-            );
+            )
           })}
           {deleteService ? (
             <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide} />
@@ -141,7 +111,7 @@ function AdminService(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminService;
+export default AdminService

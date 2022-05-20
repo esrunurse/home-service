@@ -1,65 +1,44 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import "../../App.css";
-import image from "../../HomePagePhoto/imageIndex.js";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import React from "react";
-import axios from "axios";
+import '../../App.css'
+import image from '../../HomePagePhoto/imageIndex.js'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import React from 'react'
+import axios from 'axios'
 
 function PopularService() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [service, setService] = useState([]);
+  const [service, setService] = useState([])
 
   const getService = async () => {
-    const result = await axios("http://localhost:4000/service");
-    setService(result.data.data);
-  };
+    const result = await axios('http://localhost:4000/service')
+    setService(result.data.data)
+  }
 
   useEffect(() => {
-    getService();
-  }, []);
+    getService()
+  }, [])
 
-  console.log(service);
+  console.log(service)
 
   return (
-    <div
-      className="popular-service"
-      css={css`
-        background-color: rgba(229, 229, 229, 0.2);
-      `}
-    >
+    <div className="popular-service bg-[rgba(229, 229, 229, 0.2)]">
       <h1 className="text-blue950 text-center pt-14">บริการยอดฮิตของเรา</h1>
-      <div
-        className="w-screen px-20 py-8"
-        css={css`
-          display: grid;
-          grid-template-columns: 2fr 2fr 2fr;
-        `}
-      >
+      <div className="w-screen px-20 py-8 grid grid-cols-[2fr_2fr_2fr]">
         {service.slice(0, 3).map((data) => {
           return (
             <div
-              className="my-5 bg-white border border-grey300 rounded-lg"
-              css={css`
-                width: 349px;
-                height: 369px;
-              `}
+              className="my-5 bg-white border border-grey300 rounded-lg w-[349px] h-[396px]"
               key={data.service_id}
             >
               <img
-                className="rounded-t-lg"
+                className="rounded-t-lg w-[349px] h-[200px]"
                 src={data.service_photo.url}
                 alt={data.service_name}
-                css={css`
-                  width: 349px;
-                  height: 200px;
-                `}
               />
               <div className="p-6">
                 <div className="category-name font-normal mb-2">
-                  {" "}
+                  {' '}
                   {data.category_id % 2 === 0 ? (
                     <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                       {data.category_name}
@@ -91,22 +70,22 @@ function PopularService() {
                   />
                   {data.min_price === data.max_price ? (
                     <div>
-                      ค่าบริการ{" "}
+                      ค่าบริการ{' '}
                       {Number(data.min_price).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}{" "}
+                        maximumFractionDigits: 2
+                      })}{' '}
                       ฿
                     </div>
                   ) : (
                     <div>
-                      ค่าบริการประมาณ{" "}
+                      ค่าบริการประมาณ{' '}
                       {Number(data.min_price).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}{" "}
-                      -{" "}
+                        maximumFractionDigits: 2
+                      })}{' '}
+                      -{' '}
                       {Number(data.max_price).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}{" "}
+                        maximumFractionDigits: 2
+                      })}{' '}
                       ฿
                     </div>
                   )}
@@ -114,24 +93,19 @@ function PopularService() {
                 <a className="cursor-pointer">เลือกบริการ</a>
               </div>
             </div>
-          );
+          )
         })}
       </div>
       <div className="flex justify-center w-screen">
         <button
-          className="btn-primary"
-          css={css`
-            width: 155px;
-            height: 44px;
-            margin-bottom: 147px;
-          `}
-          onClick={() => navigate("/service")}
+          className="btn-primary w-[155px] h-11 mb-[147px]"
+          onClick={() => navigate('/service')}
         >
           ดูบริการท้ังหมด
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-export default PopularService;
+export default PopularService
