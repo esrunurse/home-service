@@ -14,39 +14,29 @@ function ServiceEditForm(props) {
     getCategory,
     category,
     setService,
-    setCategory_name,
     category_name,
     service_name,
-    setService_name,
     handleFileChange
   } = props;
 
   useEffect(() => {
     getServiceById(params.serviceId);
-  }, []);
-  
-  useEffect(() => {
     getCategory();
   }, []);
 
   const updateServiceById = async (serviceId, data) => {
-    await axios.put(`http://localhost:4000/service/${serviceId}`, [data])
+    console.log(data)
+    await axios.put(`http://localhost:4000/service/${serviceId}`, data)
     navigate('/service-dashboard')
     //console.log(data)
   }
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    //console.log(service)
+    console.log(service)
     updateServiceById(params.serviceId, service)
   }
-
-  // useEffect(() => {
-  //   if (service) {
-  //     setCategory_name(category.category_name)
-  //     setService(.service_edited_date)
-  //   }
-  // }, [service])
 
   const deleteList = (index) => {
     let deleteSubService = [...service];
@@ -59,16 +49,14 @@ function ServiceEditForm(props) {
   };
 
   const handleChangeServiceName = (e, index) => {
-    setService_name(e.target.value)
     const tempList = [...service];
-    tempList[index].service_name = service_name;
+    tempList[index].service_name = e.target.value;
     setService(tempList);
   };
 
     const handleChangeCategory = (e, index) => {
-    setCategory_name(e.target.value)
     const tempList = [...service];
-    tempList[index].category_name = category_name;
+    tempList[index].category_name =e.target.value;
     setService(tempList);
   };
   
@@ -124,7 +112,7 @@ function ServiceEditForm(props) {
           <div className="w-32 h-12">
             <div className="font-normal text-grey700 text-xs">บริการ</div>
             <div className="font-medium text-xl">
-              {service[service.length - 1].service_name}
+              {service_name}
             </div>
           </div>
         </div>
@@ -149,26 +137,6 @@ function ServiceEditForm(props) {
           <div className="edit-box w-[1120px] min-h-screen mb-[72px] flex flex-col items-center">
           <form className="edit-form w-[1120px] min-h-screen bg-white py-10 px-6 grid gap-y-10 mt-10 rounded-lg border border-grey200">
             <div className="service-name w-[662px] h-11 flex items-center justify-between">
-                {/* {service.map((lastService, index) => {
-
-                  return (<div key={index}> { index == lastService.length - 1 ? (<div><label
-                    className="title-service-name text-base text-grey700 font-medium"
-                    for="titleService"
-                  >
-                    ชื่อบริการ<span className="text-red">*</span>
-                  </label>
-                    <input
-                      className="input-service-name w-[433px] h-11 rounded-lg border border-grey300 px-4 py-3"
-                      type="text"
-                      id="titleService"
-                      name="titleService"
-                      value={lastService.service_name}
-                      onChange={(e) => {
-                        handleChangeServiceName(e, index);
-                      }}
-                    /></div>) : (null)}
-                  </div>)
-                })} */}
                 <label
                     className="title-service-name text-base text-grey700 font-medium"
                     for="titleService"

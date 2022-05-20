@@ -263,9 +263,19 @@ serviceRouter.post("/", servicePhotoUpload, async (req, res) => {
 //API route to update existing service item page
 serviceRouter.put("/:id", async (req, res) => {
   const updateServiceItem = {
-    ...req.body,
+    data: [
+      ...req.body
+    
+      // service_name: req.body.service_name,
+    // category_name: req.body.category_name,
+    // servicePhotos: req.body.servicePhoto,
+    // sub_service_name: req.body.sub_service_name,
+    // unit: req.body.unit,
+    // price_per_unit: req.body.price_per_unit,
+    // service_edited_date: new Date(),
+  ]
   };
-  let zero = '0';
+  
   const serviceId = req.params.id;
   // const servicePhotoUrl = await cloudinaryUpload(req.files);
   // updateServiceItem["servicePhotos"] = servicePhotoUrl;
@@ -275,13 +285,13 @@ serviceRouter.put("/:id", async (req, res) => {
   for (let r = 0; r <= updateServiceItem.data.length - 1; r++) {
     subServiceId.push(updateServiceItem.data[r].sub_service_id);
   }
-
+  
   // ใช้ได้แล้ว
-  for (let r = 0; r <= updateServiceItem.data - 1; r++) {
-    await pool.query(
+  for (let r = 0; r <= updateServiceItem.data.length - 1; r++) {
+   await pool.query(
       `update service
     set service_name=$1,  
-    category_id=(select category_id from category where category_name=$2) 
+    category_id=(select category_id from category where category_name=$2), 
     service_edited_date=$3 
     where service_id=$4
     `,
@@ -301,6 +311,18 @@ serviceRouter.put("/:id", async (req, res) => {
       [subServiceId, serviceId]
     );
 
+    if (!updateServiceItem.data[r].sub_service_id) {
+      await pool.query(
+      `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit, sub_service_quantity, total_price)
+    values ((select service_id from service where service_name = $1 ), $2, $3, $4, 0, 0);`,
+    [
+      updateServiceItem.data[r].service_name,
+      updateServiceItem.data[r].sub_service_name,
+      updateServiceItem.data[r].unit,
+      updateServiceItem.data[r].price_per_unit,
+    ])
+    }
+
     await pool.query(
       `update sub_service set sub_service_name=$1, unit=$2, price_per_unit=$3, sub_service_quantity=0, total_price=0
     where sub_service_id=$4`,
@@ -311,6 +333,14 @@ serviceRouter.put("/:id", async (req, res) => {
         updateServiceItem.data[r].sub_service_id,
       ]
     );
+    // for (let i = 0; i < subServiceId.length-1; i++){
+    //   if (updateServiceItem.data[r].sub_service_id !== subServiceId[i]) {
+    //     await pool.query(
+    //       `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit, sub_service_quantity, total_price)
+    //       values ((select service_id from service where service_name = $1 ), $2, $3, $4, 0, 0);`
+    //     )
+    //   }
+    // }
   }
 
   return res.json({

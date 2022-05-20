@@ -78,6 +78,7 @@ function useHook() {
       `http://localhost:4000/service/${serviceId}`
     );
     setService(result.data.data);
+    setService_name(result.data.data[0]);
   };
 
   //Service Image
