@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users, service, category, sub_service CASCADE; 
+DROP TABLE IF EXISTS users, service, category, sub_service, checkout, order_summary, promotion, payment, order_history CASCADE; 
 
 create table users (
 user_id int primary key generated always as identity,
@@ -35,6 +35,51 @@ unit text not null,
 price_per_unit decimal (7,2) not null,
 sub_service_quantity int not null, 
 total_price decimal (7,2) not null
+);
+
+create table checkout (
+checkout_id int primary key generated always as identity,
+payment_id int not null,
+service_date date not null,
+service_time time not null,
+address text not null,
+sub_district text not null,
+district text not null,
+province text not null,
+note text);
+
+create table order_summary (
+order_summary_id int primary key generated always as identity,
+sub_service_id int references sub_service(sub_service_id),
+checkout_id int references checkout(checkout_id)
+);
+
+create table promotion (
+promotion_id int primary key generated always as identity,
+promotion_code text not null,
+promotion_types text not null,
+promotion_quota int not null,
+promotion_discount_amount int not null,
+promotion_expiry_date date not null,
+promotion_expiry_time time not null,
+promotion_created_date_time timestamptz not null,
+promotion_edited_date_time timestamptz not null
+);
+
+create table payment (
+payment_id int primary key generated always as identity,
+promotion_id int references promotion(promotion_id),
+credit_card_number varchar(16) not null,
+name_on_card varchar (100) not null, 
+expiry_date date not null,
+CVC_CVV_code int not null
+);
+create table order_history (
+order_history_id int primary key generated always as identity,
+order_summary_id int references order_summary(order_summary_id),
+status text not null,
+finished_date_time timestamptz,
+serviceman_name text not null
 );
 
 insert into users (name, phoneNumber, email, password, role) values ('Stephan Edmeades', '0879316420', 'sedmeades0@goodreads.com', 'iP4EAxpCF4i', 'customer');
@@ -93,10 +138,43 @@ insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub
 insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity, total_price) values ('แบบขนาดใหญ่กว่า 10 คิว', 10, 'เครื่อง', 2000.00, 0, 0);
 insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity, total_price) values ('ทรงพระเจริญ', 11, 'หมื่นๆปี', 112.00, 0, 0);
 
+insert into checkout (payment_id, service_date, service_time, address, sub_district, district, province, note) values (1, '2022-05-18', '16:00', '382 Bang Waek Road', 'Bang Pai', 'Bang Khae', 'Bangkok', '');
+insert into checkout (payment_id, service_date, service_time, address, sub_district, district, province, note) values (2, '2022-08-09', '20:00', 'Somewhere over the rainbow', 'Bang Sai', 'Klong Tom', 'Prayuth', 'female serviceman requested');
+insert into checkout (payment_id, service_date, service_time, address, sub_district, district, province, note) values (3, '2022-07-22', '19:00', 'Samoeng Villa', 'Samoeng Tai', 'Samoeng', 'Chiang Mai', 'please park in the back of the alley');
+insert into checkout (payment_id, service_date, service_time, address, sub_district, district, province, note) values (4, '2022-06-06', '19:45', '112 Orasadiraja Street', 'Les Majeste', 'Kalaland', 'Dusit', 'please expect royal defamation charge at any moment');
+insert into checkout (payment_id, service_date, service_time, address, sub_district, district, province, note) values (5, '2022-06-09', '08:15', '7/110 Metro Sky Wutthakat', 'Talat Phlu', 'Thonburi', 'Bangkok', 'please call 30 minutes in advance');
+
+insert into order_summary (sub_service_id, checkout_id) values (1, 1);
+insert into order_summary (sub_service_id, checkout_id) values (1, 2);
+insert into order_summary (sub_service_id, checkout_id) values (2, 3);
+insert into order_summary (sub_service_id, checkout_id) values (8, 4);
+insert into order_summary (sub_service_id, checkout_id) values (12, 5);
+
+insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('IsusO', 'fixed', 400, 600, '2022-10-10', '12:00', '2022-03-16T23:24:20Z', '2022-03-16T23:24:20Z');
+insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('IsusLek', 'percent', 112, 84000, '2022-12-05', '17:00', '2022-05-18T01:02:03Z', '2022-05-18T01:02:03Z');
+insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('iHiaTu', 'percent', 50,  100, '2022-06-30', '18:00', '2022-10-30T23:24:20Z', '2022-10-30T23:24:20Z');
+insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('iHiaPom', 'fixed', 1000, 200, '2022-08-08', '12:00', '2022-05-14T23:24:20Z', '2022-5-14T23:24:20Z');
+insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('IsusO', 'fixed', 50, 200, '2022-11-11', '06:00', '2022-05-14T23:24:20Z', '2022-5-14T23:24:20Z');
+
+insert into payment (credit_card_number, name_on_card, expiry_date, CVC_CVV_code) values ('1212312121123456', 'Parn Rienkijkarn', '2023-09-01', 632);
+insert into payment (credit_card_number, name_on_card, expiry_date, CVC_CVV_code) values ('1234554321098890', 'Chatchard Sidhibhun', '2040-08-12', 999);
+insert into payment (credit_card_number, name_on_card, expiry_date, CVC_CVV_code) values ('1212312121123456', 'William Shakespeare', '2030-02-22', 012);
+insert into payment (credit_card_number, name_on_card, expiry_date, CVC_CVV_code) values ('1212312121123456', 'Hakuna Matata', '2027-11-30', 620);
+insert into payment (credit_card_number, name_on_card, expiry_date, CVC_CVV_code) values ('1212312121123456', 'Natasha Nutt', '2025-10-10', 767);
+
+insert into order_history (order_summary_id, status, finished_date_time, serviceman_name) values (1, 'ดำเนินการสำเร็จ', '2022-06-16T16:00:00Z', 'Supakorn Meelarp');
+insert into order_history (order_summary_id, status, finished_date_time, serviceman_name) values (2, 'กำลังดำเนินการ', '2022-06-16T16:00:00Z', 'Supakorn Meelarp');
+insert into order_history (order_summary_id, status, finished_date_time, serviceman_name) values (3, 'รอดำเนินการ', '2022-06-16T16:00:00Z', 'Hakuna Matata');
+insert into order_history (order_summary_id, status, finished_date_time, serviceman_name) values (4, 'ดำเนินการสำเร็จ', '2022-07-12T16:00:00Z', 'Somsak Jeamteerasakul');
+insert into order_history (order_summary_id, status, finished_date_time, serviceman_name) values (5, 'รอดำเนินการ', '2022-06-16T16:00:00Z', 'Supakorn Meelarp');
 
 -- select *
 -- from service
 -- inner join category
 -- on category.category_id = service.category_id
+
+
+
+
 
 

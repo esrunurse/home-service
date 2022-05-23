@@ -1,9 +1,8 @@
 import '../App.css'
 import image from '../AdminPhoto/imageIndex'
-import { useNavigate } from 'react-router-dom';
 
 function AlertBoxDelete(props) {
-  const navigate = useNavigate();
+
   return (
     <div className="h-screen w-screen fixed flex items-center justify-center top-0 left-0 ">
               <div

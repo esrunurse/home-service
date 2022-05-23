@@ -86,11 +86,7 @@ a:active {
 }
 
 input {
-  @apply placeholder:text-grey700;
-}
-
-input:focus {
-  @apply placeholder:text-grey950 border-blue600 outline-none;
+  @apply placeholder:text-grey700 focus:border-blue600 focus:outline-none focus:placeholder:text-grey950;
 }
 
 label {
@@ -101,7 +97,7 @@ input:valid {
   @apply placeholder:text-grey950 border-grey300 outline-none;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   @apply w-6 h-6 mr-4 border-grey300 rounded-md hover:border-blue600;
 }
 
@@ -161,10 +157,15 @@ input[type='checkbox'] {
   margin-left: 20px;
 }
 
-input[type='range']::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
   width: 13px;
   height: 13px;
   -webkit-appearance: none;
   /* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}
+
+.select {
+  @apply cursor-pointer text-grey950 text-base font-medium appearance-none bg-no-repeat bg-right w-32 bg-origin-content focus:border-0;
+  background-image: url(../src/HomePagePhoto/arrow.svg);
 }

@@ -1,10 +1,9 @@
-import '../../App.css'
-import image from '../../AdminPhoto/imageIndex'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
-import axios from 'axios'
-import Moment from 'react-moment'
-import AlertBoxDelete from '../AlertBoxDelete.js'
+import "../../App.css";
+import image from "../../AdminPhoto/imageIndex";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import Moment from "react-moment";
 
 function EditedCategoryForm(props) {
   const {
@@ -13,38 +12,38 @@ function EditedCategoryForm(props) {
     setCategory_name,
     category_edited_date,
     setCategory_edited_date,
-    getCategoryById
-  } = props
+    getCategoryById,
+  } = props;
 
-  const params = useParams()
-  const navigate = useNavigate()
+  const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getCategoryById(params.categoryId)
-  }, [])
+    getCategoryById(params.categoryId);
+  }, []);
 
   const updateCategoryById = async (categoryId) => {
     await axios.put(`http://localhost:4000/category/${categoryId}`, {
       category_name,
-      category_edited_date
-    })
-    navigate('/category-dashboard')
-  }
+      category_edited_date,
+    });
+    navigate("/category-dashboard");
+  };
 
   useEffect(() => {
     if (category) {
-      setCategory_name(category.category_name)
-      setCategory_edited_date(category.category_edited_date)
+      setCategory_name(category.category_name);
+      setCategory_edited_date(category.category_edited_date);
     }
-  }, [category])
+  }, [category]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     updateCategoryById(params.categoryId, {
       category_name,
-      category_edited_date
-    })
-  }
+      category_edited_date,
+    });
+  };
 
   return (
     <div className="edit-container h-screen bg-bg">
@@ -57,26 +56,27 @@ function EditedCategoryForm(props) {
         border-b border-grey300 px-10 py-10 bg-white"
         >
           <div className="flex justify-between h-12 w-44">
-            <button onClick={() => navigate('/category-dashboard')}>
+            <button onClick={() => navigate("/category-dashboard")}>
               <img alt="Arrow Icon" src={image.arrow} className="w-10 h10" />
             </button>
-
-            <div className="w-32 h-12">
+            <div className="w-52 h-12">
               <div className="font-normal text-grey700 text-xs">หมวดหมู่</div>
-              <div className="font-medium text-xl">บริการห้องครัว</div>
+              <div className="font-medium text-xl">
+                {category.category_name}
+              </div>
             </div>
           </div>
           <div className="buttons flex justify-between h-11 w-64 px-1">
             <button
-              className="cancel-button 
-            w-28 h-11 bg-white rounded-lg border border-blue600 text-blue600"
-              onClick={() => navigate('/category-dashboard')}
+              className="btn-secondary 
+            w-28 h-11 "
+              onClick={() => navigate("/category-dashboard")}
             >
               ยกเลิก
             </button>
             <button
-              className="confirm-button 
-          w-28 h-11 bg-blue600 rounded-lg text-white"
+              className="btn-primary 
+          w-28 h-11"
               type="submit"
             >
               ยืนยัน
@@ -90,17 +90,16 @@ function EditedCategoryForm(props) {
                 ชื่อหมวดหมู่<span className=" text-red">*</span>
               </label>
               <input
-                className="rounded-lg border px-4 h-11 w-4/6"
+                className="rounded-lg border px-4 h-11 w-4/6 focus:border-blue600 focus:outline-none"
                 type="text"
-                id="edited_category"
                 name="edited_category"
                 value={category_name}
                 onChange={(e) => {
-                  setCategory_name(e.target.value)
+                  setCategory_name(e.target.value);
                 }}
               />
             </div>
-            <hr className="border text-grey300 my-10 "></hr>
+            <hr className=" border-grey300 my-10 "></hr>
             <div
               className="time-line-category
              h-24 flex"
@@ -130,7 +129,7 @@ function EditedCategoryForm(props) {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default EditedCategoryForm
+export default EditedCategoryForm;

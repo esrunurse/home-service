@@ -5,7 +5,9 @@ import ServicePage from './ServicePage'
 import AdminCategoryPage from './AdminCategoryPage'
 import CreateCategory from './CreateCategoryPage'
 import AdminEditCategory from './AdminEditCategory'
+import AdminEditService from './AdminEditService'
 import AdminService from "./AdminServicePage"
+import CreateService from "./CreateServicePage"
 import '../App.css'
 
 function AuthenticatedApp() {
@@ -21,6 +23,8 @@ function AuthenticatedApp() {
           <Route path="/create-category" element={<CreateCategory />} />
           <Route path="/category/edit/:categoryId" element={<AdminEditCategory />} />
           <Route path="/service-dashboard" element={<AdminService />} />
+          <Route path="/create-service" element={<CreateService />} />
+          <Route path="/service/edit/:serviceId" element={<AdminEditService />} />
         </Routes>
       ) : (
         <Routes>

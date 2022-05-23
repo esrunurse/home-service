@@ -24,7 +24,7 @@ function PopularService() {
   return (
     <div className="popular-service bg-[rgba(229, 229, 229, 0.2)]">
       <h1 className="text-blue950 text-center pt-14">บริการยอดฮิตของเรา</h1>
-      <div className="w-screen px-20 py-8 grid grid-cols-[2fr_2fr_2fr]">
+      <div className="w-screen px-20 py-8 grid grid-cols-3 justify-items-center">
         {service.slice(0, 3).map((data) => {
           return (
             <div

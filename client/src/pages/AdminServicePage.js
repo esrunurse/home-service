@@ -1,6 +1,6 @@
 import "../App.css";
-import AdminService from "../components/AdminCategoryPage/ServicesList";
-import AdminServiceHeader from "../components/AdminCategoryPage/AdminServiceHeader";
+import AdminService from "../components/AdminServicePage/ServicesList";
+import AdminServiceHeader from "../components/AdminServicePage/AdminServiceHeader";
 import SideBar from "../components/AdminCategoryPage/SideBar";
 import useHook from "../hooks/util";
 
@@ -16,7 +16,6 @@ function AdminServicePage() {
     deleteService,
     service_Id,
     setDeleteService,
-    setService_Id
   } = useHook();
   return (
     <div className="admin-service-page">
@@ -34,7 +33,6 @@ function AdminServicePage() {
         deleteService={deleteService}
         setDeleteService={setDeleteService}
         service_Id={service_Id}
-        setService_Id={setService_Id}
       />
     </div>
   );

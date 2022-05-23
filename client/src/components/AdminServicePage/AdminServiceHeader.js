@@ -1,3 +1,4 @@
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/AdminServiceHeader.js
 import '../../App.css'
 import { useEffect } from 'react'
 import image from '../../AdminPhoto/imageIndex'
@@ -7,6 +8,19 @@ import axios from 'axios'
 function AdminServiceHeader(props) {
   // const navigate = useNavigate();
   const { searchService, setSearchService, setService } = props
+=======
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import "../../App.css";
+import { useEffect } from "react";
+import image from "../../AdminPhoto/imageIndex";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+function AdminServiceHeader(props) {
+  const navigate = useNavigate();
+  const { searchService, setSearchService, setService } = props;
+>>>>>>> dev:client/src/components/AdminServicePage/AdminServiceHeader.js
 
   const searchServiceData = async () => {
     const results = await axios.get(
@@ -19,9 +33,15 @@ function AdminServiceHeader(props) {
     let timerId
     timerId = setTimeout(searchServiceData, 1000)
     return () => {
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/AdminServiceHeader.js
       clearTimeout(timerId)
     }
   }, [searchService])
+=======
+      clearTimeout(timerId);
+    };
+  }, [searchService]);
+>>>>>>> dev:client/src/components/AdminServicePage/AdminServiceHeader.js
 
   return (
     <header className="admin-header ">
@@ -39,9 +59,19 @@ function AdminServiceHeader(props) {
             value={searchService}
             className="border rounded-lg border-grey300 py-2.5 px-4"
           />
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/AdminServiceHeader.js
           <button className="btn-primary flex items-center ml-6">
             <div className="text-base font-medium mr-3">เพิ่มบริการ</div>
             <img alt="Plus Symbol" src={image.plusSign} />
+=======
+          <button className="btn-primary flex items-center ml-6" onClick={() => navigate("/create-service")}>
+            <div
+              className="text-base font-medium mr-3"
+            >
+              เพิ่มบริการ
+            </div>
+            <img src={image.plusSign} />
+>>>>>>> dev:client/src/components/AdminServicePage/AdminServiceHeader.js
           </button>
         </div>
       </div>

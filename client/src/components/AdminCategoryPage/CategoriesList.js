@@ -13,27 +13,33 @@ function AdminCategories(props) {
     categoryDeleteAlert,
     deleteCategory,
     category_Id,
-    hide
-  } = props
+    setDeleteCategory
+  } = props;
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    getCategory()
-  }, [])
+    getCategory();
+  }, []);
+  
+  const hide = () => {
+    document.getElementById("popUp").style.display = "none";
+     setDeleteCategory(false);
+  };
 
   const handleDelete = () => {
-    deleteCategoryId(category_Id)
-  }
+    deleteCategoryId(category_Id);
+     setDeleteCategory(false);
+  };
 
   return (
     <div
       className="categories-data w-screen min-h-screen bg-bg p-[41px]
-     border border-[0.5px] border-grey200"
+     border-[0.5px] border-grey200"
     >
       <div className="pl-60 rounded-[5px]">
         <div
-          className="table header h-[41px] bg-grey100 text-grey700 text-sm
+          className="header h-[41px] bg-grey100 text-grey700 text-sm
            flex items-center pr-14 rounded-t-[5px] "
         >
           <h5 className="order number w-20 p-6 font-normal">ลำดับ</h5>

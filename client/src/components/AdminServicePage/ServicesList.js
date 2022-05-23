@@ -12,11 +12,18 @@ function AdminService(props) {
     serviceDeleteAlert,
     deleteService,
     deleteServiceId,
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
     service_Id
   } = props
+=======
+    service_Id,
+    setDeleteService,
+  } = props;
+>>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
 
   const navigate = useNavigate()
 
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
   useEffect(() => {
     getService()
   }, [])
@@ -28,6 +35,24 @@ function AdminService(props) {
   const handleDelete = () => {
     deleteServiceId(service_Id)
   }
+=======
+  // useEffect(() => {
+  //   getService();
+  // }, []);
+
+  const hide = () => {
+    document.getElementById("popUp").style.display = "none";
+    // window.location.reload();
+    setDeleteService(false);
+  };
+
+  const handleDelete = () => {
+    deleteServiceId(service_Id);
+    setDeleteService(false);
+  };
+>>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
+
+  console.log(service)
 
   return (
     <div className="w-screen min-h-screen bg-[#E5E5E5] p-[41px] border-[0.5px] border-grey200">
@@ -41,11 +66,20 @@ function AdminService(props) {
           <h5 className="w-32 py-2 pr-8 pl-6 font-normal">Action</h5>
         </div>
         <div className="bg-white rounded-b-lg">
-          {service.map((data, index) => {
+          {service.length !== 0 && service[0].service_name !== ""  ?  (<div>{service.map((data, index) => {
             return (
               <div
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
                 key={data.service_id}
                 className="flex justify-between h-[88px] border-[0.5px] border-grey200"
+=======
+                key={index}
+                className="flex justify-between "
+                css={css`
+                  height: 88px;
+                  border: 0.5px solid #e6e7eb;
+                `}
+>>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
               >
                 <div className="pl-10 flex items-center w-[888px] h-[88px]">
                   <div className="font-light text-center w-20">{index + 1}</div>
@@ -53,8 +87,13 @@ function AdminService(props) {
                     {data.service_name}
                   </div>
                   <div className="service-name py-6 font-light w-36">
+<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
                     {' '}
                     {data.category_id % 2 === 0 ? (
+=======
+                    {" "}
+                    {data.category_id % 4 === 0 ? (
+>>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
                       <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                         {data.category_name}
                       </div>
@@ -62,7 +101,7 @@ function AdminService(props) {
                       <div className="bg-amber px-2.5 py-1 w-fit rounded-lg text-xs text-brown">
                         {data.category_name}
                       </div>
-                    ) : data.category_id % 4 === 0 ? (
+                    ) : data.category_id % 2 === 0 ? (
                       <div className="bg-lime px-2.5 py-1 w-fit rounded-lg text-xs text-green900">
                         {data.category_name}
                       </div>
@@ -100,14 +139,17 @@ function AdminService(props) {
                     className="w-6 h-6 cursor-pointer"
                     alt="Edit"
                     src={icons.editIcon}
+                    onClick={() =>
+                      navigate(`/service/edit/${data.service_id}`)
+                    }
                   />
                 </div>
               </div>
             )
           })}
           {deleteService ? (
-            <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide} />
-          ) : null}
+            <AlertBoxDelete deleteFunction={handleDelete} hideFunction={hide}/>
+          ) : null}</div>) : (null) }
         </div>
       </div>
     </div>

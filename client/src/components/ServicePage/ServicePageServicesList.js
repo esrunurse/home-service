@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import image from "../../HomePagePhoto/imageIndex";
 import React from "react";
 
@@ -7,37 +5,25 @@ function ServicesList(props) {
   const { service } = props;
 
   return (
-    <div className="our-services w-screen flex justify-center items-center">
-      <div
-        className="w-screen px-20 py-16"
-        css={css`
-          display: grid;
-          grid-template-columns: 2fr 2fr 2fr;
-        `}
+    <div className="w-screen px-[5%]">
+      {service.length !== 0 && service[0].service_name !== ""  ? (<div
+        className="w-full py-16 grid grid-cols-3 justify-items-center"
       >
         {service.map((data) => {
           return (
             <div
-              className="my-5 bg-white border border-grey300 rounded-lg"
-              css={css`
-                width: 349px;
-                height: 369px;
-              `}
+              className="my-5 bg-white border border-grey300 rounded-lg w-[349px] h-[369px]"
               key={data.service_id}
             >
               <img
-                className="rounded-t-lg"
+                className="rounded-t-lg object-cover w-[349px] h-[200px]"
                 src={data.service_photo.url}
                 alt={data.service_name}
-                css={css`
-                  width: 349px;
-                  height: 200px;
-                `}
               />
               <div className="p-6">
                 <div className="category-name font-normal mb-2">
                   {" "}
-                  {data.category_id % 2 === 0 ? (
+                  {data.category_id % 4 === 0 ? (
                     <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                       {data.category_name}
                     </div>
@@ -45,7 +31,7 @@ function ServicesList(props) {
                     <div className="bg-amber px-2.5 py-1 w-fit rounded-lg text-xs text-brown">
                       {data.category_name}
                     </div>
-                  ) : data.category_id % 4 === 0 ? (
+                  ) : data.category_id % 2 === 0 ? (
                     <div className="bg-lime px-2.5 py-1 w-fit rounded-lg text-xs text-green900">
                       {data.category_name}
                     </div>
@@ -93,7 +79,8 @@ function ServicesList(props) {
             </div>
           );
         })}
-      </div>
+      </div>) : (null)  }
+      
     </div>
   );
 }
