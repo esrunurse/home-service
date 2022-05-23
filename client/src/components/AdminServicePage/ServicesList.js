@@ -12,37 +12,18 @@ function AdminService(props) {
     serviceDeleteAlert,
     deleteService,
     deleteServiceId,
-<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
-    service_Id
-  } = props
-=======
     service_Id,
     setDeleteService,
   } = props;
->>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
 
   const navigate = useNavigate()
 
-<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
   useEffect(() => {
     getService()
   }, [])
 
   const hide = () => {
-    document.getElementById('popUp').style.display = 'none'
-  }
-
-  const handleDelete = () => {
-    deleteServiceId(service_Id)
-  }
-=======
-  // useEffect(() => {
-  //   getService();
-  // }, []);
-
-  const hide = () => {
     document.getElementById("popUp").style.display = "none";
-    // window.location.reload();
     setDeleteService(false);
   };
 
@@ -50,12 +31,11 @@ function AdminService(props) {
     deleteServiceId(service_Id);
     setDeleteService(false);
   };
->>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
 
   console.log(service)
 
   return (
-    <div className="w-screen min-h-screen bg-[#E5E5E5] p-[41px] border-[0.5px] border-grey200">
+    <div className=" min-h-screen bg-[#E5E5E5] p-[41px] border-[0.5px] border-grey200">
       <div className="pl-60 rounded-[5px]">
         <div className="bg-grey100 text-grey700 text-sm flex h-10 items-center pl-14 rounded-t-md">
           <h5 className="w-24 py-6 font-normal">ลำดับ</h5>
@@ -69,17 +49,8 @@ function AdminService(props) {
           {service.length !== 0 && service[0].service_name !== ""  ?  (<div>{service.map((data, index) => {
             return (
               <div
-<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
-                key={data.service_id}
-                className="flex justify-between h-[88px] border-[0.5px] border-grey200"
-=======
                 key={index}
-                className="flex justify-between "
-                css={css`
-                  height: 88px;
-                  border: 0.5px solid #e6e7eb;
-                `}
->>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
+                className="flex justify-between h-[88px] border-[0.5px] border-grey200"
               >
                 <div className="pl-10 flex items-center w-[888px] h-[88px]">
                   <div className="font-light text-center w-20">{index + 1}</div>
@@ -87,13 +58,8 @@ function AdminService(props) {
                     {data.service_name}
                   </div>
                   <div className="service-name py-6 font-light w-36">
-<<<<<<< HEAD:client/src/components/AdminCategoryPage/ServicesList.js
-                    {' '}
-                    {data.category_id % 2 === 0 ? (
-=======
                     {" "}
                     {data.category_id % 4 === 0 ? (
->>>>>>> dev:client/src/components/AdminServicePage/ServicesList.js
                       <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                         {data.category_name}
                       </div>

@@ -11,8 +11,8 @@ import {
 function Footer() {
   const navigate = useNavigate()
   return (
-    <footer className="home-page-footer w-screen">
-      <div className="footer1 w-screen h-[151px] flex justify-between items-center px-[10vw]">
+    <footer className="home-page-footer">
+      <div className="h-[151px] flex justify-between items-center px-[10vw]">
         <div className="cursor-pointer flex" onClick={() => navigate('/')}>
           <img
             className="w-[39.11px] h-[39.11px]"
@@ -48,8 +48,7 @@ function Footer() {
           </div>
         </div>
       </div>
-
-      <div className="footer2 w-screen h-[42px] bg-grey100 flex justify-between items-center px-[10vw]">
+      <div className=" h-[42px] bg-grey100 flex justify-between items-center px-[10vw]">
         <p className="text-xs leading-[150%] text-grey500">
           copyright © 2021 HomeServices.com All rights reserved
         </p>

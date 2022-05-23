@@ -64,7 +64,7 @@ function AddService(props) {
 
   const navigate = useNavigate();
   return (
-    <form className="pl-60" onSubmit={handleSubmitService}>
+    <form className="pl-60 min-h-screen" onSubmit={handleSubmitService}>
       <div
         className="header-name flex items-center h-20 px-10
          justify-between border-b border-grey300 bg-white"
@@ -87,9 +87,9 @@ function AddService(props) {
           </button>
         </div>
       </div>
-      <div className="edit-container min-h-screen bg-bg">
+      <div className="edit-container bg-bg">
         <div className="add-service-box ">
-          <div className="add-service-white-box bg-white  mb-24 mt-10 mx-10 py-10 px-6">
+          <div className=" bg-white mx-10 my-10 py-10 px-6">
             <div className="service-name h-11 w-8/12 mb-10 flex justify-between items-center pr-16">
               <label
                 className="serviceName w-52 text-grey700 text-base font-medium"
@@ -194,8 +194,8 @@ function AddService(props) {
                 })}
               </div>
             </div>
-            <hr className="break-line mb-10 text-grey300 "></hr>
-            <div className="title mb-10 text-grey700 text-base font-medium ">
+            <hr className="mb-10 text-grey300 "></hr>
+            <div className="mb-10 text-grey700 text-base font-medium ">
               รายการบริการย่อย
             </div>
             {subServiceList.map((subService, index) => {

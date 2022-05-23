@@ -34,7 +34,7 @@ function AdminCategories(props) {
 
   return (
     <div
-      className="categories-data w-screen min-h-screen bg-bg p-[41px]
+      className="categories-data min-h-screen bg-bg p-[41px]
      border-[0.5px] border-grey200"
     >
       <div className="pl-60 rounded-[5px]">
@@ -76,7 +76,7 @@ function AdminCategories(props) {
                     </Moment>
                   </div>
                 </div>
-                <div className="icons-box w-[120px] h-[88px] flex items-center justify-around pl-6">
+                <div className="icons-box w-[120px] h-[88px] flex items-center justify-around px-6">
                   <img
                     alt="Delete"
                     src={icons.trashIcon}

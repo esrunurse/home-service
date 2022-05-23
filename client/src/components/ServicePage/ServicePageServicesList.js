@@ -5,7 +5,7 @@ function ServicesList(props) {
   const { service } = props;
 
   return (
-    <div className="w-screen px-[5%]">
+    <div className="px-[5%]">
       {service.length !== 0 && service[0].service_name !== ""  ? (<div
         className="w-full py-16 grid grid-cols-3 justify-items-center"
       >

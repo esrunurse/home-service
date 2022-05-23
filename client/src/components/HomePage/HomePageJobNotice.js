@@ -3,7 +3,7 @@ import image from "../../HomePagePhoto/imageIndex.js";
 
 function HomePageJobNotice() {
   return (
-    <div className="job-notice-component w-screen relative">
+    <div className="job-notice-component relative">
       <div className="flex bg-blue600">
         <img src={image.jobNoticeWorker} alt="job-notice-worker" />
 

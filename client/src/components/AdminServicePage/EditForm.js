@@ -16,7 +16,7 @@ function ServiceEditForm(props) {
     setService,
     category_name,
     service_name,
-    editHeader
+    editHeader,
   } = props;
 
   useEffect(() => {
@@ -31,7 +31,6 @@ function ServiceEditForm(props) {
     console.log(data);
     await axios.put(`http://localhost:4000/service/${serviceId}`, data);
     navigate("/service-dashboard");
-    //console.log(data)
   };
 
   const handleSubmit = (e) => {
@@ -324,10 +323,6 @@ function ServiceEditForm(props) {
                 </div>
               </div>
             </form>
-            {/* <button className="w-[97px] h-6 flex justify-between text-grey600 text-base font-semibold underline self-end mt-5">
-              <img className="w-6 h-6" alt="Trash" src={image.trashIcon} />
-              ลบบริการ
-            </button> */}
           </div>
         </div>
       </form>

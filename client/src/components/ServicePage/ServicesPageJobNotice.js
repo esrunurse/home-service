@@ -3,7 +3,7 @@ import image from "../../ServicePagePhoto/imageIndex";
 
 function ServicePageJobNotice() {
   return (
-    <div className="service-page-job-notice w-screen">
+    <div className="service-page-job-notice">
       <div className="flex justify-center items-center bg-blue600 relative">
         <p className="text-white text-xl py-20 px-80 text-center">
           เพราะเราคือช่าง ผู้ให้บริการเรื่องบ้านอันดับ 1 แบบครบวงจร

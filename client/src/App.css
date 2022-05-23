@@ -132,7 +132,7 @@ input[type="checkbox"] {
       rgba(0, 25, 81, 0.6)
     ),
     url(../src/ServicePagePhoto/Header.jpg);
-  @apply w-screen bg-center bg-cover h-60 text-center relative;
+  @apply bg-center bg-cover h-60 text-center relative;
 }
 
 #search-text {

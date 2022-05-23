@@ -40,7 +40,7 @@ function ServiceHeader(props) {
           โดย พนักงานแม่บ้านและช่างมืออาชีพ
         </p>
       </div>
-      <div className="h-20 w-screen flex items-center justify-evenly border-b border-grey300">
+      <div className="h-20 flex items-center justify-evenly border-b border-grey300">
         <input
           id="search-text"
           name="search-text"
@@ -50,7 +50,7 @@ function ServiceHeader(props) {
             setSearchService(event.target.value);
           }}
           value={searchService}
-          className="border rounded-lg border-grey300 px-2.5 pl-4"
+          className="border rounded-lg border-grey300 px-2.5 pl-4 h-14"
         />
         <div className="flex">
           <div className="flex-col">

@@ -3,7 +3,7 @@ import image from "../../HomePagePhoto/imageIndex.js";
 
 function HomePageHeader() {
   return (
-    <header className="home-page-header w-screen bg-blue100 px-10 relative">
+    <header className="home-page-header bg-blue100 px-10 relative">
       <div className="py-32 pl-20">
         <div className="flex flex-col justify-center">
           <span className="absolute bottom-0 right-20">

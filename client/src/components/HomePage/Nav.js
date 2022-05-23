@@ -1,7 +1,6 @@
 import '../../App.css'
 import image from '../../HomePagePhoto/imageIndex.js'
 import { useNavigate } from 'react-router-dom'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/authentication.js'
 
 function Nav() {
@@ -10,24 +9,22 @@ function Nav() {
   const { logout } = useAuth()
   const loginName = localStorage.getItem('name') // ใช้อันนี้แล้ว user name บน nav ไม่หายตอน refresh
   const loginRole = localStorage.getItem('role')
-  //const { state } = useAuth();
-  //console.log(loginName);
 
   return (
-    <nav className="flex justify-between w-screen items-center bg-white h-20 px-[10vw] shadow-[2px_2px_24px_rgba(23, 51, 106, 0.12)] sticky top-0 z-[100]">
+    <nav className="flex justify-between items-center bg-white h-20 px-[10vw] shadow-[2px_2px_24px_rgba(23, 51, 106, 0.12)] sticky top-0 z-[100]">
       <div className="left-items flex items-center">
         <div
-          className="cursor-pointer w-[207px] h-9 flex justify-between items-center ml-[70px]"
+          className="cursor-pointer w-[207px] h-9 flex justify-between items-center "
           onClick={() => navigate('/')}
         >
           <img
-            className="w-8 h-8"
+            className="w-8 h-8 "
             alt="Home Services Logo"
             src={image.logoHomeService}
           />
           <h1 className="text-blue600 text-2xl no-underline">HomeServices</h1>
         </div>
-        <h5 className="cursor-pointer" onClick={() => navigate('/service')}>
+        <h5 className="cursor-pointer ml-[70px]" onClick={() => navigate('/service')}>
           บริการของเรา
         </h5>
       </div>
