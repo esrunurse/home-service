@@ -9,6 +9,7 @@ import exclamation from './icons/exclamation.png'
 import arrow from './arrow.png'
 import addPhoto from './icons/add-photo.png'
 import bluePlusSymbol from './icons/blue-plus-symbol.png'
+import minus from './icons/minus.png'
 
 const image = {
   editIcon,
@@ -21,7 +22,8 @@ const image = {
   logout,
   exclamation,
   arrow,
-  addPhoto
+  addPhoto,
+  minus
 }
 
 export default image
