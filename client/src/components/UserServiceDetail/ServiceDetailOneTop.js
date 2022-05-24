@@ -10,7 +10,7 @@ function ServiceDetailOneTop() {
   return (
     <div className="h-[319px] w-screen absolute">
       <img alt="Service" className="h-60 w-screen bg-blue300 z-10 static"></img>
-      <div className="h-[247px] w-[1119px] flex flex-col justify-between relative z-20 top-[-168px] left-[160px]">
+      <div className="h-[247px] w-[1119px] flex flex-col justify-between relative z-20 top-[-168px]">
         <div
           className="h-[68px] w-[300px] rounded-lg bg-white
         shadow-[2px_2px_24px_(rgba(23, 51, 106, 0.12))] flex items-center px-[32px]"
