@@ -8,7 +8,7 @@ import AdminEditCategory from './AdminEditCategory'
 import AdminEditService from './AdminEditService'
 import AdminService from "./AdminServicePage"
 import CreateService from "./CreateServicePage"
-import '../App.css'
+import NotFoundPage from "./NotFoundPage"
 
 function AuthenticatedApp() {
   const loginRole = localStorage.getItem('role')
@@ -25,12 +25,14 @@ function AuthenticatedApp() {
           <Route path="/service-dashboard" element={<AdminService />} />
           <Route path="/create-service" element={<CreateService />} />
           <Route path="/service/edit/:serviceId" element={<AdminEditService />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       ) : (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path="/service" element={<ServicePage />} />
+            <Route path="/service" element={<ServicePage />} />
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}
     </div>

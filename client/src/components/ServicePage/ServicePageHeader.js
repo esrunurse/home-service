@@ -50,13 +50,13 @@ function ServiceHeader(props) {
             setSearchService(event.target.value);
           }}
           value={searchService}
-          className="border rounded-lg border-grey300 px-2.5 pl-4 h-14"
+          className="border rounded-lg border-grey300 px-2.5 pl-4 h-11"
         />
         <div className="flex">
           <div className="flex-col">
-            <p className="text-xs text-grey700 font-normal">หมวดหมู่บริการ</p>
+            <p className="text-xs text-grey700 font-normal mb-1">หมวดหมู่บริการ</p>
             <div className="dropdown cursor-pointer">{categoryFilter===""? (
-              <p className="cursor-pointer">บริการทั้งหมด ▾</p>) : (<p className="cursor-pointer">{categoryFilter} ▾</p>) }
+              <p className="cursor-pointer mb-1">บริการทั้งหมด ▾</p>) : (<p className="cursor-pointer">{categoryFilter} ▾</p>) }
               <div
                 className="dropdown-content cursor-pointer w-44"
               >
@@ -79,9 +79,9 @@ function ServiceHeader(props) {
           </div>
           <div className="vl"></div>
           <div className="flex-col">
-            <p className="text-xs text-grey700 font-normal">ราคา</p>
+            <p className="text-xs text-grey700 font-normal mb-1">ราคา</p>
             <div className="dropdown cursor-pointer">
-              <p className="cursor-pointer w-36"> {minFilter} - {maxFilter} ฿ ▾ </p>
+              <p className="cursor-pointer w-36 mb-1"> {minFilter} - {maxFilter} ฿ ▾ </p>
               <div
                 className="dropdown-content w-64 h-28"
               >
@@ -104,9 +104,9 @@ function ServiceHeader(props) {
 
           <div className="vl"></div>
           <div className="flex-col">
-            <p className="text-xs text-grey700 font-normal">เรียงตาม</p>
+            <p className="text-xs text-grey700 font-normal mb-1">เรียงตาม</p>
             <div className="dropdown cursor-pointer ">{orderFilter==="asc"? (
-              <p className="cursor-pointer w-56">ตามตัวอักษร (Ascending) ▾</p>) : (<p className="cursor-pointer w-56">ตามตัวอักษร (Descending) ▾</p>) }
+              <p className="cursor-pointer w-56 mb-1">ตามตัวอักษร (Ascending) ▾</p>) : (<p className="cursor-pointer w-56">ตามตัวอักษร (Descending) ▾</p>) }
               <div
                 className="dropdown-content cursor-pointer w-60"
               >

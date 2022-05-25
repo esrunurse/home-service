@@ -90,7 +90,7 @@ function PopularService() {
                     </div>
                   )}
                 </div>
-                <a className="cursor-pointer">เลือกบริการ</a>
+                <button className="btn-ghost">เลือกบริการ</button>
               </div>
             </div>
           )

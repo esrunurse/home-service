@@ -1,7 +1,7 @@
 import "../App.css";
 import AdminCategories from "../components/AdminCategoryPage/CategoriesList";
 import AdminCategoryHeader from "../components/AdminCategoryPage/AdminCategoryHeader";
-import SideBar from "../components/AdminCategoryPage/SideBar";
+import SideBar from "../components/AdminSideBar";
 import useUtils from "../hooks/utils";
 
 function AdminCategoryPage() {

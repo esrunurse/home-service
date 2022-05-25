@@ -1,8 +1,6 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import "../App.css";
-import SideBar from "../components/AdminCategoryPage/SideBar";
-import ServiceEditForm from "../components/AdminServicePage/EditForm";
+import SideBar from "../components/AdminSideBar";
+import ServiceEditForm from "../components/AdminServicePage/AdminEditServiceForm";
 import useUtils from "../hooks/utils";
 
 function AdminEditService() {

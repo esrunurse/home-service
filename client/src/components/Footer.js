@@ -1,11 +1,12 @@
-import image from "../../HomePagePhoto/imageIndex.js";
+import image from "../HomePagePhoto/imageIndex";
 import { useNavigate } from "react-router-dom";
+import "../App.css"
 
 function Footer() {
   const navigate = useNavigate();
   return (
     <footer className="home-page-footer">
-      <div className="h-[151px] flex justify-between items-center px-[10vw]">
+      <div className="h-[150px] flex justify-between items-center px-[10vw]">
         <div className="cursor-pointer flex" onClick={() => navigate("/")}>
           <img
             className="w-[39.11px] h-[39.11px]"
@@ -41,13 +42,13 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className=" h-[42px] bg-grey100 flex justify-between items-center px-[10vw]">
-        <p className="text-xs leading-[150%] text-grey500">
+      <div className="h-[40px] bg-grey100 flex justify-between items-center px-[10vw]">
+        <p className="text-xs leading-[150%] text-grey500 my-1">
           copyright © 2021 HomeServices.com All rights reserved
         </p>
         <div className="text-grey700 text-sm leading-[150%] flex justify-evenly">
-          <p className="ml-6">เงื่อนไขและข้อตกลงการใช้งานเว็บไซต์</p>
-          <p>นโยบายความเป็นส่วนตัว</p>
+          <p className="ml-6 my-1">เงื่อนไขและข้อตกลงการใช้งานเว็บไซต์</p>
+          <p className="ml-6 my-1">นโยบายความเป็นส่วนตัว</p>
         </div>
       </div>
     </footer>

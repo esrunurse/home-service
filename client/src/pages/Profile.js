@@ -1,6 +1,6 @@
 import "../App.css";
-import Nav from "../components/HomePage/Nav";
-import Footer from "../components/HomePage/Footer"
+import Nav from "../components/Nav";
+import Footer from "../components/Footer"
 
 function UserProfile() {
   return (

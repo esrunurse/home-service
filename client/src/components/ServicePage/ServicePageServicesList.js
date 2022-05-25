@@ -1,5 +1,6 @@
 import image from "../../HomePagePhoto/imageIndex";
 import React from "react";
+import "../../App.css"
 
 function ServicesList(props) {
   const { service } = props;
@@ -74,7 +75,7 @@ function ServicesList(props) {
                     </div>
                   )}
                 </div>
-                <a className="cursor-pointer">เลือกบริการ</a>
+                <button className="btn-ghost">เลือกบริการ</button>
               </div>
             </div>
           );

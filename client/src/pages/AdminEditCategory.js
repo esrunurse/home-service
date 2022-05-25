@@ -1,5 +1,5 @@
 import "../App.css";
-import SideBar from "../components/AdminCategoryPage/SideBar";
+import SideBar from "../components/AdminSideBar";
 import useUtils from "../hooks/utils";
 import EditedCategoryForm from "../components/AdminCategoryPage/AdminEditedCategoryForm";
 

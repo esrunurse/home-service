@@ -1,8 +1,8 @@
-import "../../App.css";
-import image from "../../HomePagePhoto/imageIndex";
-import icon from "../../AdminPhoto/imageIndex";
+import "../App.css";
+import image from "../HomePagePhoto/imageIndex";
+import icon from "../AdminPhoto/imageIndex";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/authentication.js";
+import { useAuth } from "../contexts/authentication.js";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function SideBar() {
@@ -13,15 +13,15 @@ function SideBar() {
       <div>
         <div className="flex justify-center my-8">
           <div
-            className="py-2 px-2.5 bg-blue100 rounded-xl w-48 h-12 flex items-center cursor-pointer"
+            className="py-2 px-2.5 bg-blue100 rounded-xl w-48 h-12 cursor-pointer relative"
             onClick={() => navigate("/")}
           >
             <img
               alt="HomeServices Logo"
-              className="w-7 h-7 mr-1.5"
+              className="w-7 h-7 absolute "
               src={image.logoHomeService}
             />
-            <p className=" text-blue500 font-medium text-xl">HomeServices</p>
+            <p className=" text-blue500 font-medium text-xl absolute ml-8">HomeServices</p>
           </div>
         </div>
         <div>
