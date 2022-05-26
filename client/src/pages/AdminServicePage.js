@@ -2,7 +2,7 @@ import "../App.css";
 import AdminService from "../components/AdminServicePage/ServicesList";
 import AdminServiceHeader from "../components/AdminServicePage/AdminServiceHeader";
 import SideBar from "../components/AdminSideBar";
-import useUtils from "../hooks/utils";
+import { useUtils } from "../hooks/utils";
 
 function AdminServicePage() {
   const {

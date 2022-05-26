@@ -2,10 +2,11 @@ import "../../App.css";
 import MultiRangeSlider from "./MultiRangeSlider";
 import axios from "axios";
 import { useEffect } from "react";
-import useUtils from "../../hooks/utils";
+import { useUtils } from "../../hooks/utils";
 
 function ServiceHeader(props) {
   const { category, searchService, setSearchService, setService, getCategory, orderFilter, setOrderFilter, categoryFilter, setCategoryFilter } = props;
+  
   const searchServiceData = async () => {
     const results = await axios.get(
       `http://localhost:4000/service?keywords=${searchService}&categoryFilter=${categoryFilter}&maxPriceFilter=${maxFilter}&minPriceFilter=${minFilter}&orderFilter=${orderFilter}`

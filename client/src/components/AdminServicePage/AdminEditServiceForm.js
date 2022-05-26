@@ -4,8 +4,10 @@ import "../../App.css";
 import { useEffect } from "react";
 import Moment from "react-moment";
 import axios from "axios";
+import { useUtils } from "../../hooks/utils"
+import AdminEditedHeader from "../AdminEditedHeader";
 
-function ServiceEditForm(props) {
+function ServiceEditForm() {
   const navigate = useNavigate();
   const params = useParams();
   const {
@@ -17,7 +19,7 @@ function ServiceEditForm(props) {
     category_name,
     service_name,
     editHeader,
-  } = props;
+  } = useUtils();
 
   useEffect(() => {
     getServiceById(params.serviceId);
@@ -99,39 +101,12 @@ function ServiceEditForm(props) {
     setService(newObj);
   };
 
+  const title = "บริการ";
+  
   return (
     <div className="flex flex-col ml-60 ">
       <form onSubmit={handleSubmit}>
-        <header
-          className="h-20 w-full flex items-center justify-between 
-        border-b border-grey300 px-10 py-10 bg-white"
-        >
-          <div className="flex justify-between h-12 w-44">
-            <button onClick={() => navigate("/service-dashboard")}>
-              <img alt="Arrow Icon" src={image.arrow} className="w-10 h10" />
-            </button>
-            <div className="w-52 h-12">
-              <div className="font-normal text-grey700 text-xs">บริการ</div>
-              <div className="font-medium text-xl">{editHeader}</div>
-            </div>
-          </div>
-          <div className="buttons flex justify-between h-11 w-64 px-1">
-            <button
-              className="btn-secondary 
-            w-28 h-11 "
-              type="button"
-              onClick={() => navigate("/service-dashboard")}
-            >
-              ยกเลิก
-            </button>
-            <button
-              className="btn-primary 
-          w-28 h-11"
-            >
-              ยืนยัน
-            </button>
-          </div>
-        </header>
+        <AdminEditedHeader back={() => navigate("/service-dashboard")} title={title} name={editHeader}/>
         <div className="bg-bg w-[1200px] min-h-screen flex justify-center">
           <div className="edit-box w-[1120px] min-h-screen mb-[72px] flex flex-col items-center">
             <form className="edit-form w-[1120px] min-h-screen bg-white py-10 px-6 grid gap-y-10 mt-10 rounded-lg border border-grey200">
@@ -198,24 +173,6 @@ function ServiceEditForm(props) {
                         alt={service[service.length - 1].service_name}
                       />
                     </div>
-                    {/* <div className="text-blue600 flex justify-between h-6 w-[220px] ">
-                      <button className="underline text-base font-semibold">
-                        ลบรูปภาพ
-                      </button>
-                      <label
-                        htmlFor="upload"
-                        className="underline text-blue600 text-base font-semibold cursor-pointer"
-                      >
-                        อัพโหลดรูปภาพใหม่
-                        <input
-                          id="upload"
-                          name="servicePhoto"
-                          type="file"
-                          hidden
-                          onChange={handleFileChange}
-                        />
-                      </label>
-                    </div> */}
                   </div>
                 </div>
               </div>

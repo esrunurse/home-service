@@ -1,11 +1,10 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import "../../App.css";
 import image from "../../AdminPhoto/imageIndex";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUtils } from "../../hooks/utils";
 
-function AddService(props) {
+function AddService() {
   const {
     servicePhotos,
     service_name,
@@ -19,7 +18,7 @@ function AddService(props) {
     subServiceList,
     setSubServiceList,
     handleRemoveImageService,
-  } = props;
+  } = useUtils();
 
   const addList = () => {
     const newObj = [
@@ -62,6 +61,7 @@ function AddService(props) {
   }, []);
 
   const navigate = useNavigate();
+  
   return (
     <form className="pl-60 min-h-screen" onSubmit={handleSubmitService}>
       <div

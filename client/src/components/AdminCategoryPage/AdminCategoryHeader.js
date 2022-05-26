@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 function AdminCategoryHeader(props) {
   const navigate = useNavigate()
-  const { searchCategory, setSearchCategory, setCategory } = props
+  const { searchCategory, setSearchCategory, setCategory } = props;
+  
   const searchCategoryData = async () => {
     const results = await axios.get(
       `http://localhost:4000/category?keywords=${searchCategory}`

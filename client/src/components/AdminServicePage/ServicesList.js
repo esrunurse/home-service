@@ -32,8 +32,6 @@ function AdminService(props) {
     setDeleteService(false);
   };
 
-  console.log(service);
-
   return (
     <div className="categories-data min-h-screen bg-bg p-[41px]">
       <div className="ml-60 rounded-[5px] border border-grey200">

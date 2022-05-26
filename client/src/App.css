@@ -101,11 +101,11 @@ input[type="checkbox"] {
 }
 
 .dropdown-content a {
-  @apply float-none py-1 block text-left text-grey800 text-sm font-normal !important;
+  @apply float-none py-2 block text-left text-grey800 text-sm font-normal !important;
   text-decoration: none;
 }
 .dropdown-content p {
-  @apply float-none block text-left text-grey700 text-sm font-normal hover:text-blue700;
+  @apply float-none py-2 block text-left text-grey700 text-sm font-normal hover:text-blue700;
 }
 
 .dropdown:hover .dropdown-content {

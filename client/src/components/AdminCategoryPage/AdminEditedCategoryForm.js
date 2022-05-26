@@ -1,11 +1,12 @@
 import "../../App.css";
-import image from "../../AdminPhoto/imageIndex";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import Moment from "react-moment";
+import { useUtils } from "../../hooks/utils";
+import AdminEditedHeader from "../AdminEditedHeader";
 
-function EditedCategoryForm(props) {
+function EditedCategoryForm() {
   const {
     category,
     category_name,
@@ -13,7 +14,7 @@ function EditedCategoryForm(props) {
     category_edited_date,
     setCategory_edited_date,
     getCategoryById,
-  } = props;
+  } = useUtils();
 
   const params = useParams();
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ function EditedCategoryForm(props) {
       category_edited_date,
     });
   };
+  const title = "หมวดหมู่";
 
   return (
     <div className="edit-container h-screen bg-bg">
@@ -51,38 +53,7 @@ function EditedCategoryForm(props) {
         className="header-and-content ml-60 h-screen"
         onSubmit={handleSubmit}
       >
-        <header
-          className="h-20 w-full flex items-center justify-between 
-        border-b border-grey300 px-10 py-10 bg-white"
-        >
-          <div className="flex justify-between h-12 w-44">
-            <button onClick={() => navigate("/category-dashboard")}>
-              <img alt="Arrow Icon" src={image.arrow} className="w-10 h10" />
-            </button>
-            <div className="w-52 h-12">
-              <div className="font-normal text-grey700 text-xs">หมวดหมู่</div>
-              <div className="font-medium text-xl">
-                {category.category_name}
-              </div>
-            </div>
-          </div>
-          <div className="buttons flex justify-between h-11 w-64 px-1">
-            <button
-              className="btn-secondary 
-            w-28 h-11 "
-              onClick={() => navigate("/category-dashboard")}
-            >
-              ยกเลิก
-            </button>
-            <button
-              className="btn-primary 
-          w-28 h-11"
-              type="submit"
-            >
-              ยืนยัน
-            </button>
-          </div>
-        </header>
+        <AdminEditedHeader back={() => navigate("/category-dashboard")} title={title} name={category.category_name}/>
         <div className="editCategory h-1/5 w-full py-14 px-10 flex flex-col ">
           <div className="editBox bg-white h-auto border border-grey200 rounded-lg px-6 py-10 w-full">
             <div className="input-box flex justify-between items-center h-11 w-3/5">

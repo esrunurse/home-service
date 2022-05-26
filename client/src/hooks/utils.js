@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function useUtils() {
+export function useUtils() {
   const navigate = useNavigate();
 
   const [isError, setIsError] = useState(null);
@@ -70,7 +70,7 @@ function useUtils() {
       setIsLoading(false);
     }
   };
-  
+
   //Filter
   const [searchService, setSearchService] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
@@ -90,6 +90,7 @@ function useUtils() {
       price_per_unit: 0,
       service_created_date: "",
       service_edited_date: "",
+      sub_service_quantity: 0
     },
   ]);
   const [service_name, setService_name] = useState("");
@@ -210,6 +211,16 @@ function useUtils() {
     setDeleteCategory(true);
   };
 
+  //checkout
+  const [items, setItems] = useState([
+    {
+      sub_service_name: "",
+      quantity: 0,
+    },
+  ]);
+
+  const [step, setStep] = useState(1);
+
   return {
     searchCategory,
     setSearchCategory,
@@ -272,7 +283,9 @@ function useUtils() {
     isLoading,
     setIsLoading,
     createCategory,
+    items,
+    setItems,
+    step,
+    setStep
   };
 }
-
-export default useUtils;

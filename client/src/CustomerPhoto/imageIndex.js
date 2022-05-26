@@ -5,7 +5,7 @@ import penIcon from './icons/pen-icon.png'
 const image = {
   orderIcon,
   paymentIcon,
-  penIcon
+  penIcon,
 }
 
 export default image

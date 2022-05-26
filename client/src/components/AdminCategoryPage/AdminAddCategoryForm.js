@@ -1,9 +1,10 @@
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
+import { useUtils } from "../../hooks/utils";
 
-function CreateCategoryForm(props) {
+function CreateCategoryForm() {
   const navigate = useNavigate();
-  const { category_name, setCategory_name, createCategory } = props;
+  const { category_name, setCategory_name, createCategory } = useUtils();
 
   const handleSubmit = (event) => {
     event.preventDefault();

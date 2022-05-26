@@ -1,9 +1,11 @@
 import image from "../../HomePagePhoto/imageIndex";
 import React from "react";
 import "../../App.css"
+import { useNavigate } from "react-router-dom";
 
 function ServicesList(props) {
   const { service } = props;
+  const navigate = useNavigate();
 
   return (
     <div className="px-[5%]">
@@ -75,7 +77,9 @@ function ServicesList(props) {
                     </div>
                   )}
                 </div>
-                <button className="btn-ghost">เลือกบริการ</button>
+                <button className="btn-ghost" onClick={() =>
+                            navigate(`/checkout/${data.service_id}`)
+                          }>เลือกบริการ</button>
               </div>
             </div>
           );

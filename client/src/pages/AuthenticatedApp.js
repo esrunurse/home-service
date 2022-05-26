@@ -9,6 +9,7 @@ import AdminEditService from './AdminEditService'
 import AdminService from "./AdminServicePage"
 import CreateService from "./CreateServicePage"
 import NotFoundPage from "./NotFoundPage"
+import AllStepCheckOutForm from '../components/CheckOutForm/AllStepCheckOutForm'
 
 function AuthenticatedApp() {
   const loginRole = localStorage.getItem('role')
@@ -26,6 +27,7 @@ function AuthenticatedApp() {
           <Route path="/create-service" element={<CreateService />} />
           <Route path="/service/edit/:serviceId" element={<AdminEditService />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/checkout/:serviceId" element={<AllStepCheckOutForm />} />
         </Routes>
       ) : (
         <Routes>
@@ -33,6 +35,7 @@ function AuthenticatedApp() {
           <Route path="/profile" element={<UserProfile />} />
             <Route path="/service" element={<ServicePage />} />
             <Route path="*" element={<NotFoundPage />} />
+            
         </Routes>
       )}
     </div>
