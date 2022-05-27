@@ -31,7 +31,8 @@ sub_service_id int primary key generated always as identity,
 sub_service_name text not null,
 service_id int references service(service_id) on delete cascade,
 unit text not null,
-price_per_unit decimal (7,2) not null
+price_per_unit decimal (7,2) not null,
+sub_service_quantity int not null
 );
 
 create table promotion (
@@ -119,33 +120,33 @@ insert into promotion (promotion_code, promotion_types, promotion_quota, promoti
 insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('iHiaPom', 'fixed', 1000, 200, '2022-08-08', '12:00', '2022-05-14T23:24:20Z', '2022-5-14T23:24:20Z');
 insert into promotion (promotion_code, promotion_types, promotion_quota, promotion_discount_amount, promotion_expiry_date, promotion_expiry_time, promotion_created_date_time, promotion_edited_date_time) values ('IsusO', 'fixed', 50, 200, '2022-11-11', '06:00', '2022-05-14T23:24:20Z', '2022-5-14T23:24:20Z');
 
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 9000 - 12000 บีทียู แบบติดผนัง', 1,'เครื่อง', 800.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 12000 - 15000 บีทียู แบบติดผนัง', 1, 'เครื่อง', 1000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 15000 - 18000 บีทียู แบบติดผนัง', 1, 'เครื่อง', 2000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 18000 - 20000 บีทียู แบบติดผนัง', 1, 'เครื่อง', 2500.02);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 9000 - 12000 บีทียู แบบติดผนัง', 2, 'เครื่อง', 1500.02);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 12000 - 15000 บีทียู แบบติดผนัง', 2,  'เครื่อง', 2000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 15000 - 18000 บีทียู แบบติดผนัง', 2, 'เครื่อง', 3000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 18000 - 20000 บีทียู แบบติดผนัง', 2, 'เครื่อง', 3500.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 9000 - 12000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 1500.02);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 12000 - 15000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 2000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 15000 - 18000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 2500.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แอร์ขนาด 18000 - 20000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 3000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('กวาดพื้น', 4, 'ชั่วโมง', 250.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('ถูพื้น', 4, 'ชั่วโมง', 300.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('เครื่องซักผ้าฝาหน้า', 5, 'เครื่อง', 500.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('เครื่องซักผ้าฝาบน', 5, 'เครื่อง', 300.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('เตาถ่าน', 6, 'เตา', 200.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('เตาแก๊ส', 6, 'ถัง', 500.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('เตาไฟฟ้าแบบผนัง', 6, 'ชุด', 20000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('ดูดเทอร์โบ', 7, 'ชุด', 20000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('ชักโครกแบบหลุม', 8, 'อัน', 500.50);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('ชักโครกแบบกด', 8, 'อัน', 1000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('ชักโครกแบบไฟฟ้า', 8,'อัน', 3000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แบบกำลังไฟต่ำกว่า 3500 วัตต์', 9, 'เครื่อง', 1000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แบบกำลังไฟสูงกว่า 3500 วัตต์', 9, 'เครื่อง', 2000.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แบบขนาดเล็กกว่า 10 คิว', 10, 'เครื่อง', 1500.00);
-insert into sub_service (sub_service_name, service_id, unit, price_per_unit) values ('แบบขนาดใหญ่กว่า 10 คิว', 10, 'เครื่อง', 2000.00);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 9000 - 12000 บีทียู แบบติดผนัง', 1,'เครื่อง', 800.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 12000 - 15000 บีทียู แบบติดผนัง', 1, 'เครื่อง', 1000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 15000 - 18000 บีทียู แบบติดผนัง', 1, 'เครื่อง', 2000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 18000 - 20000 บีทียู แบบติดผนัง', 1, 'เครื่อง', 2500.02, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 9000 - 12000 บีทียู แบบติดผนัง', 2, 'เครื่อง', 1500.02, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 12000 - 15000 บีทียู แบบติดผนัง', 2,  'เครื่อง', 2000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 15000 - 18000 บีทียู แบบติดผนัง', 2, 'เครื่อง', 3000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 18000 - 20000 บีทียู แบบติดผนัง', 2, 'เครื่อง', 3500.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 9000 - 12000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 1500.02, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 12000 - 15000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 2000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 15000 - 18000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 2500.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แอร์ขนาด 18000 - 20000 บีทียู แบบติดผนัง', 3, 'เครื่อง', 3000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('กวาดพื้น', 4, 'ชั่วโมง', 250.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('ถูพื้น', 4, 'ชั่วโมง', 300.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('เครื่องซักผ้าฝาหน้า', 5, 'เครื่อง', 500.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('เครื่องซักผ้าฝาบน', 5, 'เครื่อง', 300.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('เตาถ่าน', 6, 'เตา', 200.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('เตาแก๊ส', 6, 'ถัง', 500.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('เตาไฟฟ้าแบบผนัง', 6, 'ชุด', 20000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('ดูดเทอร์โบ', 7, 'ชุด', 20000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('ชักโครกแบบหลุม', 8, 'อัน', 500.50, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('ชักโครกแบบกด', 8, 'อัน', 1000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('ชักโครกแบบไฟฟ้า', 8,'อัน', 3000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แบบกำลังไฟต่ำกว่า 3500 วัตต์', 9, 'เครื่อง', 1000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แบบกำลังไฟสูงกว่า 3500 วัตต์', 9, 'เครื่อง', 2000.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แบบขนาดเล็กกว่า 10 คิว', 10, 'เครื่อง', 1500.00, 0);
+insert into sub_service (sub_service_name, service_id, unit, price_per_unit, sub_service_quantity) values ('แบบขนาดใหญ่กว่า 10 คิว', 10, 'เครื่อง', 2000.00, 0);
 
 insert into checkout (promotion_id, service_date_time, address, sub_district, district, province, postal_code, note, total_price) 
 values (1, '2021-07-11T13:19:59Z', '382 Bang Waek Road', 'Bang Pai', 'Bang Khae', 'Bangkok', 10160, '', 0);

@@ -206,7 +206,7 @@ serviceRouter.get("/:id", async (req, res) => {
             service.service_photo, min(sub_service.price_per_unit) as min_price, 
             max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date,
             sub_service.sub_service_id, sub_service.sub_service_name, sub_service.unit, sub_service.price_per_unit, 
-            sub_service.sub_service_quantity, sub_service.total_price
+            sub_service.sub_service_quantity
     from service
     inner join category
     on category.category_id = service.category_id
