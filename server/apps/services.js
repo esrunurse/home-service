@@ -206,7 +206,7 @@ serviceRouter.get("/:id", async (req, res) => {
             service.service_photo, min(sub_service.price_per_unit) as min_price, 
             max(sub_service.price_per_unit) as max_price, service.service_created_date, service.service_edited_date,
             sub_service.sub_service_id, sub_service.sub_service_name, sub_service.unit, sub_service.price_per_unit, 
-            sub_service.sub_service_quantity, sub_service.total_price
+            sub_service.sub_service_quantity
     from service
     inner join category
     on category.category_id = service.category_id
@@ -256,8 +256,8 @@ serviceRouter.post("/", servicePhotoUpload, async (req, res) => {
   if (newServiceItem.sub_service) {
     for (let r = 0; r <= newServiceItem.sub_service.length - 1; r++) {
       await pool.query(
-        `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit)
-    values ((select service_id from service where service_name = $1 ), $2, $3, $4);`,
+        `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit, sub_service_quantity)
+    values ((select service_id from service where service_name = $1 ), $2, $3, $4, 0);`,
         [
           newServiceItem.service_name,
           newServiceItem.sub_service[r].sub_service_name,
@@ -318,8 +318,8 @@ serviceRouter.put("/:id", async (req, res) => {
 
     if (!updateServiceItem.data[r].sub_service_id) {
       await pool.query(
-        `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit)
-    values ((select service_id from service where service_name = $1 ), $2, $3, $4);`,
+        `insert into sub_service ( service_id, sub_service_name, unit, price_per_unit, sub_service_quantity)
+    values ((select service_id from service where service_name = $1 ), $2, $3, $4, 0);`,
         [
           updateServiceItem.data[r].service_name,
           updateServiceItem.data[r].sub_service_name,
