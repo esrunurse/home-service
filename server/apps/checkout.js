@@ -7,6 +7,8 @@ const checkoutRouter = Router();
 // API route to add new checkout item to checkout table
 checkoutRouter.post("/", async (req, res) => {
   const newCheckoutItem = {
+    // ของจริง ใช้รูปแบบข้างล่างนี้
+    // user_id = req.body.user_id,
     // service_name: req.body.service_name,
     // date_time: req.body.date_time,
     // address: req.body.address,
@@ -66,8 +68,35 @@ checkoutRouter.post("/", async (req, res) => {
     }
   }
 
+  await pool.query(
+    `insert into order_history (order_number, status, serviceman_detail_id, checkout_id, user_id)
+    values ($1, $2, (select serviceman_detail_id from serviceman_detail where serviceman_expertise = $3),
+    (select checkout_id from checkout where 
+      (service_date_time = $4
+      and address = $5 
+      and sub_district = $6 
+      and district = $7
+      and province = $8
+      and postal_code = $9
+      and total_price = $10)),
+      $11);`,
+    [
+      "AD04071205", // ต้องทำให้ run order_number ได้แบบ auto
+      "รอดำเนินการ",
+      newCheckoutItem.service_name,
+      newCheckoutItem.date_time,
+      newCheckoutItem.address,
+      newCheckoutItem.subdistrict,
+      newCheckoutItem.district,
+      newCheckoutItem.province,
+      newCheckoutItem.zipcode,
+      newCheckoutItem.total_price,
+      newCheckoutItem.user_id,
+    ]
+  );
+
   return res.json({
-    message: `New checkout item has been created successfully.`,
+    message: `New checkout item and order_history item have been created successfully.`,
   });
 });
 
