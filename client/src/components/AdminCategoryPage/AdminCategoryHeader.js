@@ -24,8 +24,8 @@ function AdminCategoryHeader(props) {
   }, [searchCategory])
 
   return (
-    <header className="admin-header">
-      <div className="header-name pl-60 flex items-center h-20 pr-10 justify-between border-b border-grey300 ">
+    <header className="sticky top-0 bg-white">
+      <div className="pl-60 flex items-center h-20 pr-10 justify-between border-b border-grey300 ">
         <h1 className="text-xl font-medium pl-10">หมวดหมู่</h1>
         <div className="flex">
           <input

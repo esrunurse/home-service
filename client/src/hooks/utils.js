@@ -90,7 +90,7 @@ export function useUtils() {
       price_per_unit: 0,
       service_created_date: "",
       service_edited_date: "",
-      sub_service_quantity: 0
+      sub_service_quantity: 0,
     },
   ]);
   const [service_name, setService_name] = useState("");
@@ -212,14 +212,18 @@ export function useUtils() {
   };
 
   //checkout
-  const [items, setItems] = useState([
-    {
-      sub_service_name: "",
-      quantity: 0,
-    },
-  ]);
-
+  const [bookingDateAndTime, setBookingDateAndTime] = useState(null);
   const [step, setStep] = useState(1);
+  const [subService, setSubService] = useState([])
+  const [fullAddress, setFullAddress] = useState({
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+  });
+  const [error, setError] = useState("");
+  const [total, setTotal] = useState("");
 
   return {
     searchCategory,
@@ -283,9 +287,15 @@ export function useUtils() {
     isLoading,
     setIsLoading,
     createCategory,
-    items,
-    setItems,
     step,
-    setStep
+    setStep,
+    fullAddress,
+    setFullAddress,
+    bookingDateAndTime,
+    setBookingDateAndTime,
+    subService,
+    setSubService,
+    error, setError,
+    total, setTotal
   };
 }
