@@ -10,8 +10,8 @@ export function Summary(props) {
         <hr className="text-grey300 my-4" />
         <div className="h-7 flex items-center justify-between">
           <div className="text-base text-grey700">รวม</div>
-          <span>
-            {}{" "}
+          <span className='text-base text-black font-semibold'>
+            {" "}
             {Number(props.total).toLocaleString(undefined, {
               maximumFractionDigits: 2,
             })}{" "}

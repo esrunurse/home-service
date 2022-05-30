@@ -101,6 +101,7 @@ function RegisterPage() {
                   }
                 }}
                 value={phoneNumber}
+                max="10"
                 className="border rounded-lg border-grey300 w-full h-11 px-4 py-2.5 "
               />
               <br />

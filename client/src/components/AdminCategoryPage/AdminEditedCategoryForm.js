@@ -45,7 +45,6 @@ function EditedCategoryForm() {
       category_edited_date,
     });
   };
-  const title = "หมวดหมู่";
 
   return (
     <div className="edit-container h-screen bg-bg">
@@ -55,7 +54,7 @@ function EditedCategoryForm() {
       >
         <AdminEditedHeader
           back={() => navigate("/category-dashboard")}
-          title={title}
+          title="หมวดหมู่"
           name={category.category_name}
         />
         <div className="editCategory h-1/5 w-full py-14 px-10 flex flex-col ">

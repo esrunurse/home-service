@@ -223,6 +223,7 @@ export function useUtils() {
     zipcode: "",
   });
   const [total, setTotal] = useState("");
+  const [note, setNote] = useState("");
 
   return {
     searchCategory,
@@ -296,5 +297,7 @@ export function useUtils() {
     setSubService,
     total,
     setTotal,
+    note,
+    setNote,
   };
 }

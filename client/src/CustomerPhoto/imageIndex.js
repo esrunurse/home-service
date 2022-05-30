@@ -5,7 +5,11 @@ import StepOrderIcon from "./icons/stepOrderIcon.svg";
 import StepPenIcon from "./icons/stepPenIcon.svg";
 import FinalPenIcon from "./icons/finalPenIcon.svg";
 import StepPaymentIcon from "./icons/stepPaymentIcon.svg";
-import completeIcon from './icons/complete-icon.png'
+import completeIcon from './icons/complete-icon.png';
+import AMEX from "./icons/Amex.svg";
+import VISA from "./icons/Visa.svg";
+import MASTERCARD from "./icons/Mastercard.svg";
+
 
 const image = {
   orderIcon,
@@ -16,6 +20,9 @@ const image = {
   StepPenIcon,
   FinalPenIcon,
   StepPaymentIcon,
+  VISA,
+  AMEX,
+  MASTERCARD
 }
 
 export default image;

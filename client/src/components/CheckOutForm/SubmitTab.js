@@ -8,7 +8,7 @@ function SubmitTab(props) {
         <img src={image.BackBlue} className="inline " /> ย้อนกลับ{" "}
       </button>
       <button className="btn-primary" onClick={props.onClickNext}>
-        ดำเนินการต่อ <img src={image.BackWhite} className="inline" />
+        {props.next} <img src={image.BackWhite} className="inline" />
       </button>
     </footer>
   );

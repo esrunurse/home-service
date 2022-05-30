@@ -185,6 +185,7 @@ function FirstStepForm(props) {
       <SubmitTab
         onClickBack={() => navigate("/service")}
         onClickNext={nextStep}
+        next="ดำเนินการต่อ"
       />
     </div>
   );

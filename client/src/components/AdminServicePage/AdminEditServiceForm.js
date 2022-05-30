@@ -100,13 +100,11 @@ function ServiceEditForm() {
     setService(newObj);
   };
 
-  const title = "บริการ";
-
   return (
     <form className="pl-60 min-h-screen" onSubmit={handleSubmit}>
       <AdminEditedHeader
         back={() => navigate("/service-dashboard")}
-        title={title}
+        title="บริการ"
         name={editHeader}
       />
       <div className=" bg-bg">

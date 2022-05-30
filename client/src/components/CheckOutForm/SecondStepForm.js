@@ -22,15 +22,19 @@ function SecondStep(props) {
     total,
     setStep,
     setService,
-        service_name,
+    service_name,
+    note,
+    setNote,
   } = props;
 
   const [error, setError] = useState("");
 
   const changeDateAndTime = (date, dateString) => {
-    setBookingDateAndTime(moment(dateString, "DD MMMM YYYY HH:mm").toISOString());
+    setBookingDateAndTime(
+      moment(dateString, "DD MMMM YYYY HH:mm").toISOString()
+    );
   };
-  console.log(bookingDateAndTime)
+  console.log(bookingDateAndTime);
 
   const range = (start, end) => {
     const result = [];
@@ -104,18 +108,18 @@ function SecondStep(props) {
 
   const backStep = () => {
     setService([
-    {
-      service_name: "",
-      category_name: "",
-      service_photo: { url: "", publicId: "" },
-      sub_service_name: "",
-      unit: "",
-      price_per_unit: 0,
-      service_created_date: "",
-      service_edited_date: "",
-      sub_service_quantity: 0,
-    },
-  ]);
+      {
+        service_name: "",
+        category_name: "",
+        service_photo: { url: "", publicId: "" },
+        sub_service_name: "",
+        unit: "",
+        price_per_unit: 0,
+        service_created_date: "",
+        service_edited_date: "",
+        sub_service_quantity: 0,
+      },
+    ]);
     setSubService([]);
     setStep(1);
   };
@@ -145,7 +149,7 @@ function SecondStep(props) {
           <div>
             <div className="flex justify-between mt-4">
               <label>
-                <h5 className="text-grey900">
+                <h5 className="font-medium text-grey900">
                   วันที่-เวลาที่สะดวกใช้บริการ
                   <span className="text-red"> *</span>
                 </h5>
@@ -169,7 +173,7 @@ function SecondStep(props) {
                 </div>
               </label>
               <label>
-                <h5 className="text-grey900">
+                <h5 className="font-medium text-grey900">
                   ที่อยู่<span className="text-red"> *</span>
                 </h5>
                 <InputAddress
@@ -190,7 +194,7 @@ function SecondStep(props) {
             </div>
             <div className="w-full flex justify-between mt-4">
               <label>
-                <h5 className="text-grey900">
+                <h5 className="font-medium text-grey900">
                   แขวง / ตำบล<span className="text-red"> *</span>
                 </h5>
                 <InputAddress
@@ -209,7 +213,7 @@ function SecondStep(props) {
                 />
               </label>
               <label>
-                <h5 className="text-grey900">
+                <h5 className="font-medium text-grey900">
                   เขต / อำเภอ<span className="text-red"> *</span>
                 </h5>
                 <InputAddress
@@ -230,7 +234,7 @@ function SecondStep(props) {
             </div>
             <div className="w-full flex justify-between mt-4">
               <label>
-                <h5 className="text-grey900">
+                <h5 className="font-medium text-grey900">
                   จังหวัด<span className="text-red"> *</span>
                 </h5>
                 <InputAddress
@@ -249,7 +253,7 @@ function SecondStep(props) {
                 />
               </label>
               <label>
-                <h5 className="text-grey900">
+                <h5 className="font-medium text-grey900">
                   รหัสไปรษณีย์<span className="text-red"> *</span>
                 </h5>
                 <InputAddress
@@ -268,12 +272,16 @@ function SecondStep(props) {
             </div>
             <div className="mt-4">
               <label>
-                <h5 className="text-grey900">ระบุข้อมูลเพิ่มเติม</h5>
+                <h5 className="font-medium text-grey900">
+                  ระบุข้อมูลเพิ่มเติม
+                </h5>
                 <textarea
                   id="province"
                   name="province"
                   placeholder="กรุณาระบุข้อมูลเพิ่มเติม"
                   type="text"
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
                   className="focus:placeholder:text-grey950 mt-2 w-full h-[92px] px-4 py-2.5 border rounded-lg border-grey300 focus:border-grey300 focus:outline-none"
                 />
               </label>
@@ -312,7 +320,6 @@ function SecondStep(props) {
                   <Moment format="DD MMMM YYYY HH:mm">
                     {bookingDateAndTime}
                   </Moment>
-                  
                 </p>
               </div>
             </div>
@@ -323,22 +330,33 @@ function SecondStep(props) {
           fullAddress.province !== "" ||
           fullAddress.zipcode !== "" ? (
             <div>
-              <hr className="text-grey300 my-4" />
-              <div>
-                <p className="float-left my-2 text-grey700 text-sm font-light">
-                  สถานที่
-                </p>
-                <p className="float-right my-2 text-black text-sm font-normal w-[80%] text-right">
-                  {fullAddress.address} {fullAddress.subdistrict}{" "}
-                  {fullAddress.district} {fullAddress.province}{" "}
-                  {fullAddress.zipcode}
-                </p>
-              </div>
+              <p className="float-left my-2 text-grey700 text-sm font-light">
+                สถานที่
+              </p>
+              <p className="float-right my-2 text-black text-sm font-normal w-[80%] text-right">
+                {fullAddress.address} {fullAddress.subdistrict}{" "}
+                {fullAddress.district} {fullAddress.province}{" "}
+                {fullAddress.zipcode}
+              </p>
+            </div>
+          ) : null}
+          {note !== "" ? (
+            <div>
+              <p className="float-left my-2 text-grey700 text-sm font-light">
+                ข้อมูลเพิ่มเติม
+              </p>
+              <p className="float-right my-2 text-black text-sm font-normal">
+                {note}
+              </p>
             </div>
           ) : null}
         </Summary>
       </div>
-      <SubmitTab onClickBack={backStep} onClickNext={nextStep} />
+      <SubmitTab
+        next="ดำเนินการต่อ"
+        onClickBack={backStep}
+        onClickNext={nextStep}
+      />
     </div>
   );
 }

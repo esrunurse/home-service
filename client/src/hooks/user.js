@@ -54,7 +54,7 @@ export function useUser() {
     if (validator.isEmpty(validName)) {
       setNameError("กรุณากรอกชื่อ-นามสกุล");
     } else if (!validator.matches(validName, pattern)) {
-      setNameError("กรุณากรอกชื่อ-นามสกุลให้ถูกต้อง");
+      setNameError("กรุณากรอกชื่อ นามสกุลให้ถูกต้อง");
     } else {
       setNameError("");
     }

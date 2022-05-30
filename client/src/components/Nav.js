@@ -78,17 +78,6 @@ function Nav() {
                     className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
                   >
                     <img
-                      src={image.orderIcon}
-                      className="ml-4 mr-2 my-2 "
-                      alt="รายการคำสั่งซ่อม"
-                    />
-                    <a>รายการคำสั่งซ่อม</a>
-                  </div>
-                  <div
-                    onClick={() => navigate("/")}
-                    className="flex items-center hover:bg-grey100 hover:bg-opacity-50 hover:text-grey950"
-                  >
-                    <img
                       src={image.historyIcon}
                       className="ml-4 mr-2 my-2 "
                       alt="ประวัติการซ่อม"

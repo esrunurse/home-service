@@ -17,17 +17,17 @@ checkoutRouter.post("/", async (req, res) => {
 
   const newCheckoutItem = {
     // ของจริง ใช้รูปแบบข้างล่างนี้
-    // user_id = req.body.user_id,
-    // service_name: req.body.service_name,
-    // date_time: req.body.date_time,
-    // address: req.body.address,
-    // subdistrict: req.body.subdistrict,
-    // district: req.body.district,
-    // province: req.body.province,
-    // zipcode: req.body.zipcode,
-    // total_price: req.body.total_price,
-    // note: req.body.note,
-    // sub_service: JSON.parse(req.body.sub_service),
+    user_id : req.body.user_id,
+    service_name: req.body.service_name,
+    date_time: req.body.date_time,
+    address: req.body.address,
+    subdistrict: req.body.subdistrict,
+    district: req.body.district,
+    province: req.body.province,
+    zipcode: req.body.zipcode,
+    total_price: req.body.total_price,
+    note: req.body.note,
+    sub_service: JSON.parse(req.body.sub_service),
     ...req.body,
   };
 
