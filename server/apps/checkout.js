@@ -6,6 +6,15 @@ const checkoutRouter = Router();
 
 // API route to add new checkout item to checkout table
 checkoutRouter.post("/", async (req, res) => {
+  const dateObj = new Date();
+  const day = dateObj.getUTCDate().toString();
+  const month = (dateObj.getUTCMonth() + 1).toString();
+  const year = dateObj.getUTCFullYear().toString();
+  const hours = dateObj.getHours().toString();
+  const minutes = dateObj.getMinutes().toString();
+  const seconds = dateObj.getTime().toString().slice(0, 2);
+  const newdate = day + month + year + hours + minutes + seconds;
+
   const newCheckoutItem = {
     // ของจริง ใช้รูปแบบข้างล่างนี้
     // user_id = req.body.user_id,
@@ -86,7 +95,7 @@ checkoutRouter.post("/", async (req, res) => {
       and note = $11)),
       $12);`,
     [
-      "AD04071205", // ต้องทำให้ run order_number ได้แบบ auto
+      `S${newdate}`, // ต้องทำให้ run order_number ได้แบบ auto
       "รอดำเนินการ",
       newCheckoutItem.service_name,
       newCheckoutItem.date_time,
