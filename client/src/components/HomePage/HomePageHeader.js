@@ -1,4 +1,4 @@
-import "../../App.css"
+import "../../App.css";
 import image from "../../HomePagePhoto/imageIndex.js";
 
 function HomePageHeader() {

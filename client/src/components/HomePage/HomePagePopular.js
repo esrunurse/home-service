@@ -1,34 +1,36 @@
-import '../../App.css'
-import image from '../../HomePagePhoto/imageIndex.js'
-import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import React from 'react'
-import axios from 'axios'
+import "../../App.css";
+import image from "../../HomePagePhoto/imageIndex.js";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import React from "react";
+import axios from "axios";
+import { useAuth } from "../../contexts/authentication";
 
 function PopularService() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const auth = useAuth();
 
-  const [service, setService] = useState([])
+  const [service, setService] = useState([]);
 
   const getService = async () => {
-    const result = await axios('http://localhost:4000/service')
-    setService(result.data.data)
-  }
+    const result = await axios("http://localhost:4000/service");
+    setService(result.data.data);
+  };
 
   useEffect(() => {
-    getService()
-  }, [])
+    getService();
+  }, []);
 
-  console.log(service)
+  console.log(service);
 
   return (
-    <div className="popular-service bg-[rgba(229, 229, 229, 0.2)]">
-      <h1 className="text-blue950 text-center pt-14">บริการยอดฮิตของเรา</h1>
+    <div className="popular-service bg-[rgba(229, 229, 229, 0.2)] h-full">
+      <h1 className="text-blue950 text-center pt-14 font-normal text-[32px]">บริการยอดฮิตของเรา</h1>
       <div className=" px-20 py-8 grid grid-cols-3 justify-items-center">
         {service.slice(0, 3).map((data) => {
           return (
             <div
-              className="my-5 bg-white border border-grey300 rounded-lg w-[349px] h-[396px]"
+              className="my-5 bg-white border border-grey300 rounded-lg w-[349px] h-[369px]"
               key={data.service_id}
             >
               <img
@@ -38,7 +40,7 @@ function PopularService() {
               />
               <div className="p-6">
                 <div className="category-name font-normal mb-2">
-                  {' '}
+                  {" "}
                   {data.category_id % 2 === 0 ? (
                     <div className="bg-blue100 px-2.5 py-1 w-fit rounded-lg text-xs text-blue800">
                       {data.category_name}
@@ -61,7 +63,7 @@ function PopularService() {
                     </div>
                   )}
                 </div>
-                <h2>{data.service_name}</h2>
+                <h2 className="text-grey950 font-medium text-xl">{data.service_name}</h2>
                 <div className="h-5 flex items-center font-normal text-sm text-grey700 mt-1 mb-3.5">
                   <img
                     className="mr-2.5 h-4 w-4"
@@ -70,42 +72,56 @@ function PopularService() {
                   />
                   {data.min_price === data.max_price ? (
                     <div>
-                      ค่าบริการ{' '}
+                      ค่าบริการ{" "}
                       {Number(data.min_price).toLocaleString(undefined, {
-                        maximumFractionDigits: 2
-                      })}{' '}
+                        maximumFractionDigits: 2,
+                      })}{" "}
                       ฿
                     </div>
                   ) : (
                     <div>
-                      ค่าบริการประมาณ{' '}
+                      ค่าบริการประมาณ{" "}
                       {Number(data.min_price).toLocaleString(undefined, {
-                        maximumFractionDigits: 2
-                      })}{' '}
-                      -{' '}
+                        maximumFractionDigits: 2,
+                      })}{" "}
+                      -{" "}
                       {Number(data.max_price).toLocaleString(undefined, {
-                        maximumFractionDigits: 2
-                      })}{' '}
+                        maximumFractionDigits: 2,
+                      })}{" "}
                       ฿
                     </div>
                   )}
                 </div>
-                <a className="cursor-pointer">เลือกบริการ</a>
+                {auth.isAuthenticated ? (
+                  <button
+                    className="btn-ghost"
+                    onClick={() => navigate(`/checkout/${data.service_id}`)}
+                  >
+                    เลือกบริการ
+                  </button>
+                ) : (
+                  <button
+                    className="btn-ghost"
+                    onClick={() => navigate(`/login`)}
+                  >
+                    เลือกบริการ
+                  </button>
+                )}
               </div>
             </div>
-          )
+          );
         })}
       </div>
       <div className="flex justify-center">
         <button
           className="btn-primary w-[155px] h-11 mb-[147px]"
-          onClick={() => navigate('/service')}
+          onClick={() => navigate("/service")}
         >
           ดูบริการท้ังหมด
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default PopularService
+export default PopularService;

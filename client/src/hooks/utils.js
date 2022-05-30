@@ -2,8 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function useUtils() {
+export function useUtils() {
   const navigate = useNavigate();
+
+  const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
 
   //category
   const [category, setCategory] = useState([]);
@@ -12,22 +15,60 @@ function useUtils() {
   const [category_edited_date, setCategory_edited_date] = useState("");
 
   const getCategory = async () => {
-    const result = await axios("http://localhost:4000/category");
-    setCategory(result.data.data);
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      const result = await axios("http://localhost:4000/category");
+      setCategory(result.data.data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   const deleteCategoryId = async (categoryId) => {
-    await axios.delete(`http://localhost:4000/category/${categoryId}`);
-    getCategory();
-    document.getElementById("popUp").style.display = "none";
-    navigate("/category-dashboard");
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      await axios.delete(`http://localhost:4000/category/${categoryId}`);
+      getCategory();
+      document.getElementById("popUp").style.display = "none";
+      setIsLoading(false);
+      navigate("/category-dashboard");
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   const getCategoryById = async (categoryId) => {
-    const result = await axios.get(
-      `http://localhost:4000/category/${categoryId}`
-    );
-    setCategory(result.data.data);
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      const result = await axios.get(
+        `http://localhost:4000/category/${categoryId}`
+      );
+      setCategory(result.data.data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
+  };
+
+  //Create Category
+  const createCategory = async () => {
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      await axios.post("http://localhost:4000/category", { category_name });
+      navigate("/category-dashboard");
+      setIsLoading(false);
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   //Filter
@@ -49,6 +90,7 @@ function useUtils() {
       price_per_unit: 0,
       service_created_date: "",
       service_edited_date: "",
+      sub_service_quantity: 0,
     },
   ]);
   const [service_name, setService_name] = useState("");
@@ -63,24 +105,47 @@ function useUtils() {
   const [editHeader, setEditHeader] = useState("");
 
   const getService = async () => {
-    const result = await axios("http://localhost:4000/service");
-    setService(result.data.data);
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      const result = await axios("http://localhost:4000/service");
+      setService(result.data.data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   const deleteServiceId = async (serviceId) => {
-    await axios.delete(`http://localhost:4000/service/${serviceId}`);
-    getService();
-    document.getElementById("popUp").style.display = "none";
-    navigate("/service-dashboard");
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      await axios.delete(`http://localhost:4000/service/${serviceId}`);
+      getService();
+      document.getElementById("popUp").style.display = "none";
+      setIsLoading(false);
+      navigate("/service-dashboard");
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   const getServiceById = async (serviceId) => {
-    const result = await axios.get(
-      `http://localhost:4000/service/${serviceId}`
-    );
-    setService(result.data.data);
-    setEditHeader(result.data.data[0].service_name);
-    console.log(result);
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      const result = await axios.get(
+        `http://localhost:4000/service/${serviceId}`
+      );
+      setService(result.data.data);
+      setEditHeader(result.data.data[0].service_name);
+      setIsLoading(false);
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   //Service Image
@@ -100,10 +165,18 @@ function useUtils() {
 
   //Create Service
   const createService = async (data) => {
-    await axios.post("http://localhost:4000/service", data, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    navigate("/service-dashboard");
+    try {
+      setIsError(false);
+      setIsLoading(true);
+      await axios.post("http://localhost:4000/service", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setIsLoading(false);
+      navigate("/service-dashboard");
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   const handleSubmitService = (event) => {
@@ -137,6 +210,20 @@ function useUtils() {
     setCategory_Id(categoryId);
     setDeleteCategory(true);
   };
+
+  //checkout
+  const [bookingDateAndTime, setBookingDateAndTime] = useState(null);
+  const [step, setStep] = useState(1);
+  const [subService, setSubService] = useState([]);
+  const [fullAddress, setFullAddress] = useState({
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+  });
+  const [error, setError] = useState("");
+  const [total, setTotal] = useState("");
 
   return {
     searchCategory,
@@ -195,7 +282,22 @@ function useUtils() {
     setUnit,
     editHeader,
     setEditHeader,
+    isError,
+    setIsError,
+    isLoading,
+    setIsLoading,
+    createCategory,
+    step,
+    setStep,
+    fullAddress,
+    setFullAddress,
+    bookingDateAndTime,
+    setBookingDateAndTime,
+    subService,
+    setSubService,
+    error,
+    setError,
+    total,
+    setTotal,
   };
 }
-
-export default useUtils;
