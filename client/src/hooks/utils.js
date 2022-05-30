@@ -222,7 +222,6 @@ export function useUtils() {
     province: "",
     zipcode: "",
   });
-  const [error, setError] = useState("");
   const [total, setTotal] = useState("");
 
   return {
@@ -295,8 +294,6 @@ export function useUtils() {
     setBookingDateAndTime,
     subService,
     setSubService,
-    error,
-    setError,
     total,
     setTotal,
   };

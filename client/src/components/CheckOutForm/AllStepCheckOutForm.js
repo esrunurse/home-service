@@ -17,10 +17,10 @@ function AllStepCheckOutForm() {
     setBookingDateAndTime,
     subService,
     setSubService,
-    error,
-    setError,
     total,
     setTotal,
+    service_name,
+    setService_name,
   } = useUtils();
   return (
     <div className="checkout form">
@@ -34,9 +34,8 @@ function AllStepCheckOutForm() {
           step={step}
           subService={subService}
           setSubService={setSubService}
-          error={error}
-          setError={setError}
           setTotal={setTotal}
+          setService_name={setService_name}
         />
       ) : step === 2 ? (
         <SecondStepForm
@@ -47,18 +46,19 @@ function AllStepCheckOutForm() {
           bookingDateAndTime={bookingDateAndTime}
           setBookingDateAndTime={setBookingDateAndTime}
           subService={subService}
+          setSubService={setSubService}
           setStep={setStep}
-          setError={setError}
-          error={error}
+          service_name={service_name}
         />
-      ) : (
+      ) : step === 3 ? (
         <ThirdStepForm
           total={total}
           fullAddress={fullAddress}
           bookingDateAndTime={bookingDateAndTime}
           subService={subService}
+          setStep={setStep}
         />
-      )}
+      ) : null}
     </div>
   );
 }

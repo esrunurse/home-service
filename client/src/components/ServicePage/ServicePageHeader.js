@@ -80,10 +80,11 @@ function ServiceHeader(props) {
                 >
                   <p>บริการทั้งหมด</p>
                 </div>
-                {category.map((data) => {
+                {category.map((data,index) => {
                   return (
                     <div
                       className="ml-4"
+                      key={index}
                       onClick={() => {
                         const value = data.category_name;
                         setCategoryFilter(String(value));

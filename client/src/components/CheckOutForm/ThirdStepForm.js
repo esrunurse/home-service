@@ -13,6 +13,8 @@ import validator from "validator";
 function ThirdStep(props) {
   const { fullAddress, bookingDateAndTime, subService, total, setStep } = props;
 
+  let user_id = localStorage.getItem("user_id");
+  console.log(user_id);
   const backStep = () => {
     setStep(2);
   };

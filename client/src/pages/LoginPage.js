@@ -20,8 +20,8 @@ function LoginPage() {
   return (
     <div className="login-form-container" onSubmit={handleSubmit}>
       <Nav />
-      <div className=" flex justify-center bg-bg">
-        <form className="bg-white border border-grey300 rounded-lg w-[614px] mt-[52px] mb-[87px] px-[87px] pt-[32px] pb-[53px]">
+      <div className="min-h-screen flex justify-center bg-bg">
+        <form className="bg-white border border-grey300 rounded-lg w-[614px] h-full mt-[52px] mb-[87px] px-[87px] pt-[32px] pb-[53px]">
           <h1 className="text-blue950 text-center text-[32px] font-medium">เข้าสู่ระบบ </h1>
           <div className="mt-5">
             <label>

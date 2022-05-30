@@ -8,7 +8,9 @@ import { GreyTextTwo } from "./CheckOutForm";
 import { Summary } from "./Summary";
 import moment from "moment";
 import SubmitTab from "./SubmitTab";
-import validator from "validator";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 function SecondStep(props) {
   const {
@@ -17,15 +19,19 @@ function SecondStep(props) {
     bookingDateAndTime,
     setBookingDateAndTime,
     subService,
+    setSubService,
     total,
     setStep,
-    error,
-    setError,
+        service_name,
   } = props;
 
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
   const changeDateAndTime = (date, dateString) => {
-    setBookingDateAndTime(dateString);
+    setBookingDateAndTime(moment(dateString, "DD MMMM YYYY HH:mm").toISOString());
   };
+  console.log(bookingDateAndTime)
 
   const range = (start, end) => {
     const result = [];
@@ -93,6 +99,15 @@ function SecondStep(props) {
     borderColor: "#ccd0d7",
   };
 
+  console.log(service_name);
+  console.log(total);
+  console.log(subService);
+
+  const backStep = (e) => {
+    setSubService([]);
+    setStep(1);
+  };
+
   const nextStep = () => {
     if (
       bookingDateAndTime !== "" &&
@@ -106,10 +121,6 @@ function SecondStep(props) {
     } else {
       setError("กรุณากรอกข้อมูลบริการให้ครบถ้วน");
     }
-  };
-
-  const backStep = () => {
-    setStep(1);
   };
 
   return (
@@ -286,7 +297,10 @@ function SecondStep(props) {
                   วันที่-เวลา
                 </p>
                 <p className="float-right my-2 text-black text-sm font-normal">
-                  {bookingDateAndTime}
+                  <Moment format="DD MMMM YYYY HH:mm">
+                    {bookingDateAndTime}
+                  </Moment>
+                  
                 </p>
               </div>
             </div>

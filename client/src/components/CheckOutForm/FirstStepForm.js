@@ -5,6 +5,7 @@ import icons from "../../AdminPhoto/imageIndex";
 import { useNavigate, useParams } from "react-router-dom";
 import { Summary } from "./Summary";
 import SubmitTab from "./SubmitTab";
+import { useState } from "react";
 
 function FirstStepForm(props) {
   const {
@@ -14,13 +15,13 @@ function FirstStepForm(props) {
     setStep,
     subService,
     setSubService,
-    error,
-    setError,
     setTotal,
+    setService_name,
   } = props;
 
   const params = useParams();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getServiceById(params.serviceId);
@@ -30,42 +31,34 @@ function FirstStepForm(props) {
     const added = subService.find(
       (item) => item.sub_service_id === data.sub_service_id
     );
-
+    let itemIndex = subService.findIndex(
+        (item) => item.sub_service_id === data.sub_service_id
+      );
+    let index = service.findIndex(
+        (item) => item.sub_service_id === data.sub_service_id
+      );
+    let tempList = [...subService];
+    let tempService = [...service];
     if (added) {
-      let itemIndex = subService.findIndex(
-        (item) => item.sub_service_id === data.sub_service_id
-      );
-      let index = service.findIndex(
-        (item) => item.sub_service_id === data.sub_service_id
-      );
-      let tempList = [...subService];
       tempList[itemIndex].sub_service_quantity =
         tempList[itemIndex].sub_service_quantity + 1;
       setSubService(tempList);
-      let tempService = [...service];
       tempService[index].sub_service_quantity =
         tempService[index].sub_service_quantity + 1;
       setService(tempService);
     } else {
       let tempSubService = {
         sub_service_id: data.sub_service_id,
-        service_name: data.service_name,
         sub_service_name: data.sub_service_name,
         price_per_unit: data.price_per_unit,
         unit: data.unit,
         sub_service_quantity: 1,
       };
       setSubService([...subService, tempSubService]);
-      let tempService = [...service];
-      let index = service.findIndex(
-        (item) => item.sub_service_id === data.sub_service_id
-      );
       tempService[index].sub_service_quantity = 1;
       setService(tempService);
     }
   };
-
-  console.log(subService);
 
   const subtractQuantity = (data) => {
     let tempList = [...subService];
@@ -94,14 +87,16 @@ function FirstStepForm(props) {
     }
   };
 
+
   const totalPrice = subService.reduce((acc, item) => {
     return acc + item.price_per_unit * item.sub_service_quantity;
   }, 0);
 
   const nextStep = () => {
     if (subService.length !== 0) {
-      setStep(2);
       setTotal(totalPrice);
+      setService_name(service[0].service_name);
+      setStep(2);
     } else {
       setError("กรุณาเลือกอย่างน้อย 1 รายการ");
     }
@@ -117,14 +112,14 @@ function FirstStepForm(props) {
             </GreyTextTwo>
           </div>
           <div>
-            {service.map((data) => {
+            {service.map((data, index) => {
               return (
                 <div
                   className="w-full h-[105px] py-[23px] flex justify-between 
             items-center last:border-b-0 border-b border-solid border-grey300 "
-                  key={data.sub_service_id}
+                  key={index}
                 >
-                  <div className="h-14 w-[343px] flex flex-col justify-between">
+                  <div className="h-14 w-[ึ70%] flex flex-col justify-between">
                     <div className="text-black text-lg font-medium leading-[150%]">
                       {data.sub_service_name}
                     </div>
@@ -172,10 +167,10 @@ function FirstStepForm(props) {
           </div>
         </div>
         <Summary total={totalPrice}>
-          {subService.length === 0 ? <p className="text-red">{error}</p> : null}
-          {subService.map((data) => {
+          {subService.length === 0 ? <p className="text-red mt-2">{error}</p> : null}
+          {subService.map((data, index) => {
             return (
-              <div key={data.sub_service_id}>
+              <div key={index}>
                 <p className="float-left my-2 text-black text-sm font-light">
                   {data.sub_service_name}
                 </p>{" "}
