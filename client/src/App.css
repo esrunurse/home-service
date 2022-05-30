@@ -12,8 +12,7 @@
 }
 
 h1 {
-  @apply font-medium;
-  font-size: 32px;
+  @apply font-medium text-[32px];
   line-height: 150%;
 }
 
@@ -40,16 +39,9 @@ h5 {
 /* Button Primary */
 
 .btn-primary {
-  @apply font-medium text-base py-2.5 px-6 rounded-lg bg-blue600 text-white;
+  @apply font-medium text-base py-2.5 px-6 rounded-lg bg-blue600 text-white hover:bg-blue500 active:bg-blue800 !important;
 }
 
-.btn-primary:hover {
-  @apply bg-blue500;
-}
-
-.btn-primary:active {
-  @apply bg-blue800;
-}
 .btn-primary:disabled,
 btn-primary[disabled] {
   @apply bg-grey300 text-grey100;
@@ -73,16 +65,8 @@ btn-secondary[disabled] {
   @apply text-grey400 border-grey400 bg-grey100;
 }
 
-a {
-  @apply font-semibold text-base underline underline-offset-auto text-blue600;
-}
-
-a:hover {
-  @apply text-blue400;
-}
-
-a:active {
-  @apply text-blue800;
+.btn-ghost {
+  @apply cursor-pointer font-semibold text-base underline underline-offset-auto text-blue600 hover:text-blue400 active:text-blue800;
 }
 
 input {
@@ -93,31 +77,27 @@ label {
   @apply text-grey900;
 }
 
-input:valid {
-  @apply placeholder:text-grey950 border-grey300 outline-none;
-}
-
 input[type="checkbox"] {
   @apply w-6 h-6 mr-4 border-grey300 rounded-md hover:border-blue600;
 }
 
 .dropdown {
   overflow: hidden;
-  @apply text-base border-0 outline-0 m-0 float-left;
+  @apply text-base border-0 outline-0 float-left;
 }
 
 .dropdown-content {
-  @apply hidden absolute bg-white rounded-lg pt-1 mt-1 mb-1 pb-1;
+  @apply hidden absolute bg-white rounded-lg py-1;
   box-shadow: 2px 2px 24px rgba(23, 51, 106, 0.12);
   z-index: 1;
 }
 
 .dropdown-content a {
-  @apply float-none pt-2 pb-2 block text-left text-grey800 text-sm font-normal;
+  @apply float-none py-2 block text-left text-grey800 text-sm font-normal !important;
   text-decoration: none;
 }
 .dropdown-content p {
-  @apply float-none pt-2 pb-2 block text-left text-grey700 text-sm font-normal hover:text-blue700;
+  @apply float-none py-2 block text-left text-grey700 text-sm font-normal hover:text-blue700;
 }
 
 .dropdown:hover .dropdown-content {
@@ -145,6 +125,10 @@ input[type="checkbox"] {
   @apply bg-white placeholder:pl-2 font-normal placeholder:text-white border-blue600;
 }
 
+#search-text:not(:placeholder-shown) {
+  background-image: none;
+}
+
 .multi-range-slider {
   width: 216px;
 }
@@ -161,7 +145,6 @@ input[type="range"]::-webkit-slider-thumb {
   width: 13px;
   height: 13px;
   -webkit-appearance: none;
-  /* @apply w-6 h-6 appearance-none pointer-events-auto; */
 }
 
 .select {

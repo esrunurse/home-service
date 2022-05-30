@@ -26,6 +26,7 @@ function AuthProvider(props) {
     const dataToken = jwtDecode(token);
     setState({ ...state, user: dataToken });
     localStorage.setItem("name", dataToken.name); // ใช้อันนี้แล้ว user name บน nav ไม่หายตอน refresh
+    localStorage.setItem("user_id", dataToken.user_id);
     localStorage.setItem("role", dataToken.role);
     if (dataToken.role === "admin") {
       navigate("/category-dashboard");
