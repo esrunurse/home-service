@@ -287,9 +287,11 @@ serviceRouter.put("/:id", async (req, res) => {
 
   // เก็บ sub_service_id ที่จะทำการ update
   for (let r = 0; r <= updateServiceItem.data.length - 1; r++) {
-    subServiceId.push(updateServiceItem.data[r].sub_service_id);
+    if (updateServiceItem.data[r].sub_service_id !== undefined)
+      subServiceId.push(updateServiceItem.data[r].sub_service_id);
   }
 
+  console.log(subServiceId);
   // ใช้ได้แล้ว
   for (let r = 0; r <= updateServiceItem.data.length - 1; r++) {
     await pool.query(

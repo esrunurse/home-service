@@ -200,7 +200,7 @@ insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman
 insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman_status) values ('ปารย์ เหรียญกิจการ', 'ล้างแอร์', 'ไม่ว่างสัปดาห์หน้า');
 insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman_status) values ('ชัชชาติ สิทธิพันธุ์', 'ติดตั้งชักโครก', 'ลาออกไปแล้ว');
 insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman_status) values ('วิโรจน์ กาวไก่', 'ติดตั้งเครื่องทำน้ำอุ่น', 'ว่างรับงาน');
-insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman_status) values ('อัศวิน ขวัญเมือง', 'ติดตั้งเครื่องซักผ้า', 'ว่างยาวเพราะตกงาน');
+insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman_status) values ('อัศวิน ขวัญเมือง', 'ซ่อมเครื่องซักผ้า', 'ว่างยาวเพราะตกงาน');
 insert into serviceman_detail (serviceman_name, serviceman_expertise, serviceman_status) values ('ธงไชย แมคอินไตย์', 'ติดตั้งเครื่องดูดควัน', 'เสร็จช้าแต่เสร็จนะ');
 
 insert into order_history (serviceman_detail_id, checkout_id, user_id, order_number, status)

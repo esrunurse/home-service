@@ -85,13 +85,13 @@ orderHistoryRouter.get("/:id", async (req, res) => {
             unit: result.rows[j].unit,
           };
         }
-        if (
-          newResult[i].sub_service.length >
-          Math.abs(countSubService[i + 1] - countSubService[i])
-        ) {
-          newResult[i].sub_service.splice(0, countSubService[i]);
-        }
       }
+    }
+    if (
+      newResult[i].sub_service.length >
+      Math.abs(countSubService[i + 1] - countSubService[i])
+    ) {
+      newResult[i].sub_service.splice(0, countSubService[i]);
     }
   }
 
