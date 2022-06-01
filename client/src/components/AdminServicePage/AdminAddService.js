@@ -66,7 +66,7 @@ function AddService() {
     <form className="pl-60 min-h-screen" onSubmit={handleSubmitService}>
       <div
         className="flex items-center h-20 px-10
-         justify-between border-b border-grey300 bg-white"
+         justify-between border-b border-grey300 bg-white "
       >
         <h1 className="text-xl font-medium">เพิ่มบริการ</h1>
         <div className="flex">
@@ -86,9 +86,9 @@ function AddService() {
           </button>
         </div>
       </div>
-      <div className=" bg-bg">
-        <div className="add-service-box ">
-          <div className=" bg-white mx-10 my-10 py-10 px-6">
+      <div className=" bg-bg pb-4">
+        <div >
+          <div className=" bg-white mx-10 my-10 py-10 px-6 border border-grey200 rounded-lg">
             <div className="h-11 w-8/12 mb-10 flex justify-between items-center pr-16">
               <label
                 className="w-52 text-grey700 text-base font-medium"
@@ -98,7 +98,7 @@ function AddService() {
               </label>
               <input
                 required
-                className="h-11 w-3/4 py-2.5 pl-4 border rounded-lg border-grey300 focus:border-blue600 focus:outline-none"
+                className="h-11 w-3/4 py-2.5 px-4 border rounded-lg border-grey300 focus:border-blue600 focus:outline-none"
                 type="text"
                 name="serviceName"
                 value={service_name}
@@ -116,7 +116,7 @@ function AddService() {
               </label>
               <select
                 required
-                className="rounded-lg h-11 w-3/4 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                className="rounded-lg h-11 w-3/4 border border-grey300 py-2.5 px-4 focus:border-blue600 focus:outline-none"
                 type="text"
                 name="chooseCategory"
                 value={category_name}
@@ -205,9 +205,9 @@ function AddService() {
                 <div key={index}>
                   <div
                     id="add-details-box"
-                    className=" h-full mb-10 flex justify-between"
+                    className="h-full w-full mb-10 flex justify-between"
                   >
-                    <div className="flex flex-col w-2/5">
+                    <div className="flex flex-col w-[42%]">
                       <label
                         className="text-sm text-grey700"
                         htmlFor="orderName"
@@ -216,7 +216,7 @@ function AddService() {
                       </label>
                       <input
                         required
-                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 px-4 focus:border-blue600 focus:outline-none"
                         type="text"
                         name="orderName"
                         value={subService.sub_service_name}
@@ -225,13 +225,13 @@ function AddService() {
                         }}
                       />
                     </div>
-                    <div className="flex flex-col w-56">
+                    <div className="flex flex-col w-[25%]">
                       <label className="serviceCharge text-sm text-grey700">
                         ค่าบริการ / 1 หน่วย
                       </label>
                       <input
                         required
-                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 px-4 focus:border-blue600 focus:outline-none"
                         type="number"
                         step="any"
                         name="serviceCharge"
@@ -241,7 +241,7 @@ function AddService() {
                         }}
                       />
                     </div>
-                    <div className="flex flex-col w-56">
+                    <div className="flex flex-col w-[25%]">
                       <label
                         className="unitService text-sm text-grey700 "
                         htmlFor="unitService"
@@ -249,7 +249,7 @@ function AddService() {
                         หน่วยการบริการ
                       </label>
                       <input
-                        className="rounded-lg h-11 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none mr-4"
+                        className="rounded-lg h-11 border border-grey300 py-2.5 px-4 focus:border-blue600 focus:outline-none mr-4"
                         required
                         type="text"
                         name="serviceUnit"

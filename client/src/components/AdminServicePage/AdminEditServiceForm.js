@@ -107,9 +107,9 @@ function ServiceEditForm() {
         title="บริการ"
         name={editHeader}
       />
-      <div className=" bg-bg">
-        <div className=" py-10">
-          <div className=" bg-white mx-10 p-6">
+      <div className=" bg-bg pb-4">
+        <div className="py-10">
+          <div className=" bg-white mx-10 p-6 border border-grey200 rounded-lg">
             <div className=" h-11 w-8/12 mb-10 flex justify-between items-center pr-16">
               <label
                 className="w-52 text-grey700 text-base font-medium"
@@ -119,7 +119,7 @@ function ServiceEditForm() {
               </label>
               <input
                 required
-                className="h-11 w-3/4 py-2.5 pl-4 border rounded-lg border-grey300 focus:border-blue600 focus:outline-none"
+                className="h-11 w-3/4 py-2.5 px-4 border rounded-lg border-grey300 focus:border-blue600 focus:outline-none"
                 type="text"
                 id="service name"
                 name="service name"
@@ -135,14 +135,14 @@ function ServiceEditForm() {
             </div>
             <div className="h-11 w-8/12 mb-10 flex justify-between items-center pr-16">
               <label
-                className="w-52 text-grey700 text-base font-medium"
+                className="w-52 text-grey700 text-base font-medium "
                 htmlFor="chooseCategory"
               >
                 หมวดหมู่
               </label>
               <select
                 required
-                className="h-11 w-3/4 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                className="h-11 w-3/4 border border-grey300 rounded-lg py-2.5 px-4 focus:border-blue600 focus:outline-none"
                 value={
                   category_name === ""
                     ? service[service.length - 1].category_name
@@ -184,9 +184,9 @@ function ServiceEditForm() {
                 <div key={index}>
                   <div
                     id="add-details-box"
-                    className=" h-full mb-10 flex justify-between"
+                    className="w-full h-full mb-10 flex justify-between"
                   >
-                    <div className="flex flex-col w-2/5">
+                    <div className="flex flex-col w-[42%]">
                       <label
                         className="text-sm text-grey700"
                         htmlFor="orderName"
@@ -195,7 +195,7 @@ function ServiceEditForm() {
                       </label>
                       <input
                         required
-                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 px-4 focus:border-blue600 focus:outline-none"
                         type="text"
                         value={subService.sub_service_name}
                         onChange={(e) => {
@@ -204,13 +204,13 @@ function ServiceEditForm() {
                         }}
                       />
                     </div>
-                    <div className="flex flex-col w-56">
+                    <div className="flex flex-col w-[25%]">
                       <label className="text-sm text-grey700">
                         ค่าบริการ / 1 หน่วย
                       </label>
                       <input
                         required
-                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 pl-4 focus:border-blue600 focus:outline-none"
+                        className="rounded-lg h-11 border border-grey300 mr-4 py-2.5 px-4 focus:border-blue600 focus:outline-none"
                         type="number"
                         step="any"
                         value={subService.price_per_unit}
@@ -219,7 +219,7 @@ function ServiceEditForm() {
                         }}
                       />
                     </div>
-                    <div className="flex flex-col w-56">
+                    <div className="flex flex-col w-[25%]">
                       <label
                         className="text-sm text-grey700 "
                         htmlFor="unitService"
@@ -228,7 +228,7 @@ function ServiceEditForm() {
                       </label>
                       <input
                         required
-                        className="rounded-lg h-11 border border-grey300 py-2.5 pl-4 focus:border-blue600 focus:outline-none mr-4"
+                        className="rounded-lg h-11 border border-grey300 py-2.5 px-4 focus:border-blue600 focus:outline-none mr-4"
                         type="text"
                         value={subService.unit}
                         onChange={(e) => {

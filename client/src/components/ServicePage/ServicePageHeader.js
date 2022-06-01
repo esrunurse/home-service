@@ -58,7 +58,7 @@ function ServiceHeader(props) {
             setSearchService(event.target.value);
           }}
           value={searchService}
-          className="border rounded-lg border-grey300 px-2.5 pl-4 h-11"
+          className="border rounded-lg border-grey300 py-2.5 px-4 h-11"
         />
         <div className="flex">
           <div className="flex-col">

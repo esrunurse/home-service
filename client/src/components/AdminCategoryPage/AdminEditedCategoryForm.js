@@ -59,12 +59,12 @@ function EditedCategoryForm() {
         />
         <div className="editCategory h-1/5 w-full py-14 px-10 flex flex-col ">
           <div className="editBox bg-white h-auto border border-grey200 rounded-lg px-6 py-10 w-full">
-            <div className="input-box flex justify-between items-center h-11 w-3/5">
+            <div className="input-box flex  items-center h-11 w-3/5">
               <label className=" text-grey700">
                 ชื่อหมวดหมู่<span className=" text-red">*</span>
               </label>
               <input
-                className="rounded-lg border px-4 h-11 w-4/6 focus:border-blue600 focus:outline-none"
+                className="rounded-lg border ml-16 px-4 h-11 w-4/6 border-grey300 focus:border-blue600 focus:outline-none"
                 type="text"
                 name="edited_category"
                 value={category_name}
@@ -79,20 +79,20 @@ function EditedCategoryForm() {
              h-24 flex"
             >
               <div className="h-11 flex-col">
-                <div className="text-base text-grey700 font-medium my-2">
+                <div className="text-base text-grey700 font-medium mt-3 mb-6">
                   สร้างเมื่อ
                 </div>
-                <div className="text-base text-grey700 font-medium my-2">
+                <div className="text-base text-grey700 font-medium mt-3 mb-6">
                   แก้ไขล่าสุด
                 </div>
               </div>
-              <div className="ml-12 flex-col">
-                <div className="my-2">
+              <div className="ml-16 flex-col my-1">
+                <div className="mt-3 mb-6">
                   <Moment format="DD/MM/YYYY hh:mm A">
                     {category.category_created_date}
                   </Moment>
                 </div>
-                <div className="my-2">
+                <div className="mt-3 mb-6">
                   <Moment format="DD/MM/YYYY hh:mm A">
                     {category.category_edited_date}
                   </Moment>

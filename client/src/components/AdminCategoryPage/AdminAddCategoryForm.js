@@ -38,7 +38,7 @@ function CreateCategoryForm() {
       <div
         className="createCategory 
           bg-white border border-grey200
-           flex items-center rounded-lg h-32 mx-6 my-10 py-0 px-24"
+           flex items-center rounded-lg h-32 mx-10 my-10 py-0 px-24"
       >
         <div
           className="inputForCreate 
@@ -53,7 +53,7 @@ function CreateCategoryForm() {
             name="categoryName"
             type="text"
             className="border rounded-lg border-grey300
-              focus:border-blue600 focus:outline-none w-4/6 h-11 py-2.5 pl-4"
+              focus:border-blue600 focus:outline-none w-4/6 h-11 py-2.5 px-4"
             value={category_name}
             onChange={(event) => {
               setCategory_name(event.target.value);

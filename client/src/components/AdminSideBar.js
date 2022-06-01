@@ -53,7 +53,7 @@ function SideBar() {
               บริการ
             </button>
           </div>
-          <div className="hover:bg-blue900 h-12 my-1 cursor-pointer flex items-center">
+          {/* <div className="hover:bg-blue900 h-12 my-1 cursor-pointer flex items-center">
             <img
               className="inline-block h-5 mr-2 ml-7"
               src={icon.coupon}
@@ -62,7 +62,7 @@ function SideBar() {
             <button className="h-14 text-grey100 font-medium text-base no-underline hover:text-white">
               Promotion Code
             </button>
-          </div>
+          </div> */}
           <div>
             <div className="hover:bg-blue900 h-12 my-1 cursor-pointer pt-3 absolute bottom-5 w-60">
               <img

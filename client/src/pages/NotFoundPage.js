@@ -26,8 +26,8 @@ function NotFoundPage() {
         {" "}
         We can't find the page you are looking for.
       </p>
-      <button className="btn-secondary" onClick={() => navigate("/")}>
-        <span className="text-lg hover:opacity-70">👨‍🔧 GO HOME 👩‍🔧</span>
+      <button className="border hover:opacity-70 border-blue950 px-5 py-2 rounded-lg text-blue950" onClick={() => navigate("/")}>
+        <span className="text-lg ">👨‍🔧 GO HOME 👩‍🔧</span>
       </button>
     </div>
   );

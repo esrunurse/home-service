@@ -34,9 +34,9 @@ function AdminService(props) {
 
   return (
     <div className="categories-data min-h-screen bg-bg p-[41px]">
-      <div className="ml-60 rounded-[5px] border border-grey200">
+      <div className="ml-60 rounded-[5px] border border-grey200 ">
         <table className="table-fixed w-full text-left">
-          <thead>
+          <thead className="bg-grey100 text-grey700 text-sm">
             <tr>
               <th className="py-3 font-normal text-center">ลำดับ</th>
               <th className="py-3 font-normal">ชื่อบริการ</th>
