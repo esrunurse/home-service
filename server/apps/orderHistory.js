@@ -100,4 +100,22 @@ orderHistoryRouter.get("/:id", async (req, res) => {
   });
 });
 
+// API route to update order history status by order history id
+orderHistoryRouter.put("/:id", async (req, res) => {
+  const orderHistoryId = req.params.id;
+
+  const updateOrderHistoryStatus = {
+    ...req.body,
+  };
+
+  await pool.query(
+    `update order_history set status = $1 where order_history_id = $2`,
+    [updateOrderHistoryStatus.status, orderHistoryId]
+  );
+
+  return res.json({
+    message: `Order History ${orderHistoryId} Status has been updated successfully.`,
+  });
+});
+
 export default orderHistoryRouter;
