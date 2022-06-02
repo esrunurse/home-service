@@ -40,7 +40,7 @@ authRouter.post("/login", async (req, res) => {
     userEmail,
   ]);
 
-  if (!user) {
+  if (user.rows.length === 0) {
     return res.status(404).json({
       message: "email not found",
     });
