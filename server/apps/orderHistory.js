@@ -100,6 +100,63 @@ orderHistoryRouter.get("/:id", async (req, res) => {
   });
 });
 
+// API route to get all order history
+orderHistoryRouter.get("/", async (req, res) => {
+  const keywords = req.query.keywords || "";
+
+  let query = "";
+  let values = [];
+
+  if (keywords) {
+    query = `select order_history.order_number, order_history.status, serviceman_detail.serviceman_name, 
+    service.service_name, users.email   
+    from order_history
+      inner join checkout
+      on order_history.checkout_id = checkout.checkout_id
+      inner join serviceman_detail
+      on serviceman_detail.serviceman_detail_id = order_history.serviceman_detail_id
+      inner join users
+      on users.user_id = order_history.user_id
+      inner join checkout_quantity
+      on checkout_quantity.checkout_id = checkout.checkout_id
+      inner join sub_service
+      on checkout_quantity.sub_service_id = sub_service.sub_service_id
+      inner join service
+      on service.service_id = sub_service.service_id
+    where order_history.order_number ilike '%'||$1||'%'`;
+    values = [keywords];
+  } else {
+    query = `select order_history.order_number, order_history.status, serviceman_detail.serviceman_name, 
+  service.service_name, users.email   
+  from order_history
+      inner join checkout
+      on order_history.checkout_id = checkout.checkout_id
+      inner join serviceman_detail
+      on serviceman_detail.serviceman_detail_id = order_history.serviceman_detail_id
+      inner join users
+      on users.user_id = order_history.user_id
+      inner join checkout_quantity
+      on checkout_quantity.checkout_id = checkout.checkout_id
+      inner join sub_service
+      on checkout_quantity.sub_service_id = sub_service.sub_service_id
+      inner join service
+      on service.service_id = sub_service.service_id`;
+  }
+
+  const result = await pool.query(query, values);
+
+  function removeDuplicates(data, key) {
+    return [...new Map(data.map((item) => [key(item), item])).values()];
+  }
+
+  // ตัวแปรนี้คือทำให้จำนวน index ของ array object เหลือเท่ากับจำนวน order_number
+  const newResult = removeDuplicates(result.rows, (item) => item.order_number);
+
+  return res.status(200).json({
+    data: newResult,
+  });
+});
+
 // API route to update order history status by order history id
 orderHistoryRouter.put("/:id", async (req, res) => {
   const orderHistoryId = req.params.id;
